@@ -8,7 +8,5 @@
 
 import Foundation
 class EventInfoModel{
-    static func editTime(time:String){
-        DBFirebase.saveEventTime(groupID: <#T##String#>, eventID: <#T##String#>, time: <#T##String#>)
-    }
+
 }

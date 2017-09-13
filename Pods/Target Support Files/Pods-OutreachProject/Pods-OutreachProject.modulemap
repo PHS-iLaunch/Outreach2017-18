@@ -1,0 +1,6 @@
+framework module Pods_OutreachProject {
+  umbrella header "Pods-OutreachProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
