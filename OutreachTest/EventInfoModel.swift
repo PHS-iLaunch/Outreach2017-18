@@ -8,5 +8,7 @@
 
 import Foundation
 class EventInfoModel{
-
+    static func getEventInfo(){//This method returns the information for an event
+        
+    }
 }

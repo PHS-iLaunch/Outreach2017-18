@@ -8,7 +8,6 @@
 
 import Foundation
 class LaunchModel{
-    
     static var currentUsername:String = ""
     
     static func saveCurrentUserLocally(){ //call whenever the current user changes
@@ -24,6 +23,9 @@ class LaunchModel{
         }else{
             currentUsername = ""
         }
+    }
+    
+    static func hasUserAlready(){//This method checks if a user has already logged in the app already to see if the app goes to the sign in screen or the home screen of that user
         
     }
 }
