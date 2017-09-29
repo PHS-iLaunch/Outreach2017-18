@@ -8,5 +8,7 @@
 
 import Foundation
 class GroupInfoModel{
-    
+    static func getGroupInfo() { //this function returns the group information.
+        
+    }
 }
