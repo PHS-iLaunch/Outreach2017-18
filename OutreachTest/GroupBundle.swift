@@ -1,4 +1,3 @@
-
 //
 //  File.swift
 //  OutreachProject
@@ -8,17 +7,32 @@
 //
 
 import Foundation
-class GroupBundle{
+import Firebase
+
+class GroupBundle {
+    
     var groupID:String = ""
     var color:String = ""
     var toggled:Bool = true
     
-    init(groupID:String,color:String){
+    init(groupID:String,color:String) {
         self.groupID = groupID
         self.color = color
     }
     
-    init(){
+    init(snapshot: FIRDataSnapshot) {
+        
+        let snapVal = snapshot.value as! [String: AnyObject]
+        
+        self.groupID = snapVal["groupID"] as! String
+        self.color = snapVal["color"] as! String
         
     }
+    
+    init(propertyList : [String: Any]) {
+        
+        self.groupID = propertyList["groupID"] as! String
+        self.color = propertyList["color"] as! String
+    }
+    
 }
