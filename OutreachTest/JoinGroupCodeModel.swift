@@ -8,5 +8,8 @@
 
 import Foundation
 class JoinGroupCodeModel{
+    static func enterGroupCode (){ // This method prompts user to enter a unique group code
+        
+    }
     
 }
