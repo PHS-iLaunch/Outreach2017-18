@@ -155,7 +155,7 @@ class DBFirebase : DBDelegate {
             for groupBundle in snapshot.children.allObjects {
                 
                 let snapVal = (groupBundle as! FIRDataSnapshot).value as! [String: AnyObject]
-                //May not be able to case groupBundle as a FIRDataSnapshot
+                //May not be able to cast groupBundle as a FIRDataSnapshot
                 
                 let groupID = snapVal["groupID"] as! String
                 
@@ -172,7 +172,162 @@ class DBFirebase : DBDelegate {
         return userGroupList
     }
     
-    static func saveEventTime(groupID:String,eventID:String,time:String){
-        //change
+    //MARK: Storing
+    
+    static func storeUsername(username:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "users")
+        
+        let userRef = ref.child("username")
+        
+        userRef.setValue(username)
+        
     }
+    
+    
+    static func storeGroupBundleGroupID(username:String, groupID:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "users")
+        
+        let userRef = ref.child(username).child("groupBundles").child(groupID)
+        
+        userRef.setValue(groupID)
+    }
+    
+
+    static func storeGroupBundleColor(username:String, groupID:String, color:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "users")
+        
+        let userRef = ref.child(username).child("groupBundles").child(groupID).child("color")
+        
+        userRef.setValue(color)
+        
+    }
+    
+    
+    static func storeGroupBundleToggle(username:String, groupID:String, toggle: Bool) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "users")
+        
+        let userRef = ref.child(username).child("groupBundles").child(groupID).child("toggle")
+        
+        userRef.setValue(toggle)
+        
+    }
+    
+    
+    static func storeGroupID(groupID:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID)
+        
+        groupRef.setValue(groupID)
+        
+    }
+    
+    
+    static func storeGroupName(groupID:String, groupName:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupName")
+        
+        groupRef.setValue(groupName)
+        
+    }
+    
+    
+    static func storeGroupDesc(groupID:String, groupDesc:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupDesc")
+        
+        groupRef.setValue(groupDesc)
+        
+    }
+    
+    
+    static func storeGroupParentID(groupID:String, groupParentID:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupParentID")
+        
+        groupRef.setValue(groupParentID)
+    }
+
+    
+    
+    static func storeEvent(groupID:String, eventName:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupEvents").child("eventName")
+        
+        groupRef.setValue(eventName)
+        
+    }
+    
+    
+    static func storeEventDesc(groupID:String, eventName:String, eventDesc:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupEvents").child("eventDesc")
+        
+        groupRef.setValue(eventDesc)
+        
+    }
+    
+    
+    static func storeEventTime(groupID:String, eventName:String, time:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupEvents").child("eventTime")
+        
+        groupRef.setValue(time)
+    }
+    
+    
+    static func storeEventLocation(groupID:String, eventName:String, location:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupEvents").child("eventLocation")
+        
+        groupRef.setValue(location)
+        
+    }
+    
+    
+    static func storeGroupMember(groupID:String, memberUsername:String) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupMembers").child(memberUsername)
+        
+        groupRef.setValue(memberUsername)
+        
+    }
+
+    
+    static func storeGroupMemberRole(groupID:String, memberUsername:String, role:Int) {
+        
+        let ref = FIRDatabase.database().reference(withPath: "groups")
+        
+        let groupRef = ref.child(groupID).child("groupMembers").child(memberUsername).child("role")
+        
+        groupRef.setValue(role)
+        
+    }
+
+
+
+
+
+
 }
