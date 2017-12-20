@@ -10,6 +10,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
+pod 'LBTAComponents','~> 0.1.9'
 
 
   target 'OutreachProjectTests' do

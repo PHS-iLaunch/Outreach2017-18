@@ -14,42 +14,20 @@
 		E10F833D1F5E240A00825583 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833C1F5E240A00825583 /* Group.swift */; };
 		E10F833F1F5E241500825583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833E1F5E241500825583 /* Event.swift */; };
 		E10F83411F5E242500825583 /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83401F5E242500825583 /* GroupMember.swift */; };
-		E10F83431F5E26CF00825583 /* UserPortalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83421F5E26CF00825583 /* UserPortalModel.swift */; };
-		E10F83451F5E2CBD00825583 /* NoteOnObjectsFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83441F5E2CBD00825583 /* NoteOnObjectsFolder.swift */; };
-		E10F83471F5E382B00825583 /* NoteOnDBFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83461F5E382B00825583 /* NoteOnDBFolder.swift */; };
-		E10F83491F5E3B8200825583 /* NoteOnModelsFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83481F5E3B8200825583 /* NoteOnModelsFolder.swift */; };
-		E10F834B1F5E4B0900825583 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F834A1F5E4B0900825583 /* HomeModel.swift */; };
-		E10F834D1F5E4B1C00825583 /* JoinGroupCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F834C1F5E4B1C00825583 /* JoinGroupCodeModel.swift */; };
-		E10F834F1F5E4B2600825583 /* JoinGroupConfirmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F834E1F5E4B2600825583 /* JoinGroupConfirmModel.swift */; };
-		E10F83511F5E4B3200825583 /* CreateGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83501F5E4B3200825583 /* CreateGroupModel.swift */; };
-		E10F83531F5E4B3A00825583 /* GroupInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83521F5E4B3A00825583 /* GroupInfoModel.swift */; };
-		E10F83551F5E4B4800825583 /* GroupMembersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83541F5E4B4800825583 /* GroupMembersModel.swift */; };
-		E10F83571F5E4B4F00825583 /* GroupEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83561F5E4B4F00825583 /* GroupEventsModel.swift */; };
-		E10F83591F5E4B5800825583 /* CreateEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83581F5E4B5800825583 /* CreateEventModel.swift */; };
-		E10F835B1F5E4B6100825583 /* DateDisplayListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F835A1F5E4B6100825583 /* DateDisplayListModel.swift */; };
-		E10F835D1F5E4B6B00825583 /* EventInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F835C1F5E4B6B00825583 /* EventInfoModel.swift */; };
-		E10F835F1F5E4FAB00825583 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F835E1F5E4FAB00825583 /* LaunchModel.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
-		E1D1AF771F5DF67D00771775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF751F5DF67D00771775 /* Main.storyboard */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
 		E1D1AF7F1F5DF67D00771775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7D1F5DF67D00771775 /* LaunchScreen.storyboard */; };
 		E1D1AF8A1F5DF67D00771775 /* OutreachTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF891F5DF67D00771775 /* OutreachTestTests.swift */; };
-		E1D1AF961F5DF70F00771775 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF951F5DF70F00771775 /* SignUp.swift */; };
-		E1D1AF981F5DF77000771775 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF971F5DF77000771775 /* SignIn.swift */; };
-		E1D1AF9A1F5DF7FA00771775 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF991F5DF7FA00771775 /* Home.swift */; };
-		E1D1AF9C1F5DF81C00771775 /* JoinGroupCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF9B1F5DF81C00771775 /* JoinGroupCode.swift */; };
-		E1D1AF9E1F5DF84300771775 /* JoinGroupConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF9D1F5DF84300771775 /* JoinGroupConfirm.swift */; };
-		E1D1AFA01F5DF86300771775 /* CreateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF9F1F5DF86300771775 /* CreateGroup.swift */; };
-		E1D1AFA21F5DF87600771775 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFA11F5DF87600771775 /* GroupInfo.swift */; };
-		E1D1AFA51F5DFC1800771775 /* GroupMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFA41F5DFC1800771775 /* GroupMembers.swift */; };
-		E1D1AFA71F5DFC3A00771775 /* GroupEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFA61F5DFC3A00771775 /* GroupEvents.swift */; };
-		E1D1AFA91F5DFC9900771775 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFA81F5DFC9900771775 /* CreateEvent.swift */; };
-		E1D1AFAB1F5DFDE400771775 /* DateDisplayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFAA1F5DFDE400771775 /* DateDisplayList.swift */; };
-		E1D1AFAD1F5DFDF600771775 /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFAC1F5DFDF600771775 /* EventInfo.swift */; };
-		E1D1AFB01F5DFE2800771775 /* UIKitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFAF1F5DFE2800771775 /* UIKitItem.swift */; };
 		E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFB81F5E034700771775 /* DBDelegate.swift */; };
 		E1D1AFBB1F5E035200771775 /* DBFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFBA1F5E035200771775 /* DBFirebase.swift */; };
+		E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */; };
+		E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */; };
+		E1F58A601FE8AC4100468E7D /* HomeCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5F1FE8AC4100468E7D /* HomeCells.swift */; };
+		E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A611FE8B10F00468E7D /* ThemeColors.swift */; };
+		E1F58A641FE8B83500468E7D /* HomeGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A631FE8B83500468E7D /* HomeGroupListCell.swift */; };
+		E1F58A661FE94BC700468E7D /* MonthTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A651FE94BC700468E7D /* MonthTopBar.swift */; };
+		E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A691FEAA5A900468E7D /* myCalendar.swift */; };
 		F08C3A1919135D7E9F153D2C /* Pods_OutreachProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12895FCC6A4EB3D1B3AD67E /* Pods_OutreachProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,24 +53,8 @@
 		E10F833C1F5E240A00825583 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		E10F833E1F5E241500825583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		E10F83401F5E242500825583 /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
-		E10F83421F5E26CF00825583 /* UserPortalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortalModel.swift; sourceTree = "<group>"; };
-		E10F83441F5E2CBD00825583 /* NoteOnObjectsFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteOnObjectsFolder.swift; sourceTree = "<group>"; };
-		E10F83461F5E382B00825583 /* NoteOnDBFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteOnDBFolder.swift; sourceTree = "<group>"; };
-		E10F83481F5E3B8200825583 /* NoteOnModelsFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteOnModelsFolder.swift; sourceTree = "<group>"; };
-		E10F834A1F5E4B0900825583 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		E10F834C1F5E4B1C00825583 /* JoinGroupCodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupCodeModel.swift; sourceTree = "<group>"; };
-		E10F834E1F5E4B2600825583 /* JoinGroupConfirmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupConfirmModel.swift; sourceTree = "<group>"; };
-		E10F83501F5E4B3200825583 /* CreateGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupModel.swift; sourceTree = "<group>"; };
-		E10F83521F5E4B3A00825583 /* GroupInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupInfoModel.swift; sourceTree = "<group>"; };
-		E10F83541F5E4B4800825583 /* GroupMembersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersModel.swift; sourceTree = "<group>"; };
-		E10F83561F5E4B4F00825583 /* GroupEventsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupEventsModel.swift; sourceTree = "<group>"; };
-		E10F83581F5E4B5800825583 /* CreateEventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventModel.swift; sourceTree = "<group>"; };
-		E10F835A1F5E4B6100825583 /* DateDisplayListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisplayListModel.swift; sourceTree = "<group>"; };
-		E10F835C1F5E4B6B00825583 /* EventInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoModel.swift; sourceTree = "<group>"; };
-		E10F835E1F5E4FAB00825583 /* LaunchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1D1AF761F5DF67D00771775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
 		E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1D1AF7E1F5DF67D00771775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,21 +62,15 @@
 		E1D1AF851F5DF67D00771775 /* OutreachProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutreachProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF891F5DF67D00771775 /* OutreachTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutreachTestTests.swift; sourceTree = "<group>"; };
 		E1D1AF8B1F5DF67D00771775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1D1AF951F5DF70F00771775 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
-		E1D1AF971F5DF77000771775 /* SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
-		E1D1AF991F5DF7FA00771775 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E1D1AF9B1F5DF81C00771775 /* JoinGroupCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupCode.swift; sourceTree = "<group>"; };
-		E1D1AF9D1F5DF84300771775 /* JoinGroupConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupConfirm.swift; sourceTree = "<group>"; };
-		E1D1AF9F1F5DF86300771775 /* CreateGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroup.swift; sourceTree = "<group>"; };
-		E1D1AFA11F5DF87600771775 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
-		E1D1AFA41F5DFC1800771775 /* GroupMembers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembers.swift; sourceTree = "<group>"; };
-		E1D1AFA61F5DFC3A00771775 /* GroupEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupEvents.swift; sourceTree = "<group>"; };
-		E1D1AFA81F5DFC9900771775 /* CreateEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
-		E1D1AFAA1F5DFDE400771775 /* DateDisplayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisplayList.swift; sourceTree = "<group>"; };
-		E1D1AFAC1F5DFDF600771775 /* EventInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfo.swift; sourceTree = "<group>"; };
-		E1D1AFAF1F5DFE2800771775 /* UIKitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitItem.swift; sourceTree = "<group>"; };
 		E1D1AFB81F5E034700771775 /* DBDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBDelegate.swift; sourceTree = "<group>"; };
 		E1D1AFBA1F5E035200771775 /* DBFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFirebase.swift; sourceTree = "<group>"; };
+		E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
+		E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasourceController.swift; sourceTree = "<group>"; };
+		E1F58A5F1FE8AC4100468E7D /* HomeCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCells.swift; sourceTree = "<group>"; };
+		E1F58A611FE8B10F00468E7D /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		E1F58A631FE8B83500468E7D /* HomeGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGroupListCell.swift; sourceTree = "<group>"; };
+		E1F58A651FE94BC700468E7D /* MonthTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTopBar.swift; sourceTree = "<group>"; };
+		E1F58A691FEAA5A900468E7D /* myCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCalendar.swift; sourceTree = "<group>"; };
 		EC6B52D36DC4EBE79F5BBF31 /* Pods-OutreachProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +117,6 @@
 		E10F83371F5E23D000825583 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				E10F83441F5E2CBD00825583 /* NoteOnObjectsFolder.swift */,
 				E10F83381F5E23DE00825583 /* User.swift */,
 				E10F833A1F5E23ED00825583 /* GroupBundle.swift */,
 				E10F833C1F5E240A00825583 /* Group.swift */,
@@ -194,11 +149,17 @@
 		E1D1AF701F5DF67D00771775 /* OutreachProject */ = {
 			isa = PBXGroup;
 			children = (
+				E1F58A681FEAA59A00468E7D /* Utility */,
+				E1D1AF711F5DF67D00771775 /* AppDelegate.swift */,
+				E1D1AF7D1F5DF67D00771775 /* LaunchScreen.storyboard */,
 				E10F83371F5E23D000825583 /* Objects */,
+				E1F58A581FE89EE400468E7D /* Model */,
+				E1F58A591FE89EEC00468E7D /* View */,
+				E1F58A5A1FE89EF500468E7D /* Controller */,
+				E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */,
 				E1D1AFB51F5DFF1700771775 /* BackgroundFiles */,
-				E1D1AFA31F5DF8A000771775 /* GUI */,
-				E1D1AFB61F5E025C00771775 /* Models */,
 				E1D1AFB71F5E029B00771775 /* Database */,
+				E1F58A611FE8B10F00468E7D /* ThemeColors.swift */,
 			);
 			name = OutreachProject;
 			path = OutreachTest;
@@ -213,49 +174,9 @@
 			path = OutreachTestTests;
 			sourceTree = "<group>";
 		};
-		E1D1AF941F5DF6F000771775 /* GUIScreens */ = {
-			isa = PBXGroup;
-			children = (
-				E1D1AF7D1F5DF67D00771775 /* LaunchScreen.storyboard */,
-				E1D1AF751F5DF67D00771775 /* Main.storyboard */,
-				E1D1AF951F5DF70F00771775 /* SignUp.swift */,
-				E1D1AF971F5DF77000771775 /* SignIn.swift */,
-				E1D1AF991F5DF7FA00771775 /* Home.swift */,
-				E1D1AF9B1F5DF81C00771775 /* JoinGroupCode.swift */,
-				E1D1AF9D1F5DF84300771775 /* JoinGroupConfirm.swift */,
-				E1D1AF9F1F5DF86300771775 /* CreateGroup.swift */,
-				E1D1AFA11F5DF87600771775 /* GroupInfo.swift */,
-				E1D1AFA41F5DFC1800771775 /* GroupMembers.swift */,
-				E1D1AFA61F5DFC3A00771775 /* GroupEvents.swift */,
-				E1D1AFA81F5DFC9900771775 /* CreateEvent.swift */,
-				E1D1AFAA1F5DFDE400771775 /* DateDisplayList.swift */,
-				E1D1AFAC1F5DFDF600771775 /* EventInfo.swift */,
-			);
-			name = GUIScreens;
-			sourceTree = "<group>";
-		};
-		E1D1AFA31F5DF8A000771775 /* GUI */ = {
-			isa = PBXGroup;
-			children = (
-				E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */,
-				E1D1AFAE1F5DFE0200771775 /* GUIUtilityClasses */,
-				E1D1AF941F5DF6F000771775 /* GUIScreens */,
-			);
-			name = GUI;
-			sourceTree = "<group>";
-		};
-		E1D1AFAE1F5DFE0200771775 /* GUIUtilityClasses */ = {
-			isa = PBXGroup;
-			children = (
-				E1D1AFAF1F5DFE2800771775 /* UIKitItem.swift */,
-			);
-			name = GUIUtilityClasses;
-			sourceTree = "<group>";
-		};
 		E1D1AFB51F5DFF1700771775 /* BackgroundFiles */ = {
 			isa = PBXGroup;
 			children = (
-				E1D1AF711F5DF67D00771775 /* AppDelegate.swift */,
 				E1D1AF801F5DF67D00771775 /* Info.plist */,
 				46CDC0DD1F687FEB0029A4D0 /* GoogleService-Info.plist */,
 				E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */,
@@ -263,34 +184,55 @@
 			name = BackgroundFiles;
 			sourceTree = "<group>";
 		};
-		E1D1AFB61F5E025C00771775 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E10F83481F5E3B8200825583 /* NoteOnModelsFolder.swift */,
-				E10F835E1F5E4FAB00825583 /* LaunchModel.swift */,
-				E10F83421F5E26CF00825583 /* UserPortalModel.swift */,
-				E10F834A1F5E4B0900825583 /* HomeModel.swift */,
-				E10F834C1F5E4B1C00825583 /* JoinGroupCodeModel.swift */,
-				E10F834E1F5E4B2600825583 /* JoinGroupConfirmModel.swift */,
-				E10F83501F5E4B3200825583 /* CreateGroupModel.swift */,
-				E10F83521F5E4B3A00825583 /* GroupInfoModel.swift */,
-				E10F83541F5E4B4800825583 /* GroupMembersModel.swift */,
-				E10F83561F5E4B4F00825583 /* GroupEventsModel.swift */,
-				E10F83581F5E4B5800825583 /* CreateEventModel.swift */,
-				E10F835A1F5E4B6100825583 /* DateDisplayListModel.swift */,
-				E10F835C1F5E4B6B00825583 /* EventInfoModel.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		E1D1AFB71F5E029B00771775 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				E10F83461F5E382B00825583 /* NoteOnDBFolder.swift */,
 				E1D1AFB81F5E034700771775 /* DBDelegate.swift */,
 				E1D1AFBA1F5E035200771775 /* DBFirebase.swift */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		E1F58A581FE89EE400468E7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E1F58A591FE89EEC00468E7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A671FE98B5200468E7D /* HomeViews */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E1F58A5A1FE89EF500468E7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E1F58A671FE98B5200468E7D /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A5F1FE8AC4100468E7D /* HomeCells.swift */,
+				E1F58A631FE8B83500468E7D /* HomeGroupListCell.swift */,
+				E1F58A651FE94BC700468E7D /* MonthTopBar.swift */,
+			);
+			name = HomeViews;
+			sourceTree = "<group>";
+		};
+		E1F58A681FEAA59A00468E7D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A691FEAA5A900468E7D /* myCalendar.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,7 +329,6 @@
 				E1D1AF7F1F5DF67D00771775 /* LaunchScreen.storyboard in Resources */,
 				46CDC0DE1F687FEB0029A4D0 /* GoogleService-Info.plist in Resources */,
 				E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */,
-				E1D1AF771F5DF67D00771775 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,13 +348,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OutreachProject-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		37351CFB8D899645B4DE3491 /* [CP] Embed Pods Frameworks */ = {
@@ -437,13 +381,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OutreachProjectTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B51E04B730DD22BBBB7E47BA /* [CP] Copy Pods Resources */ = {
@@ -482,9 +429,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -499,41 +453,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10F83411F5E242500825583 /* GroupMember.swift in Sources */,
+				E1F58A661FE94BC700468E7D /* MonthTopBar.swift in Sources */,
 				E10F833D1F5E240A00825583 /* Group.swift in Sources */,
-				E10F835B1F5E4B6100825583 /* DateDisplayListModel.swift in Sources */,
-				E1D1AF9C1F5DF81C00771775 /* JoinGroupCode.swift in Sources */,
-				E10F83491F5E3B8200825583 /* NoteOnModelsFolder.swift in Sources */,
-				E1D1AF961F5DF70F00771775 /* SignUp.swift in Sources */,
-				E10F835F1F5E4FAB00825583 /* LaunchModel.swift in Sources */,
-				E1D1AFA91F5DFC9900771775 /* CreateEvent.swift in Sources */,
-				E1D1AFB01F5DFE2800771775 /* UIKitItem.swift in Sources */,
+				E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */,
 				E10F833B1F5E23ED00825583 /* GroupBundle.swift in Sources */,
 				E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */,
-				E1D1AF9E1F5DF84300771775 /* JoinGroupConfirm.swift in Sources */,
-				E10F835D1F5E4B6B00825583 /* EventInfoModel.swift in Sources */,
-				E1D1AF9A1F5DF7FA00771775 /* Home.swift in Sources */,
-				E1D1AFAD1F5DFDF600771775 /* EventInfo.swift in Sources */,
-				E10F83451F5E2CBD00825583 /* NoteOnObjectsFolder.swift in Sources */,
 				E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */,
 				E10F833F1F5E241500825583 /* Event.swift in Sources */,
-				E1D1AFAB1F5DFDE400771775 /* DateDisplayList.swift in Sources */,
+				E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */,
 				E1D1AFBB1F5E035200771775 /* DBFirebase.swift in Sources */,
-				E1D1AFA01F5DF86300771775 /* CreateGroup.swift in Sources */,
+				E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */,
+				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
+				E1F58A641FE8B83500468E7D /* HomeGroupListCell.swift in Sources */,
 				E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */,
-				E10F834F1F5E4B2600825583 /* JoinGroupConfirmModel.swift in Sources */,
-				E10F83551F5E4B4800825583 /* GroupMembersModel.swift in Sources */,
-				E1D1AFA71F5DFC3A00771775 /* GroupEvents.swift in Sources */,
-				E1D1AFA51F5DFC1800771775 /* GroupMembers.swift in Sources */,
-				E10F83591F5E4B5800825583 /* CreateEventModel.swift in Sources */,
-				E10F83431F5E26CF00825583 /* UserPortalModel.swift in Sources */,
-				E10F83471F5E382B00825583 /* NoteOnDBFolder.swift in Sources */,
-				E10F83531F5E4B3A00825583 /* GroupInfoModel.swift in Sources */,
-				E10F834B1F5E4B0900825583 /* HomeModel.swift in Sources */,
-				E1D1AF981F5DF77000771775 /* SignIn.swift in Sources */,
-				E1D1AFA21F5DF87600771775 /* GroupInfo.swift in Sources */,
-				E10F83571F5E4B4F00825583 /* GroupEventsModel.swift in Sources */,
-				E10F834D1F5E4B1C00825583 /* JoinGroupCodeModel.swift in Sources */,
-				E10F83511F5E4B3200825583 /* CreateGroupModel.swift in Sources */,
+				E1F58A601FE8AC4100468E7D /* HomeCells.swift in Sources */,
 				E10F83391F5E23DE00825583 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,14 +490,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E1D1AF751F5DF67D00771775 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1D1AF761F5DF67D00771775 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E1D1AF7D1F5DF67D00771775 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -676,11 +601,15 @@
 			baseConfigurationReference = EC6B52D36DC4EBE79F5BBF31 /* Pods-OutreachProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NX68CWX2FV;
 				INFOPLIST_FILE = OutreachTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iLaunch.OutreachProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -690,11 +619,15 @@
 			baseConfigurationReference = 18C0F43CD946EAEA76742C30 /* Pods-OutreachProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NX68CWX2FV;
 				INFOPLIST_FILE = OutreachTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iLaunch.OutreachProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
