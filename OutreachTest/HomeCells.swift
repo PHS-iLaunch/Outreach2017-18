@@ -26,16 +26,26 @@ class CalendarFooter:DatasourceCell{
 }
 
 class UserCalendar: DatasourceCell {
+    
+    var hasViewed = false
+    
     override var datasourceItem: Any?{
         didSet{
             if let day = datasourceItem as? Int{
-                dateLabel.text = "\(day)"
-                if day == myCalendar.getDay(){
-                    backgroundColor = ThemeColor.lightGreen
+                if !hasViewed{
+                    hasViewed = true
+                    dateLabel.text = "\(day)"
+                    
+                    if day == myCalendar.getDay(){
+                        backgroundColor = ThemeColor.lightGreen
+                    }
                 }
             }else{
-                dateLabel.text = ""
-                backgroundColor = ThemeColor.lightGray
+                if !hasViewed{
+                    hasViewed = true
+                    dateLabel.text = ""
+                    backgroundColor = ThemeColor.lightGray
+                }
             }
         }
     }
@@ -54,6 +64,7 @@ class UserCalendar: DatasourceCell {
         separatorLineView.isHidden = true
         separatorLineView.backgroundColor = ThemeColor.border
         addSubview(dateLabel)
+        print("Reuse:\(reuseIdentifier)")
         
         dateLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 5, leftConstant: 13, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         

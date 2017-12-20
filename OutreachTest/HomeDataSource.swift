@@ -16,7 +16,7 @@ class HomeDataSource: Datasource{
     let daysOfWeek = ["Sun","Mon","Tues","Wed","Thu","Fri","Sat"]
     
     //This should not be constant:
-    var addedGroups = [["group1","admin"],["group2","member"],["group3","admin"],["group4","member"]]
+    var addedGroups = [["group1","admin"],["group2","member"],["group3","admin"],["group4","member"],["group5","member"],["group6","member"],["group7","member"],["group8","member"],["group9","member"],["group10","member"],["group11","member"],["group12","member"],["group13","member"],["group14","member"],["group15","member"],["group16","member"],["group17","member"],["group18","member"],["group19","member"],["group20","member"]]
     static var calendarDateList:[Int?] = []
     //
     
@@ -38,6 +38,7 @@ class HomeDataSource: Datasource{
         }else if indexPath.section == 1{
             return daysOfWeek[indexPath.item]
         }else if indexPath.section == 2{
+            print(HomeDataSource.calendarDateList)
             return HomeDataSource.calendarDateList[indexPath.item]
         }else if indexPath.section == 3{
             return addedGroups[indexPath.item]
@@ -60,7 +61,7 @@ class HomeDataSource: Datasource{
             }
         }
         else if section == 3{
-            return 4 //# of groups
+            return 20 //# of groups
         }else{
             return 0
         }
