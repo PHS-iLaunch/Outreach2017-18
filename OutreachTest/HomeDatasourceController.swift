@@ -80,6 +80,7 @@ class HomeDatasourceController: DatasourceController{
         }
         else if indexPath.section == 2{
             return CGSize(width:view.frame.width/7,height:55)
+            collectionView.reloadData()
         }else if indexPath.section == 3{
             return CGSize(width:view.frame.width,height:80)
         }else{
@@ -125,12 +126,12 @@ class HomeDatasourceController: DatasourceController{
         for _ in 1...cellCount{
             if gap>0{
                 gap-=1
-                HomeDataSource.calendarDateList.append(nil)
+                HomeDataSource.calendarDateList.append(UserCellDataPackage(nil))
             }else if counter <= myCalendar.getNumberOfDaysInMonth(month: month, year: year){
-                HomeDataSource.calendarDateList.append(counter)
+                HomeDataSource.calendarDateList.append(UserCellDataPackage(counter))
                 counter+=1
             }else{
-                HomeDataSource.calendarDateList.append(nil)
+                HomeDataSource.calendarDateList.append(UserCellDataPackage(nil))
                 counter+=1
             }
         }

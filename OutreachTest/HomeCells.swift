@@ -25,29 +25,50 @@ class CalendarFooter:DatasourceCell{
     }
 }
 
-class UserCalendar: DatasourceCell {
-    
+class UserCellDataPackage{
+    var day:Int? = nil
     var hasViewed = false
+    var colorStatus:colorStatus = .white
     
+    init(_ day:Int?){
+        self.day = day;
+    }
+}
+
+enum colorStatus{
+    case green
+    case gray
+    case white
+}
+
+class UserCalendar: DatasourceCell {
     override var datasourceItem: Any?{
         didSet{
-            if let day = datasourceItem as? Int{
-                if !hasViewed{
-                    hasViewed = true
-                    dateLabel.text = "\(day)"
-                    
-                    if day == myCalendar.getDay(){
-                        backgroundColor = ThemeColor.lightGreen
-                    }
+            let day = datasourceItem as! UserCellDataPackage
+            if day.day != nil{
+                dateLabel.text = "\(day.day!)"
+                if dateLabel.text == String(myCalendar.getDay()){ //need to also check for month
+                    day.colorStatus = .green
+                }else{
+                    day.colorStatus = .white
                 }
             }else{
-                if !hasViewed{
-                    hasViewed = true
-                    dateLabel.text = ""
-                    backgroundColor = ThemeColor.lightGray
-                }
+                dateLabel.text = ""
+                day.colorStatus = .gray
+            }
+            
+            if day.colorStatus == .white{
+                backgroundColor = ThemeColor.whitish
+            }else if day.colorStatus == .gray{
+                backgroundColor = ThemeColor.lightGray
+            }else if day.colorStatus == .green{
+                backgroundColor = ThemeColor.lightGreen
             }
         }
+    }
+    
+    override func prepareForReuse() {
+        print("Prepare")
     }
     
     let dateLabel:UILabel = {

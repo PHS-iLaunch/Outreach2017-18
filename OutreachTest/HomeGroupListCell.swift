@@ -43,17 +43,12 @@ class HomeGroupListHeader: DatasourceCell{
 }
 
 class HomeGroupListCell: DatasourceCell{
-    var hasViewed = false
     
     override var datasourceItem: Any?{
         didSet{
             var array:[String] = (datasourceItem as? [String])!
-            
-            if !hasViewed{
-                hasViewed = true
-                nameLabel.text = array[0]
-                roleLabel.text = array[1]
-            }
+            nameLabel.text = array[0]
+            roleLabel.text = array[1]
         }
     }
     

@@ -89,18 +89,14 @@ open class DatasourceController: UICollectionViewController, UICollectionViewDel
         let cell: DatasourceCell
         
         if let cls = datasource?.cellClass(indexPath) {
-            print("Print1:\(NSStringFromClass(cls))")
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! DatasourceCell
         } else if let cellClasses = datasource?.cellClasses(), cellClasses.count > indexPath.section {
             let cls = cellClasses[indexPath.section]
-            print("Print2:\(NSStringFromClass(cls))")
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! DatasourceCell
         } else if let cls = datasource?.cellClasses().first {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! DatasourceCell
-            print("Print3:\(NSStringFromClass(cls))")
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: defaultCellId, for: indexPath) as! DatasourceCell
-            print("Print4:\(defaultCellId)")
         }
         
         cell.controller = self
