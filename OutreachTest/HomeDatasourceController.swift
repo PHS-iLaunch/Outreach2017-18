@@ -11,16 +11,15 @@ import LBTAComponents
 
 class HomeDatasourceController: DatasourceController{
     
-    var currentDisplayedMonth:Int = 1 //arbitrary default
-    var currentDisplayedYear:Int = 2000 //arbitrary default
+    static var currentDisplayedMonth:Int = 1 //arbitrary default
+    static var currentDisplayedYear:Int = 2000 //arbitrary default
+    static var own:HomeDatasourceController = HomeDatasourceController()
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        transition()
-    }
-    
-    func transition(){
-        let secondViewController:UIViewController = UIViewController()
-        self.present(secondViewController, animated: true, completion: nil)
+    func display(contentController content: UIViewController, on view: UIView) {
+        self.addChildViewController(content)
+        content.view.frame = view.bounds
+        view.addSubview(content.view)
+        content.didMove(toParentViewController: self)
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -41,9 +40,10 @@ class HomeDatasourceController: DatasourceController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentDisplayedMonth = myCalendar.getMonth()
-        currentDisplayedYear = myCalendar.getYear()
-        generateArrayOfDatesForMonth(month: currentDisplayedMonth, year: currentDisplayedYear)
+        HomeDatasourceController.currentDisplayedMonth = myCalendar.getMonth()
+        HomeDatasourceController.currentDisplayedYear = myCalendar.getYear()
+        generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        HomeDataSource.calendarDateList = HomeDataSource.horizontalToVertical(HomeDataSource.calendarDateList)
         
         collectionView?.backgroundColor = ThemeColor.whitish
         let homeDatasource = HomeDataSource()
@@ -52,6 +52,7 @@ class HomeDatasourceController: DatasourceController{
         collectionView?.showsVerticalScrollIndicator = false
         
         setupNavigationBarItems()
+        HomeDatasourceController.own = self
     }
     
     func setupNavigationBarItems(){
@@ -79,8 +80,11 @@ class HomeDatasourceController: DatasourceController{
             return CGSize(width:view.frame.width/7,height:30)
         }
         else if indexPath.section == 2{
-            return CGSize(width:view.frame.width/7,height:55)
-            collectionView.reloadData()
+            if HomeDataSource.calendarDateList.count<=35{
+                return CGSize(width:view.frame.width,height:55*5)
+            }else{
+                return CGSize(width:view.frame.width,height:55*6)
+            }
         }else if indexPath.section == 3{
             return CGSize(width:view.frame.width,height:80)
         }else{

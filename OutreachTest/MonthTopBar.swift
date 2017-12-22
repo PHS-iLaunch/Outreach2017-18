@@ -12,8 +12,13 @@ import LBTAComponents
 class MonthTopBar: DatasourceCell{
     override var datasourceItem: Any?{
         didSet{
-            monthLabel.text = datasourceItem as? String
-            monthLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-monthLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-monthLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+            if let temp = datasourceItem as? [String]{
+                monthLabel.text = temp[0]
+                monthLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-monthLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-monthLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                
+                yearLabel.text = temp[1]
+                yearLabel.anchor(monthLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: self.frame.width/2-yearLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+            }
         }
     }
     
@@ -21,6 +26,15 @@ class MonthTopBar: DatasourceCell{
         let label = UILabel()
         label.text = "Month Name"
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = ThemeColor.red
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let yearLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Year Name"
+        label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textColor = ThemeColor.red
         label.textAlignment = .center
         return label
@@ -46,6 +60,7 @@ class MonthTopBar: DatasourceCell{
         separatorLineView.isHidden = true
         separatorLineView.backgroundColor = ThemeColor.border
         addSubview(monthLabel)
+        addSubview(yearLabel)
         addSubview(leftArrow)
         addSubview(rightArrow)
         

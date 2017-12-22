@@ -28,6 +28,8 @@
 		E1F58A641FE8B83500468E7D /* HomeGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A631FE8B83500468E7D /* HomeGroupListCell.swift */; };
 		E1F58A661FE94BC700468E7D /* MonthTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A651FE94BC700468E7D /* MonthTopBar.swift */; };
 		E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A691FEAA5A900468E7D /* myCalendar.swift */; };
+		E1F58A6E1FEC902900468E7D /* HomeCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A6D1FEC902900468E7D /* HomeCalendarController.swift */; };
+		E1F58A701FEC908B00468E7D /* HomeCalendarDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */; };
 		F08C3A1919135D7E9F153D2C /* Pods_OutreachProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12895FCC6A4EB3D1B3AD67E /* Pods_OutreachProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		E1F58A631FE8B83500468E7D /* HomeGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGroupListCell.swift; sourceTree = "<group>"; };
 		E1F58A651FE94BC700468E7D /* MonthTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTopBar.swift; sourceTree = "<group>"; };
 		E1F58A691FEAA5A900468E7D /* myCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCalendar.swift; sourceTree = "<group>"; };
+		E1F58A6D1FEC902900468E7D /* HomeCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarController.swift; sourceTree = "<group>"; };
+		E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarDataSource.swift; sourceTree = "<group>"; };
 		EC6B52D36DC4EBE79F5BBF31 /* Pods-OutreachProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */,
+				E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */,
+				E1F58A6D1FEC902900468E7D /* HomeCalendarController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -457,6 +463,7 @@
 				E10F833D1F5E240A00825583 /* Group.swift in Sources */,
 				E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */,
 				E10F833B1F5E23ED00825583 /* GroupBundle.swift in Sources */,
+				E1F58A6E1FEC902900468E7D /* HomeCalendarController.swift in Sources */,
 				E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */,
 				E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */,
 				E10F833F1F5E241500825583 /* Event.swift in Sources */,
@@ -466,6 +473,7 @@
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
 				E1F58A641FE8B83500468E7D /* HomeGroupListCell.swift in Sources */,
 				E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */,
+				E1F58A701FEC908B00468E7D /* HomeCalendarDataSource.swift in Sources */,
 				E1F58A601FE8AC4100468E7D /* HomeCells.swift in Sources */,
 				E10F83391F5E23DE00825583 /* User.swift in Sources */,
 			);

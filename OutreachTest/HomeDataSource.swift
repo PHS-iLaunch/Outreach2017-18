@@ -21,6 +21,28 @@ class HomeDataSource: Datasource{
     static var calendarDateList:[UserCellDataPackage] = []
     //
     
+    static func horizontalToVertical(_ array:[UserCellDataPackage])->[UserCellDataPackage]{
+        var transformArraySet:[[UserCellDataPackage]] = []
+        for week in 0..<array.count/7{
+            var arraySet:[UserCellDataPackage] = []
+            for day in 0..<7{
+                arraySet.append(array[day+week*7])
+            }
+            transformArraySet.append(arraySet)
+        }
+        
+        var newArray:[UserCellDataPackage] = []
+        for i2 in 0..<7{
+            for index in 0..<array.count/7{
+                newArray.append(transformArraySet[index][i2])
+            }
+        }
+        for x in newArray{
+            print(x.day)
+        }
+        return newArray
+    }
+    
     override func headerClasses() -> [DatasourceCell.Type]? {
         return [CalendarHeader.self,CalendarHeader.self,CalendarHeader.self,HomeGroupListHeader.self]
     }
@@ -30,16 +52,16 @@ class HomeDataSource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [MonthTopBar.self,staticDayDisplayBar.self, UserCalendar.self,HomeGroupListCell.self]
+        return [MonthTopBar.self,staticDayDisplayBar.self, FeedCell.self,HomeGroupListCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
         if indexPath.section == 0{
-            return monthsOfYear[myCalendar.getMonth()-1]
+            return [monthsOfYear[HomeDatasourceController.currentDisplayedMonth-1],String(HomeDatasourceController.currentDisplayedYear)]
         }else if indexPath.section == 1{
             return daysOfWeek[indexPath.item]
         }else if indexPath.section == 2{
-            return HomeDataSource.calendarDateList[indexPath.item]
+            return "hi"
         }else if indexPath.section == 3{
             return addedGroups[indexPath.item]
         }
@@ -54,11 +76,7 @@ class HomeDataSource: Datasource{
             return 7 //The static days of the week
         }
         else if section == 2{
-            if HomeDataSource.calendarDateList.count<=35{
-                return 35 //The calendar
-            }else{
-                return 42
-            }
+            return 1 //the uicollectionview
         }
         else if section == 3{
             return 20 //# of groups
