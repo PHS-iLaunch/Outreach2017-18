@@ -32,10 +32,14 @@ class HomeCalendarController: DatasourceController{
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
-            HomeDatasourceController.monthYearChange(direction: .left)
-        }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
-            HomeDatasourceController.monthYearChange(direction: .right)
+        if abs(scrollView.panGestureRecognizer.translation(in: self.collectionView).x) >= (HomeCalendarController.own.collectionView?.frame.width)!/2 || abs(velocity.x)>1{
+            if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
+                HomeDatasourceController.monthYearChange(direction: .left)
+            }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
+                HomeDatasourceController.monthYearChange(direction: .right)
+            }
+        }else{
+            targetContentOffset.pointee = CGPoint(x:0,y:0)
         }
     }
     

@@ -47,6 +47,22 @@ class HomeDatasourceController: DatasourceController{
         return newMonth
     }
     
+    static func addYear(month:Int,year:Int)->Int{
+        if month+1>12{
+            return year+1
+        }else{
+            return year
+        }
+    }
+    
+    static func subtractYear(month:Int,year:Int)->Int{
+        if month-1<1{
+            return year-1
+        }else{
+            return year
+        }
+    }
+    
     static func monthYearChange(direction:scrollChange){
         if direction == .right{
             HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(currentDisplayedMonth)
@@ -61,9 +77,11 @@ class HomeDatasourceController: DatasourceController{
             }
             HomeDataSource.currentCalendarSection-=1
         }
+        HomeCalendarDataSource.calendarData = HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
         own.collectionView?.reloadData()
         HomeCalendarController.own.collectionView?.reloadData()
     }
+    
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if(velocity.y>0) {
@@ -85,6 +103,8 @@ class HomeDatasourceController: DatasourceController{
         super.viewDidLoad()
         HomeDatasourceController.currentDisplayedMonth = myCalendar.getMonth()
         HomeDatasourceController.currentDisplayedYear = myCalendar.getYear()
+        
+        HomeCalendarDataSource.calendarData = generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
         
         collectionView?.backgroundColor = ThemeColor.whitish
         let homeDatasource = HomeDataSource()
@@ -121,7 +141,7 @@ class HomeDatasourceController: DatasourceController{
             return CGSize(width:view.frame.width/7,height:30)
         }
         else if indexPath.section == 2{
-            if HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear).count<=35{
+            if HomeCalendarDataSource.calendarData.count<=35{
                 return CGSize(width:view.frame.width,height:55*5)
             }else{
                 return CGSize(width:view.frame.width,height:55*6)

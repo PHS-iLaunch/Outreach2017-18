@@ -11,6 +11,8 @@ import LBTAComponents
 
 class HomeCalendarDataSource: Datasource{
     
+     static var calendarData:[UserCellDataPackage] = []
+    
     override func headerClasses() -> [DatasourceCell.Type]? {
         return []
     }
@@ -24,11 +26,11 @@ class HomeCalendarDataSource: Datasource{
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        return HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)[indexPath.item]
+        return HomeCalendarDataSource.calendarData[indexPath.item]
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        if HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear).count<=35{
+        if HomeCalendarDataSource.calendarData.count<=35{
             return 35 //The calendar
         }else{
             return 42
