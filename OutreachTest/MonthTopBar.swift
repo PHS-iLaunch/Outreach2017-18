@@ -10,14 +10,22 @@ import Foundation
 import LBTAComponents
 
 class MonthTopBar: DatasourceCell{
+    var hasViewed = false
+    
     override var datasourceItem: Any?{
         didSet{
             if let temp = datasourceItem as? [String]{
                 monthLabel.text = temp[0]
-                monthLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-monthLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-monthLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-                
                 yearLabel.text = temp[1]
-                yearLabel.anchor(monthLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: self.frame.width/2-yearLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                
+                if !hasViewed{
+                    //monthLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-monthLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-monthLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                    monthLabel.frame = CGRect(x: self.frame.width/2, y: self.frame.height/2, width: 200, height: 30)
+                    monthLabel.center = CGPoint(x:self.frame.width/2,y:self.frame.height/2)
+                    
+                    yearLabel.anchor(monthLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: self.frame.width/2-yearLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                }
+                hasViewed = true
             }
         }
     }

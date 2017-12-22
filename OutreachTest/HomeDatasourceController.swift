@@ -9,6 +9,11 @@
 import Foundation
 import LBTAComponents
 
+enum scrollChange{
+    case left
+    case right
+}
+
 class HomeDatasourceController: DatasourceController{
     
     static var currentDisplayedMonth:Int = 1 //arbitrary default
@@ -20,6 +25,44 @@ class HomeDatasourceController: DatasourceController{
         content.view.frame = view.bounds
         view.addSubview(content.view)
         content.didMove(toParentViewController: self)
+    }
+    
+    static func addMonth(_ month:Int)->Int{
+        var newMonth:Int
+        if month+1>12{
+            newMonth = month-11
+        }else{
+            newMonth = month+1
+        }
+        return newMonth
+    }
+    
+    static func subtractMonth(_ month:Int)->Int{
+        var newMonth:Int
+        if month-1<1{
+            newMonth = month+11
+        }else{
+            newMonth = month-1
+        }
+        return newMonth
+    }
+    
+    static func monthYearChange(direction:scrollChange){
+        if direction == .right{
+            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(currentDisplayedMonth)
+            if HomeDatasourceController.currentDisplayedMonth == 1{
+                HomeDatasourceController.currentDisplayedYear+=1
+            }
+            HomeDataSource.currentCalendarSection+=1
+        }else{
+            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(currentDisplayedMonth)
+            if HomeDatasourceController.currentDisplayedMonth == 12{
+               HomeDatasourceController.currentDisplayedYear-=1
+            }
+            HomeDataSource.currentCalendarSection-=1
+        }
+        own.collectionView?.reloadData()
+        HomeCalendarController.own.collectionView?.reloadData()
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -42,8 +85,6 @@ class HomeDatasourceController: DatasourceController{
         super.viewDidLoad()
         HomeDatasourceController.currentDisplayedMonth = myCalendar.getMonth()
         HomeDatasourceController.currentDisplayedYear = myCalendar.getYear()
-        generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
-        HomeDataSource.calendarDateList = HomeDataSource.horizontalToVertical(HomeDataSource.calendarDateList)
         
         collectionView?.backgroundColor = ThemeColor.whitish
         let homeDatasource = HomeDataSource()
@@ -80,7 +121,7 @@ class HomeDatasourceController: DatasourceController{
             return CGSize(width:view.frame.width/7,height:30)
         }
         else if indexPath.section == 2{
-            if HomeDataSource.calendarDateList.count<=35{
+            if HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear).count<=35{
                 return CGSize(width:view.frame.width,height:55*5)
             }else{
                 return CGSize(width:view.frame.width,height:55*6)
@@ -119,7 +160,8 @@ class HomeDatasourceController: DatasourceController{
         return 0
     }
     
-    func generateArrayOfDatesForMonth(month:Int, year:Int){
+    func generateArrayOfDatesForMonth(month:Int, year:Int)->[UserCellDataPackage]{
+        var list:[UserCellDataPackage] = []
         let startingDayOfWeek = myCalendar.getDayOfWeekGivenDate(month: month, date: 1, year: year) //get day of the week for first day in month
         var gap:Int = startingDayOfWeek-1 //number of cells to leave open
         var counter = 1
@@ -130,14 +172,16 @@ class HomeDatasourceController: DatasourceController{
         for _ in 1...cellCount{
             if gap>0{
                 gap-=1
-                HomeDataSource.calendarDateList.append(UserCellDataPackage(nil))
+                list.append(UserCellDataPackage(nil))
             }else if counter <= myCalendar.getNumberOfDaysInMonth(month: month, year: year){
-                HomeDataSource.calendarDateList.append(UserCellDataPackage(counter))
+                list.append(UserCellDataPackage(counter))
                 counter+=1
             }else{
-                HomeDataSource.calendarDateList.append(UserCellDataPackage(nil))
+                list.append(UserCellDataPackage(nil))
                 counter+=1
             }
         }
+        list = HomeDataSource.horizontalToVertical(list)
+        return list
     }
 }

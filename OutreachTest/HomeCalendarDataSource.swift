@@ -24,11 +24,11 @@ class HomeCalendarDataSource: Datasource{
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        return HomeDataSource.calendarDateList[indexPath.item]
+        return HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)[indexPath.item]
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        if HomeDataSource.calendarDateList.count<=35{
+        if HomeDatasourceController.own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear).count<=35{
             return 35 //The calendar
         }else{
             return 42
@@ -36,7 +36,7 @@ class HomeCalendarDataSource: Datasource{
     }
     
     override func numberOfSections() -> Int {
-        return 4
+        return 5
     }
     
     
