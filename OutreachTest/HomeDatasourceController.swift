@@ -21,6 +21,8 @@ class HomeDatasourceController: DatasourceController{
     static var own:HomeDatasourceController = HomeDatasourceController()
     
     func rightButtonClick(){
+        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
         HomeDatasourceController.monthNext()
         HomeDatasourceController.own.collectionView?.reloadData()
         CalendarArrayController.own.collectionView?.reloadData()
@@ -28,6 +30,8 @@ class HomeDatasourceController: DatasourceController{
     }
     
     func leftButtonClick(){
+        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
         HomeDatasourceController.monthPrev()
         HomeDatasourceController.own.collectionView?.reloadData()
         CalendarArrayController.own.collectionView?.reloadData()
@@ -78,14 +82,12 @@ class HomeDatasourceController: DatasourceController{
     }
     
     static func monthNext(){
-        
         CalendarArrayController.calendarArrays[0] = CalendarArrayController.calendarArrays[1]
         CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[2]
         CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
     }
     
     static func monthPrev(){
-        
         CalendarArrayController.calendarArrays[2] = CalendarArrayController.calendarArrays[1]
         CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[0]
         CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
