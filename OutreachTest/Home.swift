@@ -140,7 +140,6 @@ class UserCalendar: DatasourceCell {
             }else{
                 dateLabel.text = "\(day.notMonthDay!)"
                 dateLabel.textColor = ThemeColor.lightGray
-                //dateLabel.font = UIFont.systemFont(ofSize: 15)
             }
             
             if day.colorStatus == .white{

@@ -71,6 +71,9 @@ class HomeDatasourceController: DatasourceController{
             if HomeDatasourceController.currentDisplayedMonth == 1{
                 HomeDatasourceController.currentDisplayedYear+=1
             }
+            CalendarArrayController.calendarArrays[0] = CalendarArrayController.calendarArrays[1]
+            CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[2]
+            CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
             
         }else{
             CalendarArrayController.own.collectionView?.moveItem(at: IndexPath(item: 2, section: 0), to: IndexPath(item: 0, section: 0))
@@ -79,8 +82,19 @@ class HomeDatasourceController: DatasourceController{
             if HomeDatasourceController.currentDisplayedMonth == 12{
                 HomeDatasourceController.currentDisplayedYear-=1
             }
+            
+            CalendarArrayController.calendarArrays[2] = CalendarArrayController.calendarArrays[1]
+            CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[0]
+            CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
+            
+            for x in 0...2{
+                for y in CalendarArrayController.calendarArrays[x]{
+                    print(y.day, terminator: " ")
+                }
+                print()
+                print()
+            }
         }
-        generate()
         
         HomeDatasourceController.own.collectionView?.reloadData()
         CalendarArrayController.own.collectionView?.reloadData()
