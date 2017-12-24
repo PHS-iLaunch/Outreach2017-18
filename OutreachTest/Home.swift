@@ -130,14 +130,8 @@ class UserCalendar: DatasourceCell {
             let day = datasourceItem as! UserCellDataPackage
             if day.day != nil{
                 dateLabel.text = "\(day.day!)"
-                if dateLabel.text == String(myCalendar.getDay()) && HomeDatasourceController.currentDisplayedMonth == myCalendar.getMonth() && HomeDatasourceController.currentDisplayedYear == myCalendar.getYear(){
-                    day.colorStatus = .green
-                }else{
-                    day.colorStatus = .white
-                }
             }else{
                 dateLabel.text = ""
-                day.colorStatus = .gray
             }
             
             if day.colorStatus == .white{

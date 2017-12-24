@@ -37,11 +37,10 @@ class CalendarArrayController: DatasourceController{
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print("scroll\(arc4random())")
         if abs(scrollView.panGestureRecognizer.translation(in: self.collectionView).x) >= (HomeCalendarController.own.collectionView?.frame.width)!/2 || abs(velocity.x)>1{
-            print("scrolled")
             if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
                 direction = 0
+                
                 
             }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
                 direction = 1

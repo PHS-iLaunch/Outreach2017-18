@@ -80,14 +80,9 @@ class HomeDatasourceController: DatasourceController{
             }
         }
         generate()
-        
-        
-        own.collectionView?.reloadData()
+        HomeDatasourceController.own.collectionView?.reloadData()
         CalendarArrayController.own.collectionView?.reloadData()
         HomeCalendarController.own.collectionView?.reloadData()
-        
-        print(HomeDatasourceController.currentDisplayedMonth)
-        print(HomeDatasourceController.currentDisplayedYear)
     }
     
     static func generate(){
@@ -100,13 +95,6 @@ class HomeDatasourceController: DatasourceController{
         CalendarArrayController.calendarArrays[3] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
         
         CalendarArrayController.calendarArrays[4] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)), year: HomeDatasourceController.addYear(month:HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth),year: (HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))))
-        
-//        for x in 0...4{
-//            for y in CalendarArrayController.calendarArrays[x]{
-//                print(y.day)
-//            }
-//            print()
-//        }
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -223,12 +211,22 @@ class HomeDatasourceController: DatasourceController{
         for _ in 1...cellCount{
             if gap>0{
                 gap-=1
-                list.append(UserCellDataPackage(nil))
+                let new = UserCellDataPackage(nil)
+                new.colorStatus = .gray
+                list.append(new)
             }else if counter <= myCalendar.getNumberOfDaysInMonth(month: month, year: year){
-                list.append(UserCellDataPackage(counter))
+                let new = UserCellDataPackage(counter)
+                if new.day! == myCalendar.getDay() && month == myCalendar.getMonth() && year == myCalendar.getYear(){
+                    new.colorStatus = .green
+                }else{
+                    new.colorStatus = .white
+                }
+                list.append(new)
                 counter+=1
             }else{
-                list.append(UserCellDataPackage(nil))
+                let new = UserCellDataPackage(nil)
+                new.colorStatus = .gray
+                list.append(new)
                 counter+=1
             }
         }

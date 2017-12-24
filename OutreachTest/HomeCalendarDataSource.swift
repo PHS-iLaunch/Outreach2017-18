@@ -30,9 +30,6 @@ class HomeCalendarDataSource: Datasource{
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        print(num.count)
-        print(indexPath.item)
-        print()
         return num[indexPath.item]
     }
     
