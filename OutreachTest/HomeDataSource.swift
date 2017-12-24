@@ -17,8 +17,6 @@ class HomeDataSource: Datasource{
     //This should not be constant:
     var addedGroups = [["group1","admin"],["group2","member"],["group3","admin"],["group4","member"],["group5","member"],["group6","member"],["group7","member"],["group8","member"],["group9","member"],["group10","member"],["group11","member"],["group12","member"],["group13","member"],["group14","member"],["group15","member"],["group16","member"],["group17","member"],["group18","member"],["group19","member"],["group20","member"]]
     
-    static var currentCalendarSection:Int = 0
-    
     static func horizontalToVertical(_ array:[UserCellDataPackage])->[UserCellDataPackage]{
         var transformArraySet:[[UserCellDataPackage]] = []
         for week in 0..<array.count/7{
@@ -47,7 +45,7 @@ class HomeDataSource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [MonthTopBar.self,staticDayDisplayBar.self, FeedCell.self,HomeGroupListCell.self]
+        return [MonthTopBar.self,staticDayDisplayBar.self, ArrayCell.self,HomeGroupListCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {

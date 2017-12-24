@@ -11,36 +11,26 @@ import LBTAComponents
 
 class HomeCalendarController: DatasourceController{
     
-    static var own:HomeCalendarController = HomeCalendarController()
+    static var own:HomeCalendarController = HomeCalendarController(num:[])
+    var num:[UserCellDataPackage] = []
+    
+    init(num:[UserCellDataPackage]){
+        super.init()
+        self.num = num
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = ThemeColor.whitish
-        let homeDatasource = HomeCalendarDataSource()
+        let homeDatasource = HomeCalendarDataSource(num:num)
         self.datasource = homeDatasource
-        
-        HomeCalendarController.own = self
-        
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
-            flowLayout.scrollDirection = .horizontal
-        }
-        
-        collectionView?.showsHorizontalScrollIndicator = false
-        collectionView?.isPagingEnabled = true
         collectionView?.alwaysBounceVertical = false
-    }
-    
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if abs(scrollView.panGestureRecognizer.translation(in: self.collectionView).x) >= (HomeCalendarController.own.collectionView?.frame.width)!/2 || abs(velocity.x)>1{
-            if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
-                HomeDatasourceController.monthYearChange(direction: .left)
-            }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
-                HomeDatasourceController.monthYearChange(direction: .right)
-            }
-        }else{
-            targetContentOffset.pointee = CGPoint(x:0,y:0)
-        }
+        HomeCalendarController.own = self
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
