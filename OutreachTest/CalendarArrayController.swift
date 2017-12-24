@@ -35,15 +35,15 @@ class CalendarArrayController: DatasourceController{
         collectionView?.isPagingEnabled = true
         collectionView?.alwaysBounceVertical = false
     }
-    
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
             direction = 0
         }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
             direction = 1
         }
     }
-    
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if direction == 0{
             HomeDatasourceController.monthYearChange(direction: .left)
@@ -56,7 +56,10 @@ class CalendarArrayController: DatasourceController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if CalendarArrayController.calendarArrays[indexPath.item].count<=35{
+        if CalendarArrayController.calendarArrays[indexPath.item].count<=28{
+            return CGSize(width:view.frame.width,height:55*4)
+        }
+        else if CalendarArrayController.calendarArrays[indexPath.item].count<=35{
             return CGSize(width:view.frame.width,height:55*5)
         }else{
             return CGSize(width:view.frame.width,height:55*6)

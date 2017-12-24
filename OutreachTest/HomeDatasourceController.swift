@@ -67,19 +67,21 @@ class HomeDatasourceController: DatasourceController{
         if direction == .right{
             CalendarArrayController.own.collectionView?.moveItem(at: IndexPath(item: 0, section: 0), to: IndexPath(item: 2, section: 0))
             CalendarArrayController.own.collectionView?.scrollToItem(at: IndexPath(item:1,section:0), at: .left, animated: false)
-            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(currentDisplayedMonth)
+            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
             if HomeDatasourceController.currentDisplayedMonth == 1{
                 HomeDatasourceController.currentDisplayedYear+=1
             }
+            
         }else{
             CalendarArrayController.own.collectionView?.moveItem(at: IndexPath(item: 2, section: 0), to: IndexPath(item: 0, section: 0))
             CalendarArrayController.own.collectionView?.scrollToItem(at: IndexPath(item:1,section:0), at: .left, animated: false)
-            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(currentDisplayedMonth)
+            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
             if HomeDatasourceController.currentDisplayedMonth == 12{
-               HomeDatasourceController.currentDisplayedYear-=1
+                HomeDatasourceController.currentDisplayedYear-=1
             }
         }
         generate()
+        
         HomeDatasourceController.own.collectionView?.reloadData()
         CalendarArrayController.own.collectionView?.reloadData()
         HomeCalendarController.own.collectionView?.reloadData()
@@ -156,7 +158,10 @@ class HomeDatasourceController: DatasourceController{
             return CGSize(width:view.frame.width/7,height:30)
         }
         else if indexPath.section == 2{
-            if CalendarArrayController.calendarArrays[1].count<=35{
+            if CalendarArrayController.calendarArrays[1].count<=28{
+                return CGSize(width:view.frame.width,height:55*4)
+            }
+            else if CalendarArrayController.calendarArrays[1].count<=35{
                 return CGSize(width:view.frame.width,height:55*5)
             }else{
                 return CGSize(width:view.frame.width,height:55*6)
@@ -204,11 +209,21 @@ class HomeDatasourceController: DatasourceController{
         if gap+myCalendar.getNumberOfDaysInMonth(month: month, year: year)>35{
             cellCount = 42
         }
+        if gap+myCalendar.getNumberOfDaysInMonth(month: month, year: year)<=28{
+            cellCount = 28
+        }
+        
+        var prevDays = myCalendar.getNumberOfDaysInMonth(month: HomeDatasourceController.subtractMonth(month), year: HomeDatasourceController.subtractYear(month: month, year: year))-(gap-1)
+        var postDays = 1
+        
         for _ in 1...cellCount{
             if gap>0{
                 gap-=1
                 let new = UserCellDataPackage(nil)
                 new.colorStatus = .gray
+                new.notMonthDay = prevDays
+                new.mStatus = .before
+                prevDays+=1
                 list.append(new)
             }else if counter <= myCalendar.getNumberOfDaysInMonth(month: month, year: year){
                 let new = UserCellDataPackage(counter)
@@ -222,6 +237,9 @@ class HomeDatasourceController: DatasourceController{
             }else{
                 let new = UserCellDataPackage(nil)
                 new.colorStatus = .gray
+                new.notMonthDay = postDays
+                new.mStatus = .after
+                postDays+=1
                 list.append(new)
                 counter+=1
             }

@@ -109,12 +109,20 @@ class staticDayDisplayBar: DatasourceCell{
 
 class UserCellDataPackage{
     var day:Int? = nil
+    var notMonthDay:Int? = nil
     var hasViewed = false
     var colorStatus:colorStatus = .white
+    var mStatus:monthStatus = .current
     
     init(_ day:Int?){
         self.day = day;
     }
+}
+
+enum monthStatus{
+    case before
+    case current
+    case after
 }
 
 enum colorStatus{
@@ -130,13 +138,15 @@ class UserCalendar: DatasourceCell {
             if day.day != nil{
                 dateLabel.text = "\(day.day!)"
             }else{
-                dateLabel.text = ""
+                dateLabel.text = "\(day.notMonthDay!)"
+                dateLabel.textColor = ThemeColor.lightGray
+                //dateLabel.font = UIFont.systemFont(ofSize: 15)
             }
             
             if day.colorStatus == .white{
                 backgroundColor = ThemeColor.whitish
             }else if day.colorStatus == .gray{
-                backgroundColor = ThemeColor.lightGray
+                backgroundColor = ThemeColor.veryLightGray
             }else if day.colorStatus == .green{
                 backgroundColor = ThemeColor.lightGreen
             }

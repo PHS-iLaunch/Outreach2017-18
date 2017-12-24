@@ -34,7 +34,10 @@ class HomeCalendarDataSource: Datasource{
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        if num.count<=35{
+        if num.count<=28{
+            return 28
+        }
+        else if num.count<=35{
             return 35 //The calendar
         }else{
             return 42

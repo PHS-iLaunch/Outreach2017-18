@@ -12,7 +12,7 @@ import LBTAComponents
 class ArrayCell:DatasourceCell{
     
     override func setupViews() {//Cell that contains a single CollectionView of Feed Cells
-        backgroundColor = ThemeColor.whitish
+        backgroundColor = .clear
         var controller = CalendarArrayController()
         HomeDatasourceController.own.display(contentController: controller, on: self)
     }

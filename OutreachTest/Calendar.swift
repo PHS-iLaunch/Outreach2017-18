@@ -24,7 +24,7 @@ class FeedCell: DatasourceCell {//Cell that contains a single CollectionView of 
     }
     
     override func setupViews() {
-        backgroundColor = ThemeColor.whitish
+        backgroundColor = .clear
         
     }
 }
