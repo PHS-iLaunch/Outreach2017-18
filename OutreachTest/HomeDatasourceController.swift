@@ -78,16 +78,14 @@ class HomeDatasourceController: DatasourceController{
     }
     
     static func monthNext(){
-        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
-        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
+        
         CalendarArrayController.calendarArrays[0] = CalendarArrayController.calendarArrays[1]
         CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[2]
         CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
     }
     
     static func monthPrev(){
-        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
-        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
+        
         CalendarArrayController.calendarArrays[2] = CalendarArrayController.calendarArrays[1]
         CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[0]
         CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))

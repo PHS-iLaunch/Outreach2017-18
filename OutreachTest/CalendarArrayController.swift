@@ -40,10 +40,15 @@ class CalendarArrayController: DatasourceController{
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if velocity.x != 0 || abs(scrollView.contentOffset.x)-view.frame.width>view.frame.width/2{
             if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
+                HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+                HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
                 direction = 0
             }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
+                HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+                HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
                 direction = 1
             }
+            HomeDatasourceController.own.collectionView?.reloadData()
         }
     }
     
