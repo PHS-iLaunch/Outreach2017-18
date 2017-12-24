@@ -7,7 +7,7 @@ class CalendarArrayController: DatasourceController{
     
     static var own:CalendarArrayController = CalendarArrayController()
     
-    static var calendarArrays:[[UserCellDataPackage]] = [[],[],[],[],[]]
+    static var calendarArrays:[[UserCellDataPackage]] = [[],[],[]]
     
     var direction:Int = -1
     
@@ -37,17 +37,10 @@ class CalendarArrayController: DatasourceController{
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if abs(scrollView.panGestureRecognizer.translation(in: self.collectionView).x) >= (HomeCalendarController.own.collectionView?.frame.width)!/2 || abs(velocity.x)>1{
-            if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
-                direction = 0
-                
-                
-            }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
-                direction = 1
-                
-            }
-       }else{
-           targetContentOffset.pointee = CGPoint(x:0,y:0)
+        if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
+            direction = 0
+        }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
+            direction = 1
         }
     }
     

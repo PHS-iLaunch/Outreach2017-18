@@ -21,7 +21,6 @@ class MonthTopBar: DatasourceCell{
                 yearLabel.text = temp[1]
                 
                 if !hasViewed{
-                    //monthLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-monthLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-monthLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
                     monthLabel.frame = CGRect(x: self.frame.width/2, y: self.frame.height/2, width: 200, height: 30)
                     monthLabel.center = CGPoint(x:self.frame.width/2,y:self.frame.height/2)
                     

@@ -22,7 +22,7 @@ class HomeCalendarArrayDataSource: Datasource{
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        return 5
+        return 3
     }
     
     override func numberOfSections() -> Int {
