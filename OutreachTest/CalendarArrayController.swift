@@ -48,7 +48,7 @@ class CalendarArrayController: DatasourceController{
                 
             }
        }else{
-           //targetContentOffset.pointee = CGPoint(x:0,y:0)
+           targetContentOffset.pointee = CGPoint(x:0,y:0)
         }
     }
     
