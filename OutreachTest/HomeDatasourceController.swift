@@ -20,6 +20,20 @@ class HomeDatasourceController: DatasourceController{
     static var currentDisplayedYear:Int = 2000 //arbitrary default
     static var own:HomeDatasourceController = HomeDatasourceController()
     
+    func rightButtonClick(){
+        HomeDatasourceController.monthNext()
+        HomeDatasourceController.own.collectionView?.reloadData()
+        CalendarArrayController.own.collectionView?.reloadData()
+        HomeCalendarController.own.collectionView?.reloadData()
+    }
+    
+    func leftButtonClick(){
+        HomeDatasourceController.monthPrev()
+        HomeDatasourceController.own.collectionView?.reloadData()
+        CalendarArrayController.own.collectionView?.reloadData()
+        HomeCalendarController.own.collectionView?.reloadData()
+    }
+    
     func display(contentController content: UIViewController, on view: UIView) {
         self.addChildViewController(content)
         content.view.frame = view.bounds
@@ -63,37 +77,31 @@ class HomeDatasourceController: DatasourceController{
         }
     }
     
+    static func monthNext(){
+        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
+        CalendarArrayController.calendarArrays[0] = CalendarArrayController.calendarArrays[1]
+        CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[2]
+        CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
+    }
+    
+    static func monthPrev(){
+        HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
+        CalendarArrayController.calendarArrays[2] = CalendarArrayController.calendarArrays[1]
+        CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[0]
+        CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
+    }
+    
     static func monthYearChange(direction:scrollChange){
         if direction == .right{
             CalendarArrayController.own.collectionView?.moveItem(at: IndexPath(item: 0, section: 0), to: IndexPath(item: 2, section: 0))
             CalendarArrayController.own.collectionView?.scrollToItem(at: IndexPath(item:1,section:0), at: .left, animated: false)
-            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
-            if HomeDatasourceController.currentDisplayedMonth == 1{
-                HomeDatasourceController.currentDisplayedYear+=1
-            }
-            CalendarArrayController.calendarArrays[0] = CalendarArrayController.calendarArrays[1]
-            CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[2]
-            CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
-            
+            monthNext()
         }else{
             CalendarArrayController.own.collectionView?.moveItem(at: IndexPath(item: 2, section: 0), to: IndexPath(item: 0, section: 0))
             CalendarArrayController.own.collectionView?.scrollToItem(at: IndexPath(item:1,section:0), at: .left, animated: false)
-            HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth)
-            if HomeDatasourceController.currentDisplayedMonth == 12{
-                HomeDatasourceController.currentDisplayedYear-=1
-            }
-            
-            CalendarArrayController.calendarArrays[2] = CalendarArrayController.calendarArrays[1]
-            CalendarArrayController.calendarArrays[1] = CalendarArrayController.calendarArrays[0]
-            CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
-            
-            for x in 0...2{
-                for y in CalendarArrayController.calendarArrays[x]{
-                    print(y.day, terminator: " ")
-                }
-                print()
-                print()
-            }
+           monthPrev()
         }
         
         HomeDatasourceController.own.collectionView?.reloadData()

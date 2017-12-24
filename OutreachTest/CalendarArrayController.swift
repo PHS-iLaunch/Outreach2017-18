@@ -34,14 +34,22 @@ class CalendarArrayController: DatasourceController{
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.isPagingEnabled = true
         collectionView?.alwaysBounceVertical = false
+        collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
     }
-
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
-            direction = 0
-        }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
-            direction = 1
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if velocity.x != 0 || abs(scrollView.contentOffset.x)-view.frame.width>view.frame.width/2{
+            if scrollView.panGestureRecognizer.translation(in: self.collectionView).x > 0{
+                direction = 0
+                
+            }else if scrollView.panGestureRecognizer.translation(in: self.collectionView).x < 0{
+                direction = 1
+            }
         }
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
     }
 
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

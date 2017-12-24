@@ -53,6 +53,8 @@ class MonthTopBar: DatasourceCell{
         let imageView = UIButton()
         imageView.setImage(#imageLiteral(resourceName: "arrowLeft").withRenderingMode(.alwaysOriginal), for: .normal)
         imageView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        imageView.addTarget(HomeDatasourceController.own, action: #selector(HomeDatasourceController.own.leftButtonClick), for: .touchUpInside)
+        imageView.adjustsImageWhenHighlighted = true
         return imageView
     }()
     
@@ -60,6 +62,8 @@ class MonthTopBar: DatasourceCell{
         let imageView = UIButton()
         imageView.setImage(#imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysOriginal), for: .normal)
         imageView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        imageView.addTarget(HomeDatasourceController.own, action: #selector(HomeDatasourceController.own.rightButtonClick), for: .touchUpInside)
+        imageView.adjustsImageWhenHighlighted = true
         return imageView
     }()
     
@@ -73,8 +77,8 @@ class MonthTopBar: DatasourceCell{
         addSubview(leftArrow)
         addSubview(rightArrow)
         
-        leftArrow.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-24/2, leftConstant: self.frame.width/12, bottomConstant: 0, rightConstant: 0, widthConstant: 15, heightConstant: 24)
-        rightArrow.anchor(self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: self.frame.height/2-24/2, leftConstant: 0, bottomConstant: 0, rightConstant: self.frame.width/12, widthConstant: 15, heightConstant: 24)
+        leftArrow.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-30/2, leftConstant: self.frame.width/12, bottomConstant: 0, rightConstant: 0, widthConstant: 34+17, heightConstant: 34)
+        rightArrow.anchor(self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: self.frame.height/2-30/2, leftConstant: 0, bottomConstant: 0, rightConstant: self.frame.width/12, widthConstant: 34+17, heightConstant: 34)
     }
 }
 

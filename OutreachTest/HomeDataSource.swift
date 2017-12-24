@@ -82,7 +82,7 @@ class HomeDataSource: Datasource{
         return 4
         //Section 0: Month Bar w/ arrows
         //Section 1: Static 7 day header
-        //Section 2: Calendar with Static 7 day header
+        //Section 2: Calendar
         //Section 3: Groups with MyGroupsBar Header
     }
     
