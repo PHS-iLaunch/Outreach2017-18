@@ -34,6 +34,7 @@
 		E1F58A951FEDCB3400468E7D /* CalendarArrayDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A941FEDCB3400468E7D /* CalendarArrayDatasource.swift */; };
 		E1F58A971FF0490000468E7D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A961FF0490000468E7D /* Extensions.swift */; };
 		E1F58A991FF1496700468E7D /* MonthSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A981FF1496700468E7D /* MonthSelectPopup.swift */; };
+		E1F58A9B1FF1AF8500468E7D /* AddGroupPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A9A1FF1AF8500468E7D /* AddGroupPopup.swift */; };
 		F08C3A1919135D7E9F153D2C /* Pods_OutreachProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12895FCC6A4EB3D1B3AD67E /* Pods_OutreachProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		E1F58A941FEDCB3400468E7D /* CalendarArrayDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarArrayDatasource.swift; sourceTree = "<group>"; };
 		E1F58A961FF0490000468E7D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E1F58A981FF1496700468E7D /* MonthSelectPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectPopup.swift; sourceTree = "<group>"; };
+		E1F58A9A1FF1AF8500468E7D /* AddGroupPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupPopup.swift; sourceTree = "<group>"; };
 		EC6B52D36DC4EBE79F5BBF31 /* Pods-OutreachProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +243,7 @@
 				E1F58A631FE8B83500468E7D /* Array.swift */,
 				E1F58A5F1FE8AC4100468E7D /* Calendar.swift */,
 				E1F58A981FF1496700468E7D /* MonthSelectPopup.swift */,
+				E1F58A9A1FF1AF8500468E7D /* AddGroupPopup.swift */,
 			);
 			name = HomeViews;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
 				E1F58A641FE8B83500468E7D /* Array.swift in Sources */,
 				E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */,
+				E1F58A9B1FF1AF8500468E7D /* AddGroupPopup.swift in Sources */,
 				E1F58A701FEC908B00468E7D /* HomeCalendarDataSource.swift in Sources */,
 				E1F58A601FE8AC4100468E7D /* Calendar.swift in Sources */,
 				E10F83391F5E23DE00825583 /* User.swift in Sources */,

@@ -212,12 +212,24 @@ class HomeGroupListHeader: DatasourceCell{
         return label
     }()
     
-    let addGroup:UIButton = {
-        let imageView = UIButton()
-        imageView.setImage(#imageLiteral(resourceName: "newGroup").withRenderingMode(.alwaysOriginal), for: .normal)
+    lazy var addGroup:UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "newGroup"))
         imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         return imageView
     }()
+    
+    func add(tap:UITapGestureRecognizer){
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations:{
+            self.addGroup.transform = CGAffineTransform(rotationAngle:CGFloat.pi/4.0)
+        },completion:nil)
+        HomeDatasourceController.onGroupPopup(image:addGroup, h: self)
+    }
+    
+    func minus(){
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations:{
+            self.addGroup.transform = CGAffineTransform(rotationAngle:0)
+        },completion:nil)
+    }
     
     override func setupViews() {
         super.setupViews()
@@ -226,6 +238,10 @@ class HomeGroupListHeader: DatasourceCell{
         
         addSubview(titleLabel)
         addSubview(addGroup)
+        
+        let gestureTap = UITapGestureRecognizer(target: self, action: #selector(self.add(tap:)))
+        addGroup.addGestureRecognizer(gestureTap)
+        addGroup.isUserInteractionEnabled = true
         
         titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-titleLabel.intrinsicContentSize.height/2, leftConstant: self.frame.width/2-titleLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         

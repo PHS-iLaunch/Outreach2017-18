@@ -21,6 +21,55 @@ class HomeDatasourceController: DatasourceController{
     static var own:HomeDatasourceController = HomeDatasourceController()
     
     static var zoomingImageView = MonthSelectPopup()
+    static var groupPopup = AddGroupPopup()
+    static var subImage = UIImageView()
+    static var bg = UIView()
+    static var tempSingle = HomeGroupListHeader()
+    
+    static func onGroupPopup(image:UIImageView, h:HomeGroupListHeader){
+        groupPopup.removeFromSuperview()
+        bg.removeFromSuperview()
+        
+        tempSingle = h
+        
+        var f = image.superview?.convert(image.frame, to: nil)
+        groupPopup = AddGroupPopup(position: CGPoint(x:(f?.maxX)!,y:(f?.minY)!))
+        
+        f = CGRect(x: (f?.midX)!-(f?.size.width)!*0.35, y: (f?.midY)!-(f?.size.height)!*0.35, width: (f?.size.width)!*0.7, height: (f?.size.height)!*0.7)
+        
+        subImage = UIImageView(image: #imageLiteral(resourceName: "newGroup"))
+        subImage.frame = f!
+        subImage.transform = CGAffineTransform(rotationAngle:CGFloat.pi/4.0)
+        let gestureTap = UITapGestureRecognizer(target: self, action: #selector(HomeDatasourceController.offGroupPopup(tap:)))
+        subImage.addGestureRecognizer(gestureTap)
+        subImage.isUserInteractionEnabled = true
+        
+        if let keyWindow = UIApplication.shared.keyWindow{
+            bg.backgroundColor = .black
+            bg.frame = keyWindow.frame
+            bg.alpha = 0
+            keyWindow.addSubview(bg)
+            
+            keyWindow.addSubview(subImage)
+            
+            keyWindow.addSubview(groupPopup)
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                groupPopup.frame = groupPopup.initFrame
+                bg.alpha = 0.8
+            },completion:nil)
+        }
+        
+    }
+    
+    static func offGroupPopup(tap:UITapGestureRecognizer){
+        subImage.removeFromSuperview()
+        tempSingle.minus()
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            groupPopup.frame = CGRect(x: subImage.frame.midX, y: subImage.frame.midY, width: 0, height: 0)
+            bg.alpha = 0
+        },completion:nil)
+        
+    }
     
     func newMonthSelect(startingImage:UIButton){
         let sFrame = startingImage.superview?.convert(startingImage.frame,to:nil)
@@ -29,6 +78,7 @@ class HomeDatasourceController: DatasourceController{
         HomeDatasourceController.zoomingImageView.alpha = 0
         
         if let keyWindow = UIApplication.shared.keyWindow{
+            HomeDatasourceController.zoomingImageView.removeFromSuperview()
             keyWindow.addSubview(HomeDatasourceController.zoomingImageView)
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
@@ -54,11 +104,10 @@ class HomeDatasourceController: DatasourceController{
         CalendarArrayController.own.collectionView?.reloadData()
         HomeCalendarController.own.collectionView?.reloadData()
         
-        UIView.animate(withDuration: 0.3, delay:0,options: .curveEaseOut, animations: {
-            zoomingImageView.frame = CGRect(x:0,y:0,width:0,height:0)
+        UIView.animate(withDuration: 0.8, delay:0,options: .curveEaseOut, animations: {
+            zoomingImageView.frame = CGRect(x:0,y:-zoomingImageView.frame.height*2,width:zoomingImageView.frame.width,height:zoomingImageView.frame.height)
             zoomingImageView.alpha = 0
         },completion:nil)
-        zoomingImageView.removeFromSuperview()
     }
     
     func rightButtonClick(){
