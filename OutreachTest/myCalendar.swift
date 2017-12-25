@@ -43,4 +43,14 @@ class myCalendar{
         let range = Calendar.current.range(of: .day, in: .month, for: date)!
         return range.count
     }
+    
+    static func getMonthName(_ num:Int) -> String{
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+        return months[num-1]
+    }
+    
+    static func getMonthAbbrevName(_ num:Int) -> String{
+        var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
+        return months[num-1]
+    }
 }

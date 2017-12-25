@@ -25,6 +25,8 @@ class MonthTopBar: DatasourceCell{
                     monthLabel.center = CGPoint(x:self.frame.width/2,y:self.frame.height/2)
                     
                     yearLabel.anchor(monthLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: self.frame.width/2-yearLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                    
+                    selectionButton.anchor(monthLabel.topAnchor, left: monthLabel.leftAnchor, bottom: yearLabel.bottomAnchor, right: monthLabel.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
                 }
                 hasViewed = true
             }
@@ -49,23 +51,43 @@ class MonthTopBar: DatasourceCell{
         return label
     }()
     
-    let leftArrow:UIButton = {
+    lazy var selectionButton:UIButton = {
+        let imageView = UIButton()
+        imageView.backgroundColor = .clear
+        imageView.addTarget(self, action: #selector(newMonthSelect), for: .touchUpInside)
+        return imageView
+    }()
+    
+    lazy var leftArrow:UIButton = {
         let imageView = UIButton()
         imageView.setImage(#imageLiteral(resourceName: "arrowLeft").withRenderingMode(.alwaysOriginal), for: .normal)
         imageView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-        imageView.addTarget(HomeDatasourceController.own, action: #selector(HomeDatasourceController.own.leftButtonClick), for: .touchUpInside)
+        imageView.addTarget(self, action: #selector(leftClick), for: .touchUpInside)
+        return imageView
+    }()
+    
+    lazy var rightArrow:UIButton = {
+        let imageView = UIButton()
+        imageView.setImage(#imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysOriginal), for: .normal)
+        imageView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        imageView.addTarget(self, action: #selector(rightClick), for: .touchUpInside)
         imageView.adjustsImageWhenHighlighted = true
         return imageView
     }()
     
-    let rightArrow:UIButton = {
-        let imageView = UIButton()
-        imageView.setImage(#imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysOriginal), for: .normal)
-        imageView.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-        imageView.addTarget(HomeDatasourceController.own, action: #selector(HomeDatasourceController.own.rightButtonClick), for: .touchUpInside)
-        imageView.adjustsImageWhenHighlighted = true
-        return imageView
-    }()
+    func newMonthSelect(){
+        HomeDatasourceController.own.newMonthSelect(startingImage:selectionButton)
+    }
+    
+    func leftClick(){
+        leftArrow.pulsate()
+        HomeDatasourceController.own.leftButtonClick()
+    }
+    
+    func rightClick(){
+        rightArrow.pulsate()
+        HomeDatasourceController.own.rightButtonClick()
+    }
     
     override func setupViews() {
         super.setupViews()
@@ -76,9 +98,10 @@ class MonthTopBar: DatasourceCell{
         addSubview(yearLabel)
         addSubview(leftArrow)
         addSubview(rightArrow)
+        addSubview(selectionButton)
         
-        leftArrow.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-30/2, leftConstant: self.frame.width/12, bottomConstant: 0, rightConstant: 0, widthConstant: 34+17, heightConstant: 34)
-        rightArrow.anchor(self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: self.frame.height/2-30/2, leftConstant: 0, bottomConstant: 0, rightConstant: self.frame.width/12, widthConstant: 34+17, heightConstant: 34)
+        leftArrow.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: self.frame.height/2-30/2, leftConstant: self.frame.width/12, bottomConstant: 0, rightConstant: 0, widthConstant: 35+17, heightConstant: 35)
+        rightArrow.anchor(self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, topConstant: self.frame.height/2-30/2, leftConstant: 0, bottomConstant: 0, rightConstant: self.frame.width/12, widthConstant: 35+17, heightConstant: 35)
     }
 }
 

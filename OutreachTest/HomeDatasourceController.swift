@@ -20,6 +20,47 @@ class HomeDatasourceController: DatasourceController{
     static var currentDisplayedYear:Int = 2000 //arbitrary default
     static var own:HomeDatasourceController = HomeDatasourceController()
     
+    static var zoomingImageView = MonthSelectPopup()
+    
+    func newMonthSelect(startingImage:UIButton){
+        let sFrame = startingImage.superview?.convert(startingImage.frame,to:nil)
+        
+        HomeDatasourceController.zoomingImageView = MonthSelectPopup(frame:sFrame!)
+        HomeDatasourceController.zoomingImageView.alpha = 0
+        
+        if let keyWindow = UIApplication.shared.keyWindow{
+            keyWindow.addSubview(HomeDatasourceController.zoomingImageView)
+            
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                
+                HomeDatasourceController.zoomingImageView.frame = CGRect(x: keyWindow.frame.width/2, y: keyWindow.frame.height/2, width: keyWindow.frame.width, height: keyWindow.frame.height)
+                
+                HomeDatasourceController.zoomingImageView.center = CGPoint(x:keyWindow.center.x,y:keyWindow.center.y+UIApplication.shared.statusBarFrame.maxY)
+                
+                HomeDatasourceController.zoomingImageView.alpha = 1
+                
+            }, completion: nil)
+        }
+    }
+    
+    static func monthSelectDone(){
+        currentDisplayedYear = MonthSelectPopup.currentYear
+        currentDisplayedMonth = MonthSelectPopup.currentMonth
+        CalendarArrayController.calendarArrays[0] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.subtractMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.subtractYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
+        CalendarArrayController.calendarArrays[1] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
+        CalendarArrayController.calendarArrays[2] = own.generateArrayOfDatesForMonth(month: HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth), year: HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear))
+        
+        HomeDatasourceController.own.collectionView?.reloadData()
+        CalendarArrayController.own.collectionView?.reloadData()
+        HomeCalendarController.own.collectionView?.reloadData()
+        
+        UIView.animate(withDuration: 0.3, delay:0,options: .curveEaseOut, animations: {
+            zoomingImageView.frame = CGRect(x:0,y:0,width:0,height:0)
+            zoomingImageView.alpha = 0
+        },completion:nil)
+        zoomingImageView.removeFromSuperview()
+    }
+    
     func rightButtonClick(){
         HomeDatasourceController.currentDisplayedYear = HomeDatasourceController.addYear(month: HomeDatasourceController.currentDisplayedMonth, year: HomeDatasourceController.currentDisplayedYear)
         HomeDatasourceController.currentDisplayedMonth = HomeDatasourceController.addMonth(HomeDatasourceController.currentDisplayedMonth)
