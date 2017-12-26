@@ -19,12 +19,36 @@ class AddGroupPopup:DatasourceCell{
         super.init(frame:frame)
     }
     
+    lazy var joinGroupLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Join an Existing Group"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.textColor = ThemeColor.red
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var createGroupLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Create a New Group"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.textColor = ThemeColor.red
+        label.textAlignment = .center
+        return label
+    }()
+    
     init(position:CGPoint){
         screenSize = (UIApplication.shared.keyWindow?.frame)!
         let width = screenSize.size.width-2*(screenSize.size.width-position.x)
         let height = screenSize.size.height/3
-        initFrame = CGRect(x:position.x-width,y:position.y-height,width:width,height:height)
-        super.init(frame: CGRect(x:position.x,y:position.y,width:0,height:0))
+        if position.y > screenSize.height/2{//normal
+            print("downl")
+            initFrame = CGRect(x:position.x-width,y:position.y-height,width:width,height:height)
+            super.init(frame: CGRect(x:position.x,y:position.y,width:0,height:0))
+        }else{//thing goes down
+            initFrame = CGRect(x:position.x-width,y:position.y+HomeDatasourceController.f.height,width:width,height:height)
+            super.init(frame: CGRect(x:position.x,y:position.y+HomeDatasourceController.f.height,width:0,height:0))
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +59,12 @@ class AddGroupPopup:DatasourceCell{
         super.setupViews()
         backgroundColor = ThemeColor.veryLightGray
         layer.cornerRadius = 10
+        
+        addSubview(joinGroupLabel)
+        joinGroupLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: initFrame.height/3-joinGroupLabel.intrinsicContentSize.height/2, leftConstant: initFrame.width/2-joinGroupLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(createGroupLabel)
+        createGroupLabel.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 0, leftConstant: initFrame.width/2-createGroupLabel.intrinsicContentSize.width/2, bottomConstant: (initFrame.height/3-createGroupLabel.intrinsicContentSize.height/2), rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
     }
     

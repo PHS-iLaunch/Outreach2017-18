@@ -25,6 +25,7 @@ class HomeDatasourceController: DatasourceController{
     static var subImage = UIImageView()
     static var bg = UIView()
     static var tempSingle = HomeGroupListHeader()
+    static var f:CGRect = CGRect()
     
     static func onGroupPopup(image:UIImageView, h:HomeGroupListHeader){
         groupPopup.removeFromSuperview()
@@ -32,13 +33,17 @@ class HomeDatasourceController: DatasourceController{
         
         tempSingle = h
         
-        var f = image.superview?.convert(image.frame, to: nil)
-        groupPopup = AddGroupPopup(position: CGPoint(x:(f?.maxX)!,y:(f?.minY)!))
+        f = (image.superview?.convert(image.frame, to: nil))!
+        if CGPoint(x:f.maxX,y:f.minY).y > (UIApplication.shared.keyWindow?.frame.height)!/2{//normal
+            groupPopup = AddGroupPopup(position: CGPoint(x:f.maxX,y:f.minY))
+        }else{//thing goes down
+            groupPopup = AddGroupPopup(position: CGPoint(x:f.maxX,y:f.minY))
+        }
         
-        f = CGRect(x: (f?.midX)!-(f?.size.width)!*0.35, y: (f?.midY)!-(f?.size.height)!*0.35, width: (f?.size.width)!*0.7, height: (f?.size.height)!*0.7)
+        f = CGRect(x: f.midX-f.size.width*0.35, y: f.midY-f.size.height*0.35, width: f.size.width*0.7, height: f.size.height*0.7)
         
         subImage = UIImageView(image: #imageLiteral(resourceName: "newGroup"))
-        subImage.frame = f!
+        subImage.frame = f
         subImage.transform = CGAffineTransform(rotationAngle:CGFloat.pi/4.0)
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(HomeDatasourceController.offGroupPopup(tap:)))
         subImage.addGestureRecognizer(gestureTap)
