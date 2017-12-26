@@ -248,6 +248,8 @@ class HomeDatasourceController: DatasourceController{
         
         setupNavigationBarItems()
         HomeDatasourceController.own = self
+        
+        collectionView?.allowsMultipleSelection = true
     }
     
     func setupNavigationBarItems(){
@@ -260,12 +262,31 @@ class HomeDatasourceController: DatasourceController{
         let signOutButton = UIButton(type: .system)
         signOutButton.setImage(#imageLiteral(resourceName: "signOut").withRenderingMode(.alwaysOriginal), for: .normal)
         signOutButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:signOutButton)
+        
+        let userProfileButton = UIButton(type: .system)
+        userProfileButton.setImage(#imageLiteral(resourceName: "userBlank").withRenderingMode(.alwaysOriginal), for: .normal)
+        userProfileButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        userProfileButton.layer.cornerRadius = 15
+        userProfileButton.layer.masksToBounds = true
+        userProfileButton.addTarget(self, action: #selector(viewProfile), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView:userProfileButton)
         
         navigationController?.navigationBar.barTintColor = ThemeColor.red
         let bounds = self.navigationController!.navigationBar.bounds
         navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    func signOut(){
+        let loginController = LoginController()
+        present(loginController,animated:true,completion: nil)
+        print("signed out")
+    }
+    
+    func viewProfile(){
+        print("viewed profile")
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

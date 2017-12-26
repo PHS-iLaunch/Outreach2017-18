@@ -150,15 +150,15 @@ class MonthSelectPopup:DatasourceCell{
         }
         
         addSubview(line)
-        line.anchor(MonthSelectPopup.title.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: screenSize.width, heightConstant: 2)
+        line.anchor(MonthSelectPopup.title.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: screenSize.width, heightConstant: 1)
         
         addSubview(line2)
-        line2.anchor(MonthSelectPopup.title.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 20+3*screenSize.width/4, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: screenSize.width, heightConstant: 2)
+        line2.anchor(MonthSelectPopup.title.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 20+3*screenSize.width/4, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: screenSize.width, heightConstant: 1)
         
         addSubview(textField)
         addDoneButtonOnKeyboard()
         textField.anchor(nil, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: screenSize.width, heightConstant: 60)
-        bottomConstraint = NSLayoutConstraint(item: textField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -(screenSize.height-0.75*screenSize.width-30-MonthSelectPopup.title.intrinsicContentSize.height-20-4-textField.intrinsicContentSize.height-UIApplication.shared.statusBarFrame.height))
+        bottomConstraint = NSLayoutConstraint(item: textField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -(screenSize.height-0.75*screenSize.width-30-MonthSelectPopup.title.intrinsicContentSize.height-20-2-textField.intrinsicContentSize.height-UIApplication.shared.statusBarFrame.height))
         addConstraint(bottomConstraint)
         textField.keyboardType = .numberPad
         

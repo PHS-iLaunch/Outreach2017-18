@@ -19,6 +19,7 @@ class ThemeColor{
     static var veryLightGray = UIColor(red:230/255,green:230/255,blue:230/255,alpha:1)
     static var border = UIColor(red:102/255,green:102/255,blue:202/255,alpha:1)
     static var magenta = UIColor(red:187/255,green:60/255,blue:108/255,alpha:1)
+    static var brightMagenta = UIColor(red:219/255,green:0/255,blue:86/255,alpha:1)
     static var darkGray = UIColor(red:120/255,green:120/255,blue:120/255,alpha:1)
     static var lightPink = UIColor(red:255/255,green:102/255,blue:153/255,alpha:1)
     static var lightGreen = UIColor(red:0/255,green:255/255,blue:153/255,alpha:1)

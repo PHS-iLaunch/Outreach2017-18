@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>309935819729-o3kismrrfddpt7f5gq47toribido0koj.apps.googleusercontent.com</string>
+	<string>804168365970-5br8gsc9rvigsll96vnq6b69i9ofsbik.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.309935819729-o3kismrrfddpt7f5gq47toribido0koj</string>
+	<string>com.googleusercontent.apps.804168365970-5br8gsc9rvigsll96vnq6b69i9ofsbik</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCIkyejbF9k4zWqOgBdP5rVQyEFwAgvXV4</string>
+	<string>AIzaSyAS1MN-zSubV9bE6qQs8g8Dx4S7YLJb8qQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>309935819729</string>
+	<string>804168365970</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.iLaunch.OutreachProject</string>
+	<string>com.launch.boostbox</string>
 	<key>PROJECT_ID</key>
-	<string>outreach-group-managment</string>
+	<string>boostbox-ce76c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>outreach-group-managment.appspot.com</string>
+	<string>boostbox-ce76c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:309935819729:ios:d503fbb1a5c2995c</string>
+	<string>1:804168365970:ios:0c936fd2a89bc948</string>
 	<key>DATABASE_URL</key>
-	<string>https://outreach-group-managment.firebaseio.com</string>
+	<string>https://boostbox-ce76c.firebaseio.com</string>
 </dict>
 </plist>

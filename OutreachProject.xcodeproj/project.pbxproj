@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46CDC0DE1F687FEB0029A4D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46CDC0DD1F687FEB0029A4D0 /* GoogleService-Info.plist */; };
 		7B926BDD22ECDDA7AEE1C753 /* Pods_OutreachProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAABCCB447820C010CC10972 /* Pods_OutreachProjectTests.framework */; };
 		E10F83391F5E23DE00825583 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83381F5E23DE00825583 /* User.swift */; };
 		E10F833B1F5E23ED00825583 /* GroupBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833A1F5E23ED00825583 /* GroupBundle.swift */; };
@@ -35,6 +34,11 @@
 		E1F58A971FF0490000468E7D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A961FF0490000468E7D /* Extensions.swift */; };
 		E1F58A991FF1496700468E7D /* MonthSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A981FF1496700468E7D /* MonthSelectPopup.swift */; };
 		E1F58A9B1FF1AF8500468E7D /* AddGroupPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A9A1FF1AF8500468E7D /* AddGroupPopup.swift */; };
+		E1F58A9F1FF2A08500468E7D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A9E1FF2A08500468E7D /* LoginController.swift */; };
+		E1F58AA11FF2D34900468E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1F58AA01FF2D34900468E7D /* GoogleService-Info.plist */; };
+		E1F58AA31FF2DD6A00468E7D /* DatabaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58AA21FF2DD6A00468E7D /* DatabaseDelegate.swift */; };
+		E1F58AA51FF2DDAD00468E7D /* FirebaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58AA41FF2DDAD00468E7D /* FirebaseImpl.swift */; };
+		E1F58AA71FF2DE5200468E7D /* DatabaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58AA61FF2DE5200468E7D /* DatabaseFactory.swift */; };
 		F08C3A1919135D7E9F153D2C /* Pods_OutreachProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12895FCC6A4EB3D1B3AD67E /* Pods_OutreachProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +54,6 @@
 
 /* Begin PBXFileReference section */
 		18C0F43CD946EAEA76742C30 /* Pods-OutreachProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject.release.xcconfig"; sourceTree = "<group>"; };
-		46CDC0DD1F687FEB0029A4D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		827869947C629C96223FCEE2 /* Pods-OutreachProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProjectTests/Pods-OutreachProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		88529680E3ED98EB174D46DE /* Pods-OutreachProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProjectTests/Pods-OutreachProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BAABCCB447820C010CC10972 /* Pods_OutreachProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OutreachProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +88,11 @@
 		E1F58A961FF0490000468E7D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E1F58A981FF1496700468E7D /* MonthSelectPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectPopup.swift; sourceTree = "<group>"; };
 		E1F58A9A1FF1AF8500468E7D /* AddGroupPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupPopup.swift; sourceTree = "<group>"; };
+		E1F58A9E1FF2A08500468E7D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		E1F58AA01FF2D34900468E7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E1F58AA21FF2DD6A00468E7D /* DatabaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDelegate.swift; sourceTree = "<group>"; };
+		E1F58AA41FF2DDAD00468E7D /* FirebaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImpl.swift; sourceTree = "<group>"; };
+		E1F58AA61FF2DE5200468E7D /* DatabaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFactory.swift; sourceTree = "<group>"; };
 		EC6B52D36DC4EBE79F5BBF31 /* Pods-OutreachProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OutreachProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OutreachProject/Pods-OutreachProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +183,8 @@
 				E1D1AFB71F5E029B00771775 /* Database */,
 				E1F58A611FE8B10F00468E7D /* ThemeColors.swift */,
 				E1F58A961FF0490000468E7D /* Extensions.swift */,
+				E1F58AA01FF2D34900468E7D /* GoogleService-Info.plist */,
+				E1F58AA81FF2DE8500468E7D /* OldDB */,
 			);
 			name = OutreachProject;
 			path = OutreachTest;
@@ -193,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				E1D1AF801F5DF67D00771775 /* Info.plist */,
-				46CDC0DD1F687FEB0029A4D0 /* GoogleService-Info.plist */,
 				E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */,
 			);
 			name = BackgroundFiles;
@@ -202,8 +211,9 @@
 		E1D1AFB71F5E029B00771775 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				E1D1AFB81F5E034700771775 /* DBDelegate.swift */,
-				E1D1AFBA1F5E035200771775 /* DBFirebase.swift */,
+				E1F58AA21FF2DD6A00468E7D /* DatabaseDelegate.swift */,
+				E1F58AA41FF2DDAD00468E7D /* FirebaseImpl.swift */,
+				E1F58AA61FF2DE5200468E7D /* DatabaseFactory.swift */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -211,9 +221,7 @@
 		E1F58A581FE89EE400468E7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */,
-				E1F58A941FEDCB3400468E7D /* CalendarArrayDatasource.swift */,
-				E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */,
+				E1F58A9D1FF291F900468E7D /* HomeDataSources */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -229,9 +237,8 @@
 		E1F58A5A1FE89EF500468E7D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */,
-				E1F58A921FEDCB0100468E7D /* CalendarArrayController.swift */,
-				E1F58A6D1FEC902900468E7D /* HomeCalendarController.swift */,
+				E1F58A9E1FF2A08500468E7D /* LoginController.swift */,
+				E1F58A9C1FF290AC00468E7D /* HomeControllers */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -254,6 +261,35 @@
 				E1F58A691FEAA5A900468E7D /* myCalendar.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		E1F58A9C1FF290AC00468E7D /* HomeControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */,
+				E1F58A921FEDCB0100468E7D /* CalendarArrayController.swift */,
+				E1F58A6D1FEC902900468E7D /* HomeCalendarController.swift */,
+			);
+			name = HomeControllers;
+			sourceTree = "<group>";
+		};
+		E1F58A9D1FF291F900468E7D /* HomeDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */,
+				E1F58A941FEDCB3400468E7D /* CalendarArrayDatasource.swift */,
+				E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */,
+			);
+			name = HomeDataSources;
+			sourceTree = "<group>";
+		};
+		E1F58AA81FF2DE8500468E7D /* OldDB */ = {
+			isa = PBXGroup;
+			children = (
+				E1D1AFB81F5E034700771775 /* DBDelegate.swift */,
+				E1D1AFBA1F5E035200771775 /* DBFirebase.swift */,
+			);
+			name = OldDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,8 +384,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1D1AF7F1F5DF67D00771775 /* LaunchScreen.storyboard in Resources */,
-				46CDC0DE1F687FEB0029A4D0 /* GoogleService-Info.plist in Resources */,
 				E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */,
+				E1F58AA11FF2D34900468E7D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,13 +516,17 @@
 				E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */,
 				E10F833B1F5E23ED00825583 /* GroupBundle.swift in Sources */,
 				E1F58A6E1FEC902900468E7D /* HomeCalendarController.swift in Sources */,
+				E1F58AA31FF2DD6A00468E7D /* DatabaseDelegate.swift in Sources */,
 				E1F58A991FF1496700468E7D /* MonthSelectPopup.swift in Sources */,
 				E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */,
 				E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */,
 				E10F833F1F5E241500825583 /* Event.swift in Sources */,
 				E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */,
 				E1F58A931FEDCB0100468E7D /* CalendarArrayController.swift in Sources */,
+				E1F58A9F1FF2A08500468E7D /* LoginController.swift in Sources */,
 				E1D1AFBB1F5E035200771775 /* DBFirebase.swift in Sources */,
+				E1F58AA71FF2DE5200468E7D /* DatabaseFactory.swift in Sources */,
+				E1F58AA51FF2DDAD00468E7D /* FirebaseImpl.swift in Sources */,
 				E1F58A971FF0490000468E7D /* Extensions.swift in Sources */,
 				E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */,
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
@@ -635,7 +675,7 @@
 				INFOPLIST_FILE = OutreachTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iLaunch.OutreachProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.launch.boostbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -653,7 +693,7 @@
 				INFOPLIST_FILE = OutreachTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iLaunch.OutreachProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.launch.boostbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
