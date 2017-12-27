@@ -9,9 +9,10 @@
 import Foundation
 
 protocol DatabaseDelegate{
-    static func setupInitialState()
-    static func createUser(name:String?,email:String?,password:String?)
-    static func isLoggedIn()->Bool
-    static func signOut()
-    static func logIn(email:String?,password:String?)
+    func setupInitialState()
+    func createUser(name:String?,email:String?,password:String?)
+    func isLoggedIn()->Bool
+    func signOut()
+    func logIn(email:String?,password:String?)
+    func getCurrentUser(completionHandler:@escaping (_ user:User?)->())
 }

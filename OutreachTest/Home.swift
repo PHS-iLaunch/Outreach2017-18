@@ -254,9 +254,13 @@ class HomeGroupListCell: DatasourceCell{
     
     override var datasourceItem: Any?{
         didSet{
-            var array:[String] = (datasourceItem as? [String])!
-            nameLabel.text = array[0]
-            roleLabel.text = array[1]
+            var bundle:GroupBundle = (datasourceItem as? GroupBundle)!
+            nameLabel.text = bundle.groupID
+            if bundle.role == .admin{
+                roleLabel.text = "admin"
+            }else if bundle.role == .member{
+                roleLabel.text = "member"
+            }
         }
     }
     

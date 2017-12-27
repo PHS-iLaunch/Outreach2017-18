@@ -121,11 +121,11 @@ class LoginController: UIViewController, UITextFieldDelegate{
     }
     
     func handleLogin(){
-        DatabaseFactory.logIn(email: emailTextField.text, password: passwordTextField.text)
+        DatabaseFactory.DB.logIn(email: emailTextField.text, password: passwordTextField.text)
     }
     
     func handleSignIn(){
-        DatabaseFactory.createUser(name:nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+        DatabaseFactory.DB.createUser(name:nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
     }
     
     func handleRegisterLoginChange(){

@@ -251,8 +251,22 @@ class HomeDatasourceController: DatasourceController{
         
         collectionView?.allowsMultipleSelection = true
         
-        if DatabaseFactory.isLoggedIn(){
+        if !DatabaseFactory.DB.isLoggedIn(){
             perform(#selector(signOut), with: nil, afterDelay: 0)
+        }else{
+            var currentUser:User? = User()
+            DatabaseFactory.DB.getCurrentUser{(user:User?) in
+                //code called after data loaded
+                currentUser = user
+                if let currentUserExists = currentUser{
+                    HomeDataSource.addedGroups = currentUserExists.groupBundles
+                    HomeDatasourceController.own.collectionView?.reloadData()
+                    print(currentUserExists.email)
+                }else{
+                    //Some Network Error
+                }
+                //
+            }
         }
     }
     
@@ -285,7 +299,7 @@ class HomeDatasourceController: DatasourceController{
     
     func signOut(){
         let loginController = LoginController()
-        DatabaseFactory.signOut()
+        DatabaseFactory.DB.signOut()
         present(loginController,animated:true,completion: nil)
         print("signed out")
     }

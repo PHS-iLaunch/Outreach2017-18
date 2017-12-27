@@ -12,14 +12,11 @@
 		E10F833B1F5E23ED00825583 /* GroupBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833A1F5E23ED00825583 /* GroupBundle.swift */; };
 		E10F833D1F5E240A00825583 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833C1F5E240A00825583 /* Group.swift */; };
 		E10F833F1F5E241500825583 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F833E1F5E241500825583 /* Event.swift */; };
-		E10F83411F5E242500825583 /* GroupMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F83401F5E242500825583 /* GroupMember.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
 		E1D1AF7F1F5DF67D00771775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7D1F5DF67D00771775 /* LaunchScreen.storyboard */; };
 		E1D1AF8A1F5DF67D00771775 /* OutreachTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF891F5DF67D00771775 /* OutreachTestTests.swift */; };
-		E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFB81F5E034700771775 /* DBDelegate.swift */; };
-		E1D1AFBB1F5E035200771775 /* DBFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AFBA1F5E035200771775 /* DBFirebase.swift */; };
 		E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */; };
 		E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */; };
 		E1F58A601FE8AC4100468E7D /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F58A5F1FE8AC4100468E7D /* Calendar.swift */; };
@@ -62,7 +59,6 @@
 		E10F833A1F5E23ED00825583 /* GroupBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBundle.swift; sourceTree = "<group>"; };
 		E10F833C1F5E240A00825583 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		E10F833E1F5E241500825583 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		E10F83401F5E242500825583 /* GroupMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMember.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -72,8 +68,6 @@
 		E1D1AF851F5DF67D00771775 /* OutreachProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutreachProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF891F5DF67D00771775 /* OutreachTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutreachTestTests.swift; sourceTree = "<group>"; };
 		E1D1AF8B1F5DF67D00771775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1D1AFB81F5E034700771775 /* DBDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBDelegate.swift; sourceTree = "<group>"; };
-		E1D1AFBA1F5E035200771775 /* DBFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBFirebase.swift; sourceTree = "<group>"; };
 		E1F58A5B1FE8A00A00468E7D /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		E1F58A5D1FE8A6BA00468E7D /* HomeDatasourceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasourceController.swift; sourceTree = "<group>"; };
 		E1F58A5F1FE8AC4100468E7D /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
@@ -143,7 +137,6 @@
 				E10F833A1F5E23ED00825583 /* GroupBundle.swift */,
 				E10F833C1F5E240A00825583 /* Group.swift */,
 				E10F833E1F5E241500825583 /* Event.swift */,
-				E10F83401F5E242500825583 /* GroupMember.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -184,7 +177,6 @@
 				E1F58A611FE8B10F00468E7D /* ThemeColors.swift */,
 				E1F58A961FF0490000468E7D /* Extensions.swift */,
 				E1F58AA01FF2D34900468E7D /* GoogleService-Info.plist */,
-				E1F58AA81FF2DE8500468E7D /* OldDB */,
 			);
 			name = OutreachProject;
 			path = OutreachTest;
@@ -281,15 +273,6 @@
 				E1F58A6F1FEC908B00468E7D /* HomeCalendarDataSource.swift */,
 			);
 			name = HomeDataSources;
-			sourceTree = "<group>";
-		};
-		E1F58AA81FF2DE8500468E7D /* OldDB */ = {
-			isa = PBXGroup;
-			children = (
-				E1D1AFB81F5E034700771775 /* DBDelegate.swift */,
-				E1D1AFBA1F5E035200771775 /* DBFirebase.swift */,
-			);
-			name = OldDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,7 +493,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1F58A951FEDCB3400468E7D /* CalendarArrayDatasource.swift in Sources */,
-				E10F83411F5E242500825583 /* GroupMember.swift in Sources */,
 				E1F58A661FE94BC700468E7D /* Home.swift in Sources */,
 				E10F833D1F5E240A00825583 /* Group.swift in Sources */,
 				E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */,
@@ -519,12 +501,10 @@
 				E1F58AA31FF2DD6A00468E7D /* DatabaseDelegate.swift in Sources */,
 				E1F58A991FF1496700468E7D /* MonthSelectPopup.swift in Sources */,
 				E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */,
-				E1D1AFB91F5E034700771775 /* DBDelegate.swift in Sources */,
 				E10F833F1F5E241500825583 /* Event.swift in Sources */,
 				E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */,
 				E1F58A931FEDCB0100468E7D /* CalendarArrayController.swift in Sources */,
 				E1F58A9F1FF2A08500468E7D /* LoginController.swift in Sources */,
-				E1D1AFBB1F5E035200771775 /* DBFirebase.swift in Sources */,
 				E1F58AA71FF2DE5200468E7D /* DatabaseFactory.swift in Sources */,
 				E1F58AA51FF2DDAD00468E7D /* FirebaseImpl.swift in Sources */,
 				E1F58A971FF0490000468E7D /* Extensions.swift in Sources */,

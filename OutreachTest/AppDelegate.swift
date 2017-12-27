@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        DatabaseFactory.setupInitialState()
+        DatabaseFactory.DB.setupInitialState()
         window = UIWindow(frame:UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(rootViewController:HomeDatasourceController())

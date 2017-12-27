@@ -7,39 +7,22 @@
 //
 
 import Foundation
-import Firebase
 
 class User {
-    
-    var username:String = ""
+    var ID:String = ""
+    var name:String = ""
     var email:String = ""
-    var password:String = ""
+    //var password:String = ""
     var groupBundles:[GroupBundle] = []
     
-    init(username:String, email:String, password:String, groupBundles:[GroupBundle]) {
-        self.username = username
+    init(ID:String, name:String, email:String, groupBundles:[GroupBundle]) {
+        self.ID = ID
+        self.name = name
         self.email = email
-        self.password = password
         self.groupBundles = groupBundles
     }
     
-    init(snapshot: FIRDataSnapshot) {
-        
-        let snapVal = snapshot.value as! [String: AnyObject]
-        
-        self.username = snapVal["username"] as! String
-        self.email = snapVal["email"] as! String
-        self.password = snapVal["password"] as! String
-
-        let groupBundleList = snapVal["groupBundles"] as! [[String : Any]]
-        
-        for groupBundle in groupBundleList {
-            self.groupBundles.append(GroupBundle(propertyList: groupBundle))
-        }
-        
-    }
-    
-    init() { //Blank init for DBFirebase, in order to fill in with data snapshot
+    init(){
         
     }
     

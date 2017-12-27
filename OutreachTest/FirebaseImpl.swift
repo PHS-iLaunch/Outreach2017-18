@@ -10,11 +10,11 @@ import Foundation
 import Firebase
 
 class FirebaseImpl:DatabaseDelegate{
-    static func setupInitialState() {
+    func setupInitialState() {
         FIRApp.configure()
     }
     
-    static func createUser(name:String?, email: String?, password: String?) {
+    func createUser(name:String?, email: String?, password: String?) {
         guard let email2 = email, let password2 = password, let name2 = name else{
             return
         }
@@ -47,11 +47,11 @@ class FirebaseImpl:DatabaseDelegate{
         })
     }
     
-    static func isLoggedIn()->Bool{
+    func isLoggedIn()->Bool{
         return !(FIRAuth.auth()?.currentUser == nil)
     }
     
-    static func signOut() {
+    func signOut() {
         do{
             try FIRAuth.auth()?.signOut()
         }catch let logoutError{
@@ -59,7 +59,7 @@ class FirebaseImpl:DatabaseDelegate{
         }
     }
     
-    static func logIn(email:String?,password:String?){
+    func logIn(email:String?,password:String?){
         guard let email2 = email, let password2 = password else{
             return
         }
@@ -73,5 +73,27 @@ class FirebaseImpl:DatabaseDelegate{
             
             LoginController.own.dismiss(animated: true, completion: nil)
         })
+    }
+    
+    func getCurrentUser(completionHandler:@escaping (_ user:User?)->()) {
+        var userDictionaryRef:[String:AnyObject] = [:]
+        var returnUser:User? = nil
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observe(.value, with: {
+            (snapshot) in
+            //Load up User from DB
+                if let dictionary = snapshot.value as? [String:AnyObject] {
+                    userDictionaryRef = dictionary
+                    returnUser = User(ID: uid!, name: userDictionaryRef["name"]! as! String, email: userDictionaryRef["email"]! as! String, groupBundles: [])
+                }
+            //////
+            if returnUser == nil{
+                completionHandler(nil)
+            }else{
+                completionHandler(returnUser)
+            }
+            
+        }, withCancel: nil)
     }
 }
