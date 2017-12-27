@@ -11,4 +11,7 @@ import Foundation
 protocol DatabaseDelegate{
     static func setupInitialState()
     static func createUser(name:String?,email:String?,password:String?)
+    static func isLoggedIn()->Bool
+    static func signOut()
+    static func logIn(email:String?,password:String?)
 }

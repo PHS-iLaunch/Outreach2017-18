@@ -250,6 +250,10 @@ class HomeDatasourceController: DatasourceController{
         HomeDatasourceController.own = self
         
         collectionView?.allowsMultipleSelection = true
+        
+        if DatabaseFactory.isLoggedIn(){
+            perform(#selector(signOut), with: nil, afterDelay: 0)
+        }
     }
     
     func setupNavigationBarItems(){
@@ -281,6 +285,7 @@ class HomeDatasourceController: DatasourceController{
     
     func signOut(){
         let loginController = LoginController()
+        DatabaseFactory.signOut()
         present(loginController,animated:true,completion: nil)
         print("signed out")
     }

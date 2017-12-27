@@ -41,8 +41,37 @@ class FirebaseImpl:DatabaseDelegate{
                 }
                 
                 print("Saved user successfully into Firebase DB")
+                LoginController.own.dismiss(animated: true, completion: nil)
+                return
             })
         })
+    }
+    
+    static func isLoggedIn()->Bool{
+        return !(FIRAuth.auth()?.currentUser == nil)
+    }
+    
+    static func signOut() {
+        do{
+            try FIRAuth.auth()?.signOut()
+        }catch let logoutError{
+            print(logoutError)
+        }
+    }
+    
+    static func logIn(email:String?,password:String?){
+        guard let email2 = email, let password2 = password else{
+            return
+        }
         
+        FIRAuth.auth()?.signIn(withEmail: email2, password: password2, completion: {
+            (user,error) in
+            if error != nil{
+                print(error)
+                return
+            }
+            
+            LoginController.own.dismiss(animated: true, completion: nil)
+        })
     }
 }
