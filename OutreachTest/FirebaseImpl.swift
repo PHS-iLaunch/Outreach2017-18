@@ -85,7 +85,7 @@ class FirebaseImpl:DatabaseDelegate{
             //Load up User from DB
                 if let dictionary = snapshot.value as? [String:AnyObject] {
                     userDictionaryRef = dictionary
-                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String , name: userDictionaryRef["name"]! as! String)
+                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups: [], lastUserRevisionTimestamp: Date())
                 }
             //////
             if returnUser == nil{

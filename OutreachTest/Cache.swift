@@ -15,10 +15,12 @@ class Cache{
     var lastUserRevisionTimestamp:Date = Date()
     var groups:[Group] = []
     
-    init(userID:String,email:String,name:String){
+    init(userID:String,email:String,name:String, groups:[Group], lastUserRevisionTimestamp:Date){
         self.userID = userID
         self.email = email
         self.name = name
+        self.groups = groups
+        self.lastUserRevisionTimestamp = lastUserRevisionTimestamp
         
     }
     
