@@ -76,6 +76,15 @@ class HomeDatasourceController: DatasourceController{
         
     }
     
+    static func dismissGroupPopupWithoutTap(){
+        subImage.removeFromSuperview()
+        tempSingle.minus()
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            groupPopup.frame = CGRect(x: subImage.frame.midX, y: subImage.frame.midY, width: 0, height: 0)
+            bg.alpha = 0
+        },completion:nil)
+    }
+    
     func newMonthSelect(startingImage:UIButton){
         let sFrame = startingImage.superview?.convert(startingImage.frame,to:nil)
         

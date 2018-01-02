@@ -55,6 +55,16 @@ class AddGroupPopup:DatasourceCell{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func joinGroupScreen(){
+        HomeDatasourceController.dismissGroupPopupWithoutTap()
+        HomeDatasourceController.own.present(UINavigationController(rootViewController: JoinGroupController()), animated: true, completion: nil)
+    }
+    
+    func createGroupScreen(){
+        HomeDatasourceController.dismissGroupPopupWithoutTap()
+        HomeDatasourceController.own.present(UINavigationController(rootViewController: CreateGroupController()), animated: true, completion: nil)
+    }
+    
     override func setupViews() {
         super.setupViews()
         backgroundColor = ThemeColor.veryLightGray
@@ -63,8 +73,22 @@ class AddGroupPopup:DatasourceCell{
         addSubview(joinGroupLabel)
         joinGroupLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: initFrame.height/3-joinGroupLabel.intrinsicContentSize.height/2, leftConstant: initFrame.width/2-joinGroupLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
+        let joinGroupButton = UIView()
+        addSubview(joinGroupButton)
+        joinGroupButton.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: initFrame.height/3-joinGroupLabel.intrinsicContentSize.height/2-10, leftConstant: initFrame.width/2-joinGroupLabel.intrinsicContentSize.width/2-10, bottomConstant: 0, rightConstant: 0, widthConstant: joinGroupLabel.intrinsicContentSize.width+20, heightConstant: joinGroupLabel.intrinsicContentSize.height+20)
+        
+        let joinTapGesture = UITapGestureRecognizer(target: self, action: #selector(joinGroupScreen))
+        joinGroupButton.addGestureRecognizer(joinTapGesture)
+        
         addSubview(createGroupLabel)
         createGroupLabel.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 0, leftConstant: initFrame.width/2-createGroupLabel.intrinsicContentSize.width/2, bottomConstant: (initFrame.height/3-createGroupLabel.intrinsicContentSize.height/2), rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        let createTapGesture = UITapGestureRecognizer(target: self, action: #selector(createGroupScreen))
+        
+        let createGroupButton = UIView()
+        addSubview(createGroupButton)
+        createGroupButton.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 0, leftConstant: initFrame.width/2-createGroupLabel.intrinsicContentSize.width/2-10, bottomConstant: (initFrame.height/3-createGroupLabel.intrinsicContentSize.height/2-10), rightConstant: 0, widthConstant: createGroupLabel.intrinsicContentSize.width+20, heightConstant: createGroupLabel.intrinsicContentSize.height+20)
+        
+        createGroupButton.addGestureRecognizer(createTapGesture)
         
     }
     
