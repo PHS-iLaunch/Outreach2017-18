@@ -254,12 +254,11 @@ class HomeDatasourceController: DatasourceController{
         if !DatabaseFactory.DB.isLoggedIn(){
             perform(#selector(signOut), with: nil, afterDelay: 0)
         }else{
-            var currentUser:User? = User()
-            DatabaseFactory.DB.getCurrentUser{(user:User?) in
+            var currentCache:Cache? = Cache()
+            DatabaseFactory.DB.getCache{(cache:Cache?) in
                 //code called after data loaded
-                currentUser = user
-                if let currentUserExists = currentUser{
-                    HomeDataSource.addedGroups = currentUserExists.groupBundles
+                currentCache = cache
+                if let currentUserExists = currentCache{
                     HomeDatasourceController.own.collectionView?.reloadData()
                     print(currentUserExists.email)
                 }else{

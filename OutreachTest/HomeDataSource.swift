@@ -15,7 +15,6 @@ class HomeDataSource: Datasource{
     let daysOfWeek = ["Sun","Mon","Tues","Wed","Thu","Fri","Sat"]
     
     //This should not be constant:
-    static var addedGroups:[GroupBundle] = []
     
     static func horizontalToVertical(_ array:[UserCellDataPackage])->[UserCellDataPackage]{
         var transformArraySet:[[UserCellDataPackage]] = []
@@ -56,7 +55,7 @@ class HomeDataSource: Datasource{
         }else if indexPath.section == 2{
             return "hi"
         }else if indexPath.section == 3{
-            return HomeDataSource.addedGroups[indexPath.item]
+            return myCache.currentCache.groups
         }
         return "hi"
     }
@@ -72,7 +71,7 @@ class HomeDataSource: Datasource{
             return 1 //the uicollectionview
         }
         else if section == 3{
-            return HomeDataSource.addedGroups.count //# of groups
+            return myCache.currentCache.groups.count //# of groups
         }else{
             return 0
         }

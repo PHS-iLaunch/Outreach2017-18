@@ -14,5 +14,5 @@ protocol DatabaseDelegate{
     func isLoggedIn()->Bool
     func signOut()
     func logIn(email:String?,password:String?)
-    func getCurrentUser(completionHandler:@escaping (_ user:User?)->())
+    func getCache(completionHandler:@escaping (_ user:Cache?)->())
 }

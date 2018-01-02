@@ -75,9 +75,9 @@ class FirebaseImpl:DatabaseDelegate{
         })
     }
     
-    func getCurrentUser(completionHandler:@escaping (_ user:User?)->()) {
+    func getCache(completionHandler:@escaping (_ user:Cache?)->()) {
         var userDictionaryRef:[String:AnyObject] = [:]
-        var returnUser:User? = nil
+        var returnUser:Cache? = nil
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).observe(.value, with: {
@@ -85,7 +85,7 @@ class FirebaseImpl:DatabaseDelegate{
             //Load up User from DB
                 if let dictionary = snapshot.value as? [String:AnyObject] {
                     userDictionaryRef = dictionary
-                    returnUser = User(ID: uid!, name: userDictionaryRef["name"]! as! String, email: userDictionaryRef["email"]! as! String, groupBundles: [])
+                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String , name: userDictionaryRef["name"]! as! String)
                 }
             //////
             if returnUser == nil{
