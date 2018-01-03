@@ -20,13 +20,13 @@ class Group {
     var lastGroupRevisionTimestamp:Date = Date()
     var events:[Event] = []
     var members:[GroupMember] = []
-    var ownGroupInfo:SelfGroupInfo
     
-    init(groupID:String,groupName:String,groupDescription:String,ownGroupInfo:SelfGroupInfo) {
+    init(groupID:String,groupName:String,groupDescription:String,events:[Event], members:[GroupMember]) {
         self.groupID = groupID
         self.groupName = groupName
         self.groupDescription = groupDescription
-        self.ownGroupInfo = ownGroupInfo
+        self.events = events
+        self.members = members
     }
 }
 
@@ -52,14 +52,6 @@ class GroupMember {
     
     init(userID:String,role:Position) {
         self.userID = userID
-        self.role = role
-    }
-}
-
-class SelfGroupInfo{
-    var role:Position
-    
-    init(role:Position) {
         self.role = role
     }
 }

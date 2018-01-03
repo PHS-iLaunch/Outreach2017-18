@@ -55,7 +55,7 @@ class HomeDataSource: Datasource{
         }else if indexPath.section == 2{
             return "hi"
         }else if indexPath.section == 3{
-            return myCache.currentCache.groups
+            return myCache.currentCache.groups[indexPath.item]
         }
         return "hi"
     }

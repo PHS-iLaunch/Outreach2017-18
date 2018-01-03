@@ -256,10 +256,14 @@ class HomeGroupListCell: DatasourceCell{
         didSet{
             var group:Group = (datasourceItem as? Group)!
             nameLabel.text = group.groupName
-            if group.ownGroupInfo.role == .admin{
-                roleLabel.text = "admin"
-            }else if group.ownGroupInfo.role == .member{
-                roleLabel.text = "member"
+            for member in group.members{
+                if member.userID == myCache.currentCache.userID{
+                    if member.role == .admin{
+                        roleLabel.text = "admin"
+                    }else if member.role == .member{
+                        roleLabel.text = "member"
+                    }
+                }
             }
         }
     }
