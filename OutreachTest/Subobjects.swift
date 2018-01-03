@@ -44,7 +44,6 @@ class Event {
         self.time = time
         self.location = location
     }
-    
 }
 
 class GroupMember {

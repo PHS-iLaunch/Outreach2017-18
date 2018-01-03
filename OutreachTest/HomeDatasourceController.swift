@@ -267,9 +267,9 @@ class HomeDatasourceController: DatasourceController{
             DatabaseFactory.DB.getCache{(cache:Cache?) in
                 //code called after data loaded
                 currentCache = cache
-                if let currentUserExists = currentCache{
+                if let currentCacheExists = currentCache{
                     HomeDatasourceController.own.collectionView?.reloadData()
-                    print(currentUserExists.email)
+                    myCache.currentCache = currentCacheExists
                 }else{
                     //Some Network Error
                 }

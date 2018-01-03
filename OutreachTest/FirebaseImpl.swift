@@ -96,4 +96,24 @@ class FirebaseImpl:DatabaseDelegate{
             
         }, withCancel: nil)
     }
+    
+    func createGroup(name: String?, description: String?) {
+        guard let name2 = name, let description2 = description else{
+            return
+        }
+        
+        let ref = FIRDatabase.database().reference(fromURL: "https://boostbox-ce76c.firebaseio.com/")
+        let groupRef = ref.child("groups")
+        let newGroupRef = groupRef.childByAutoId()
+        
+        let values = ["name":name2,"description":description2]
+        newGroupRef.setValue(values)
+        let membersArrayRef = newGroupRef.child("members")
+        let newMemberRef = membersArrayRef.child(myCache.currentCache.userID)
+        let memberValues = ["role":"admin"]
+        newMemberRef.setValue(memberValues)
+        
+        let userRef = ref.child("users").child(myCache.currentCache.userID).child("GroupNames").child(newGroupRef.key)
+        userRef.setValue("placeholderValue")
+    }
 }

@@ -9,11 +9,133 @@
 import Foundation
 import UIKit
 
-class CreateGroupController:UIViewController{
+class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDelegate{
+    
+    lazy var groupNameLabel:UITextField = {
+        let text = UITextField()
+        text.placeholder = "Group Name (required)"
+        text.textAlignment = .center
+        text.autocorrectionType = .no
+        text.autocapitalizationType = .none
+        text.borderStyle = .roundedRect
+        text.textColor = ThemeColor.red
+        text.returnKeyType = .done
+        text.font = UIFont.boldSystemFont(ofSize: 20)
+        text.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        text.delegate = self
+        return text
+    }()
+    
+    lazy var groupDescriptionLabel:UITextView = {
+        let text = UITextView()
+        text.isEditable = true
+        text.text = "Group Description (required)"
+        text.textAlignment = .left
+        text.textColor = .lightGray
+        text.delegate = self
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
+    let doneButton:UIButton = {
+        let imageView = UIButton()
+        imageView.setImage(#imageLiteral(resourceName: "check").withRenderingMode(.alwaysOriginal), for: .normal)
+        imageView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return imageView
+    }()
+    
+    func buttonPressed(){
+        if !(groupNameLabel.text?.isEmpty)! && !(groupDescriptionLabel.text?.isEmpty)!{
+            //Register Group
+            DatabaseFactory.DB.createGroup(name: groupNameLabel.text, description: groupDescriptionLabel.text)
+            //
+            goBack()
+        }
+        
+        if (groupNameLabel.text?.isEmpty)!{
+            groupNameLabel.backgroundColor = ThemeColor.lightRed
+        }
+        if groupDescriptionLabel.textColor == .lightGray || groupDescriptionLabel.text.isEmpty{
+            groupDescriptionLabel.backgroundColor = ThemeColor.lightRed
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.whitish
+        
+        view.addSubview(groupNameLabel)
+        groupNameLabel.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 60)
+        
+        view.addSubview(groupDescriptionLabel)
+        groupDescriptionLabel.anchor(groupNameLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: view.frame.height/5)
+        
+        view.addSubview(doneButton)
+        doneButton.anchor(groupDescriptionLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 24, leftConstant: view.frame.width/2-50, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
+        addDoneButtonOnKeyboard()
+    }
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        textField.backgroundColor = .white
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        groupDescriptionLabel.backgroundColor = .white
+        if groupDescriptionLabel.textColor == .lightGray {
+            textView.text = nil
+            textView.textColor = ThemeColor.darkGray
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty{
+            textView.text = "Group Description (required)"
+            textView.textColor = .lightGray
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        groupNameLabel.backgroundColor = .white
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        groupDescriptionLabel.backgroundColor = .white
+    }
+    
+    
+    
+    func dismissKeyboard(){
+        groupNameLabel.resignFirstResponder()
+        groupDescriptionLabel.resignFirstResponder()
+    }
+    
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
+        doneToolbar.barStyle = UIBarStyle.blackOpaque
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        
+        let items = NSMutableArray()
+        items.add(flexSpace)
+        items.add(done)
+        
+        doneToolbar.items = items as? [UIBarButtonItem]
+        doneToolbar.sizeToFit()
+        doneToolbar.tintColor = ThemeColor.red
+        doneToolbar.barTintColor = ThemeColor.veryLightGray
+        
+        self.groupDescriptionLabel.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction(){
+        groupDescriptionLabel.resignFirstResponder()
     }
     
     func setupNavigationBarItems(){
@@ -37,5 +159,10 @@ class CreateGroupController:UIViewController{
     
     func goBack(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

@@ -188,9 +188,9 @@ class MonthSelectPopup:DatasourceCell{
         doneToolbar.items = items as? [UIBarButtonItem]
         doneToolbar.sizeToFit()
         
+        doneToolbar.tintColor = ThemeColor.red
+        doneToolbar.barTintColor = ThemeColor.veryLightGray
         self.textField.inputAccessoryView = doneToolbar
-        self.textField.inputAccessoryView = doneToolbar
-        
     }
     
     func dismissKeyboard(){
