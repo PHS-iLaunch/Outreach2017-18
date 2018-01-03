@@ -252,6 +252,8 @@ class HomeGroupListHeader: DatasourceCell{
 
 class HomeGroupListCell: DatasourceCell{
     
+    var groupID:String = ""
+    
     override var datasourceItem: Any?{
         didSet{
             var group:Group = (datasourceItem as? Group)!
@@ -265,6 +267,7 @@ class HomeGroupListCell: DatasourceCell{
                     }
                 }
             }
+            groupID = group.groupID
         }
     }
     
@@ -284,6 +287,11 @@ class HomeGroupListCell: DatasourceCell{
         return label
     }()
     
+    let buttonView:UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     override func setupViews() {
         super.setupViews()
         backgroundColor = ThemeColor.whitish
@@ -294,6 +302,16 @@ class HomeGroupListCell: DatasourceCell{
         
         nameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         roleLabel.anchor(nameLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(buttonView)
+        buttonView.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: self.frame.width, heightConstant: self.frame.height)
+        let gestureTap = UITapGestureRecognizer(target: self, action: #selector(self.add(tap:)))
+        buttonView.addGestureRecognizer(gestureTap)
+        
+    }
+    
+    func add(tap:UITapGestureRecognizer){
+        HomeDatasourceController.own.present(UINavigationController(rootViewController: GroupInfoController(groupID:self.groupID)), animated: true, completion: nil)
     }
 }
 

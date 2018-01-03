@@ -12,6 +12,7 @@
 		E194A7071FF45B3400C4D100 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7061FF45B3400C4D100 /* Cache.swift */; };
 		E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7081FFBEF2E00C4D100 /* CreateGroupController.swift */; };
 		E194A70B1FFBF2FF00C4D100 /* JoinGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */; };
+		E194A70D1FFD4CD200C4D100 /* GroupInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A70C1FFD4CD200C4D100 /* GroupInfoController.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		E194A7061FF45B3400C4D100 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		E194A7081FFBEF2E00C4D100 /* CreateGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupController.swift; sourceTree = "<group>"; };
 		E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupController.swift; sourceTree = "<group>"; };
+		E194A70C1FFD4CD200C4D100 /* GroupInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoController.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				E1F58A9C1FF290AC00468E7D /* HomeControllers */,
 				E194A7081FFBEF2E00C4D100 /* CreateGroupController.swift */,
 				E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */,
+				E194A70C1FFD4CD200C4D100 /* GroupInfoController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1F58A951FEDCB3400468E7D /* CalendarArrayDatasource.swift in Sources */,
+				E194A70D1FFD4CD200C4D100 /* GroupInfoController.swift in Sources */,
 				E1F58A661FE94BC700468E7D /* Home.swift in Sources */,
 				E10F833D1F5E240A00825583 /* Subobjects.swift in Sources */,
 				E1F58A6A1FEAA5A900468E7D /* myCalendar.swift in Sources */,
