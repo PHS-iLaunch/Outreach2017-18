@@ -21,9 +21,14 @@ class GroupInfoController:DatasourceController{
         
         let homeDatasource = GroupInfoDatasource()
         self.datasource = homeDatasource
-        var layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
+            flowLayout.scrollDirection = .horizontal
+        }
+        
+        collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.isPagingEnabled = true
+        collectionView?.alwaysBounceVertical = false
+        collectionView?.alwaysBounceHorizontal = false
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     }

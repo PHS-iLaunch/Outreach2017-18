@@ -29,6 +29,8 @@ class TopGroupToolbar:UIView, UICollectionViewDataSource,UICollectionViewDelegat
         addConstraintsWithFormat("V:|[v0]|", views: collectionView)
         
         collectionView.register(GroupMenuCell.self, forCellWithReuseIdentifier: cellID)
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.centeredHorizontally)
     }
     
     let cellID = "cellId"
@@ -70,18 +72,16 @@ class GroupMenuCell:DatasourceCell{
     
     override var isSelected: Bool{
         didSet{
-            imageView.alpha = isSelected ? 1:0.4
+            imageView.alpha = isSelected ? 1:0.5
         }
     }
     
-    override var isHighlighted: Bool{
-        didSet{
-            imageView.alpha = isHighlighted ? 1:0.4
-        }
-    }
-    
+//    override var isHighlighted: Bool{
+//        didSet{
+//            imageView.alpha = isHighlighted ? 1:0.5
+//        }
+//    }
 
-    
     override func setupViews() {
         super.setupViews()
         backgroundColor = ThemeColor.red
