@@ -12,7 +12,8 @@ import LBTAComponents
 class BaseGroupInfoCell:DatasourceCell{
     
     override func setupViews() {//Cell that contains a single CollectionView of Feed Cells
-        backgroundColor = .clear
+        backgroundColor = ThemeColor.whitish
+        self.separatorLineView.isHidden = true
         var controller = GroupInfoController.own
         //HomeDatasourceController.own.display(contentController: controller, on: self)
     }

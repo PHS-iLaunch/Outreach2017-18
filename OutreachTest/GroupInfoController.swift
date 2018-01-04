@@ -17,8 +17,9 @@ class GroupInfoController:DatasourceController{
         super.viewDidLoad()
         collectionView?.backgroundColor = ThemeColor.whitish
         setupNavigationBarItems()
-        print(group.groupName)
-        print(group.groupDescription)
+        
+        let homeDatasource = GroupInfoDatasource()
+        self.datasource = homeDatasource
         
     }
     
@@ -29,7 +30,7 @@ class GroupInfoController:DatasourceController{
             }
         }
         super.init()
-        own = self
+        GroupInfoController.own = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,9 +62,9 @@ class GroupInfoController:DatasourceController{
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0{
-            return CGSize(width: (UIApplication.shared.keyWindow?.frame)!.width,height:48)
+            return CGSize(width: (UIApplication.shared.keyWindow?.frame)!.width/3,height:55)
         }else if indexPath.section == 1{
-            return (UIApplication.shared.keyWindow?.frame)!.size
+            return CGSize(width: (UIApplication.shared.keyWindow?.frame)!.width, height: (UIApplication.shared.keyWindow?.frame)!.height-55)
         }
         return CGSize.zero
     }

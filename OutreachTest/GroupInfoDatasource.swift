@@ -11,21 +11,23 @@ import LBTAComponents
 
 class GroupInfoDatasource: Datasource{
     
+    var imageNamesForTopBar = ["groupInfo","groupMembers","groupEvents"]
+    
     override func headerClasses() -> [DatasourceCell.Type]? {
-        return [CalendarHeader.self,CalendarHeader.self,CalendarHeader.self,HomeGroupListHeader.self]
+        return []
     }
     
     override func footerClasses() -> [DatasourceCell.Type]? {
-        return [CalendarFooter.self]
+        return []
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [MonthTopBar.self,staticDayDisplayBar.self, ArrayCell.self,HomeGroupListCell.self]
+        return [TopViewGroupCell.self,BaseGroupInfoCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
         if indexPath.section == 0{
-            return ""
+            return imageNamesForTopBar[indexPath.item]
         }else if indexPath.section == 1{
             return ""
         }
