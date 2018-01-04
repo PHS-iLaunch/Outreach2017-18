@@ -13,6 +13,9 @@
 		E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7081FFBEF2E00C4D100 /* CreateGroupController.swift */; };
 		E194A70B1FFBF2FF00C4D100 /* JoinGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */; };
 		E194A70D1FFD4CD200C4D100 /* GroupInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A70C1FFD4CD200C4D100 /* GroupInfoController.swift */; };
+		E194A71F1FFEAB7C00C4D100 /* GroupInfoDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A71E1FFEAB7C00C4D100 /* GroupInfoDatasource.swift */; };
+		E194A7231FFEABA300C4D100 /* BaseGroupInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7221FFEABA300C4D100 /* BaseGroupInfoCell.swift */; };
+		E194A7251FFEABB000C4D100 /* TopViewGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7241FFEABB000C4D100 /* TopViewGroupCell.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
@@ -61,6 +64,9 @@
 		E194A7081FFBEF2E00C4D100 /* CreateGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupController.swift; sourceTree = "<group>"; };
 		E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupController.swift; sourceTree = "<group>"; };
 		E194A70C1FFD4CD200C4D100 /* GroupInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoController.swift; sourceTree = "<group>"; };
+		E194A71E1FFEAB7C00C4D100 /* GroupInfoDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoDatasource.swift; sourceTree = "<group>"; };
+		E194A7221FFEABA300C4D100 /* BaseGroupInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGroupInfoCell.swift; sourceTree = "<group>"; };
+		E194A7241FFEABB000C4D100 /* TopViewGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewGroupCell.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -141,6 +147,23 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		E194A7201FFEAB8200C4D100 /* GroupInfoDatasources */ = {
+			isa = PBXGroup;
+			children = (
+				E194A71E1FFEAB7C00C4D100 /* GroupInfoDatasource.swift */,
+			);
+			name = GroupInfoDatasources;
+			sourceTree = "<group>";
+		};
+		E194A7211FFEAB9300C4D100 /* GroupInfoViews */ = {
+			isa = PBXGroup;
+			children = (
+				E194A7221FFEABA300C4D100 /* BaseGroupInfoCell.swift */,
+				E194A7241FFEABB000C4D100 /* TopViewGroupCell.swift */,
+			);
+			name = GroupInfoViews;
+			sourceTree = "<group>";
+		};
 		E1D1AF651F5DF67C00771775 = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +236,7 @@
 		E1F58A581FE89EE400468E7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E194A7201FFEAB8200C4D100 /* GroupInfoDatasources */,
 				E1F58A9D1FF291F900468E7D /* HomeDataSources */,
 			);
 			name = Model;
@@ -221,6 +245,7 @@
 		E1F58A591FE89EEC00468E7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E194A7211FFEAB9300C4D100 /* GroupInfoViews */,
 				E1F58A671FE98B5200468E7D /* HomeViews */,
 			);
 			name = View;
@@ -496,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1F58A951FEDCB3400468E7D /* CalendarArrayDatasource.swift in Sources */,
+				E194A7231FFEABA300C4D100 /* BaseGroupInfoCell.swift in Sources */,
 				E194A70D1FFD4CD200C4D100 /* GroupInfoController.swift in Sources */,
 				E1F58A661FE94BC700468E7D /* Home.swift in Sources */,
 				E10F833D1F5E240A00825583 /* Subobjects.swift in Sources */,
@@ -513,10 +539,12 @@
 				E1F58AA51FF2DDAD00468E7D /* FirebaseImpl.swift in Sources */,
 				E1F58A971FF0490000468E7D /* Extensions.swift in Sources */,
 				E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */,
+				E194A71F1FFEAB7C00C4D100 /* GroupInfoDatasource.swift in Sources */,
 				E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */,
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
 				E1F58A641FE8B83500468E7D /* Array.swift in Sources */,
 				E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */,
+				E194A7251FFEABB000C4D100 /* TopViewGroupCell.swift in Sources */,
 				E1F58A9B1FF1AF8500468E7D /* AddGroupPopup.swift in Sources */,
 				E1F58A701FEC908B00468E7D /* HomeCalendarDataSource.swift in Sources */,
 				E1F58A601FE8AC4100468E7D /* Calendar.swift in Sources */,

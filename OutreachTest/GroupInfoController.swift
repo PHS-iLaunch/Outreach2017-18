@@ -11,6 +11,7 @@ import LBTAComponents
 
 class GroupInfoController:DatasourceController{
     var group:Group!
+    static var own:GroupInfoController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class GroupInfoController:DatasourceController{
             }
         }
         super.init()
+        own = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,6 +65,7 @@ class GroupInfoController:DatasourceController{
         }else if indexPath.section == 1{
             return (UIApplication.shared.keyWindow?.frame)!.size
         }
+        return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
