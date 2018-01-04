@@ -17,11 +17,27 @@ class GroupInfoController:DatasourceController{
         super.viewDidLoad()
         collectionView?.backgroundColor = ThemeColor.whitish
         setupNavigationBarItems()
+        setupMenuBar()
         
         let homeDatasource = GroupInfoDatasource()
         self.datasource = homeDatasource
-        
+        var layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionView?.isPagingEnabled = true
+        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     }
+    
+    func setupMenuBar(){
+        view.addSubview(menuBar)
+        view.addConstraintsWithFormat("H:|[v0]|", views: menuBar)
+        view.addConstraintsWithFormat("V:|[v0(50)]", views: menuBar)
+    }
+    
+    let menuBar:TopGroupToolbar = {
+        let mb = TopGroupToolbar()
+        return mb
+    }()
     
     init(groupID:String){
         for incrementalGroup in myCache.currentCache.groups{
@@ -54,6 +70,8 @@ class GroupInfoController:DatasourceController{
         let bounds = self.navigationController!.navigationBar.bounds
         navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
     func goBack(){
@@ -61,12 +79,7 @@ class GroupInfoController:DatasourceController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0{
-            return CGSize(width: (UIApplication.shared.keyWindow?.frame)!.width/3,height:55)
-        }else if indexPath.section == 1{
-            return CGSize(width: (UIApplication.shared.keyWindow?.frame)!.width, height: (UIApplication.shared.keyWindow?.frame)!.height-55)
-        }
-        return CGSize.zero
+        return (UIApplication.shared.keyWindow?.frame)!.size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {

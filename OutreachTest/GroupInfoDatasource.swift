@@ -11,8 +11,6 @@ import LBTAComponents
 
 class GroupInfoDatasource: Datasource{
     
-    var imageNamesForTopBar = ["groupInfo","groupMembers","groupEvents"]
-    
     override func headerClasses() -> [DatasourceCell.Type]? {
         return []
     }
@@ -22,30 +20,19 @@ class GroupInfoDatasource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [TopViewGroupCell.self,BaseGroupInfoCell.self]
+        return [GroupInfoBaseCell.self,GroupMembersBaseCell.self,GroupEventsBaseCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        if indexPath.section == 0{
-            return imageNamesForTopBar[indexPath.item]
-        }else if indexPath.section == 1{
-            return ""
-        }
         return "hi"
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        if section == 0{
-            return 3 //The month
-        }
-        else if section == 1{
-            return 1
-        }
-        return 0
+        return 1
     }
     
     override func numberOfSections() -> Int {
-        return 2
+        return 3
     }
     
     
