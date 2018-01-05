@@ -15,6 +15,7 @@ class GroupInfoController:DatasourceController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.keyWindow?.windowLevel = UIWindowLevelNormal
         collectionView?.backgroundColor = ThemeColor.whitish
         setupNavigationBarItems()
         setupMenuBar()

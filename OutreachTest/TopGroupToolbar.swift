@@ -31,6 +31,21 @@ class TopGroupToolbar:UIView, UICollectionViewDataSource,UICollectionViewDelegat
         collectionView.register(GroupMenuCell.self, forCellWithReuseIdentifier: cellID)
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.centeredHorizontally)
+        setupHorizontalBar()
+    }
+    
+    var horizontalBarLeftAnchorConstraint:NSLayoutConstraint?
+    
+    func setupHorizontalBar(){
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = ThemeColor.whitish
+        addSubview(horizontalBarView)
+        
+        horizontalBarView.anchor(nil, left: nil, bottom: self.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: (UIApplication.shared.keyWindow?.frame)!.width/3, heightConstant: 6)
+        
+        horizontalBarLeftAnchorConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
+        horizontalBarLeftAnchorConstraint?.isActive = true
     }
     
     let cellID = "cellId"
@@ -56,6 +71,15 @@ class TopGroupToolbar:UIView, UICollectionViewDataSource,UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let x = CGFloat(indexPath.item) * (UIApplication.shared.keyWindow?.frame)!.width/3
+        horizontalBarLeftAnchorConstraint?.constant = x
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
     }
     
     
