@@ -1,15 +1,15 @@
 //
-//  HomeDataSource.swift
+//  GroupMembersDatasource.swift
 //  OutreachProject
 //
-//  Created by Robert Frank Zhang on 12/18/17.
-//  Copyright © 2017 iLaunch. All rights reserved.
+//  Created by Robert Frank Zhang on 1/5/18.
+//  Copyright © 2018 iLaunch. All rights reserved.
 //
 
 import Foundation
 import LBTAComponents
 
-class GroupInfoDatasource: Datasource{
+class GroupMembersDatasource: Datasource{
     
     override func headerClasses() -> [DatasourceCell.Type]? {
         return []
@@ -20,7 +20,7 @@ class GroupInfoDatasource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [GroupInfoBaseCell.self,GroupMembersBaseCell.self,GroupEventsBaseCell.self]
+        return [GroupMembersBaseCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
@@ -32,9 +32,6 @@ class GroupInfoDatasource: Datasource{
     }
     
     override func numberOfSections() -> Int {
-        return 3
+        return 1
     }
 }
-
-
-

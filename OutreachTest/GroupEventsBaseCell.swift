@@ -13,5 +13,7 @@ class GroupEventsBaseCell:DatasourceCell{
     override func setupViews() {
         super.setupViews()
         backgroundColor = .green
+        var controller = GroupEventsController()
+        GroupInfoController.own.display(contentController: controller, on: self)
     }
 }

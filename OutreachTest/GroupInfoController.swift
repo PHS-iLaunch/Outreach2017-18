@@ -13,6 +13,13 @@ class GroupInfoController:DatasourceController{
     var group:Group!
     static var own:GroupInfoController!
     
+    func display(contentController content: UIViewController, on view: UIView) {
+        self.addChildViewController(content)
+        content.view.frame = view.bounds
+        view.addSubview(content.view)
+        content.didMove(toParentViewController: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.keyWindow?.windowLevel = UIWindowLevelNormal
