@@ -269,4 +269,40 @@ class FirebaseImpl:DatabaseDelegate{
         }
         
     }
+    
+    func getMiniUser(userID:String, completionHandler:@escaping (_ miniUser:MiniUser?)->()){
+        FIRDatabase.database().reference().child("users").child(userID).observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                let userDictionary = dictionary
+                var miniUser:MiniUser = MiniUser()
+                
+                if let profileImageURL = userDictionary["profileURL"]{
+                    let url = NSURL(string: profileImageURL as! String)
+                    URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+                        if error != nil{
+                            print(error)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            let image = UIImage(data:data!)!
+                            miniUser = MiniUser(userID: userID, name: userDictionary["name"] as! String, image: image)
+                            
+                            if miniUser == nil{
+                                completionHandler(nil)
+                            }else{
+                                completionHandler(miniUser)
+                            }
+                        }
+                    }).resume()
+                }else{
+                    miniUser = MiniUser(userID: userID, name: userDictionary["name"] as! String, image: #imageLiteral(resourceName: "userBlank"))
+                    if miniUser == nil{
+                        completionHandler(nil)
+                    }else{
+                        completionHandler(miniUser)
+                    }
+                }
+            }
+        }, withCancel: nil)
+    }
 }

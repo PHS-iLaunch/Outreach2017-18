@@ -47,12 +47,16 @@ class Event {
 }
 
 class GroupMember {
-    var userID:String
-    var role:Position
+    var userID:String = ""
+    var role:Position = .member
     
     init(userID:String,role:Position) {
         self.userID = userID
         self.role = role
+    }
+    
+    init(){
+        
     }
 }
 
