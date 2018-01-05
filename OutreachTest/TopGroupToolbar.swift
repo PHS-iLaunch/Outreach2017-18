@@ -74,12 +74,7 @@ class TopGroupToolbar:UIView, UICollectionViewDataSource,UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let x = CGFloat(indexPath.item) * (UIApplication.shared.keyWindow?.frame)!.width/3
-        horizontalBarLeftAnchorConstraint?.constant = x
-        
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.layoutIfNeeded()
-        }, completion: nil)
+        GroupInfoController.own.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
     
@@ -96,7 +91,10 @@ class GroupMenuCell:DatasourceCell{
     
     override var isSelected: Bool{
         didSet{
-            imageView.alpha = isSelected ? 1:0.5
+            UIView.animate(withDuration: 0.75, animations: {
+                self.imageView.alpha = self.isSelected ? 1:0.5
+            })
+            
         }
     }
     

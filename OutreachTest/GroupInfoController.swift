@@ -40,6 +40,22 @@ class GroupInfoController:DatasourceController{
         view.addConstraintsWithFormat("V:|[v0(50)]", views: menuBar)
     }
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x/3
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = targetContentOffset.pointee.x/view.frame.width
+        let indexPath = IndexPath(item: Int(index), section: 0)
+        menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        
+    }
+    
+    func scrollToMenuIndex(menuIndex:Int){
+        let indexPath = IndexPath(item: 0, section: menuIndex)
+        collectionView?.scrollToItem(at: indexPath, at: [], animated: true)
+    }
+    
     let menuBar:TopGroupToolbar = {
         let mb = TopGroupToolbar()
         return mb
