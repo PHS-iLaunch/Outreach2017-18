@@ -26,4 +26,6 @@ class ThemeColor{
     static var lightBlue = UIColor(red:0/255,green:255/255,blue:255/255,alpha:1)
     static var lightRed = UIColor(red:255/255,green:205/255,blue:205/255,alpha:1)
     static var darkRed = UIColor(red:91/255,green:0/255,blue:20/255,alpha:1)
+    static var darkBlue = UIColor(red:1/255,green:19/255,blue:48/255,alpha:1)
+    static var darkPurple = UIColor(red:72/255,green:3/255,blue:99/255,alpha:1)
 }

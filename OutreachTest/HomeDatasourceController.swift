@@ -304,6 +304,10 @@ class HomeDatasourceController: DatasourceController{
         
         let userProfileButton = UIButton(type: .system)
         userProfileButton.setImage(#imageLiteral(resourceName: "userBlank").withRenderingMode(.alwaysOriginal), for: .normal)
+        userProfileButton.contentMode = .scaleAspectFit
+        userProfileButton.translatesAutoresizingMaskIntoConstraints = false
+        userProfileButton.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+        userProfileButton.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         userProfileButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         userProfileButton.layer.cornerRadius = 15
         userProfileButton.layer.masksToBounds = true
@@ -325,7 +329,8 @@ class HomeDatasourceController: DatasourceController{
     }
     
     func viewProfile(){
-        print("viewed profile")
+        let profileController = ProfileController(userID: myCache.currentCache.userID)
+        present(UINavigationController(rootViewController: profileController),animated:true,completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
