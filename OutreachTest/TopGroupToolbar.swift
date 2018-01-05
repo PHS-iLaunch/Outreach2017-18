@@ -91,9 +91,13 @@ class GroupMenuCell:DatasourceCell{
     
     override var isSelected: Bool{
         didSet{
-            UIView.animate(withDuration: 0.75, animations: {
-                self.imageView.alpha = self.isSelected ? 1:0.5
-            })
+            if !isSelected{
+                self.imageView.alpha = 0.5
+            }else{
+                UIView.animate(withDuration: 0.75, animations: {
+                    self.imageView.alpha = 1
+                })
+            }
             
         }
     }
