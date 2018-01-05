@@ -112,6 +112,15 @@ class FirebaseImpl:DatabaseDelegate{
                             }
                         })
                     }
+                }else{
+                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date())
+                    if returnUser == nil{
+                        completionHandler(nil)
+                        print("nilled")
+                    }else{
+                        completionHandler(returnUser)
+                        print("not nilled")
+                    }
                 }
             }
             //////
@@ -178,6 +187,7 @@ class FirebaseImpl:DatabaseDelegate{
         let values = ["name":name2,"description":description2]
         newGroupRef.setValue(values)
         let membersArrayRef = newGroupRef.child("members")
+        
         let newMemberRef = membersArrayRef.child(myCache.currentCache.userID)
         let memberValues = ["role":"admin"]
         newMemberRef.setValue(memberValues)

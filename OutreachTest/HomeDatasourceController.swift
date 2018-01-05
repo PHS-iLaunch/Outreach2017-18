@@ -238,12 +238,19 @@ class HomeDatasourceController: DatasourceController{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("again2")
         super.viewDidAppear(animated)
         CalendarArrayController.own.collectionView?.scrollToItem(at: IndexPath(item:1,section:0), at: .left, animated: false)
+        screenAppearLoad(isLoad:false)
     }
     
     override func viewDidLoad() {
         print("again")
+        super.viewDidLoad()
+        screenAppearLoad(isLoad: true)
+    }
+    
+    func screenAppearLoad(isLoad:Bool){
         super.viewDidLoad()
         HomeDatasourceController.currentDisplayedMonth = myCalendar.getMonth()
         HomeDatasourceController.currentDisplayedYear = myCalendar.getYear()
@@ -261,22 +268,26 @@ class HomeDatasourceController: DatasourceController{
         
         collectionView?.allowsMultipleSelection = true
         
-        if !DatabaseFactory.DB.isLoggedIn(){
-            perform(#selector(signOut), with: nil, afterDelay: 0)
-        }else{
-            print("cache again")
-            var currentCache:Cache? = Cache()
-            DatabaseFactory.DB.getCache{(cache:Cache?) in
-                //code called after data loaded
-                print("cache received")
-                currentCache = cache
-                if let currentCacheExists = currentCache{
-                    HomeDatasourceController.own.collectionView?.reloadData()
-                    myCache.currentCache = currentCacheExists
-                }else{
-                    //Some Network Error
+        if !isLoad{
+            if !DatabaseFactory.DB.isLoggedIn(){
+                perform(#selector(signOut), with: nil, afterDelay: 0)
+            }else{
+                print("cache again")
+                var currentCache:Cache? = Cache()
+                DatabaseFactory.DB.getCache{(cache:Cache?) in
+                    //code called after data loaded
+                    print("cache received")
+                    currentCache = cache
+                    if let currentCacheExists = currentCache{
+                        HomeDatasourceController.own.collectionView?.reloadData()
+                        myCache.currentCache = currentCacheExists
+                        print("hello!")
+                        print(myCache.currentCache.name)
+                    }else{
+                        //Some Network Error
+                    }
+                    //
                 }
-                //
             }
         }
     }
