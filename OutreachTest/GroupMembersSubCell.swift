@@ -10,8 +10,16 @@ import Foundation
 import LBTAComponents
 
 class GroupMembersSubCell:DatasourceCell{
+    
+    override var datasourceItem: Any?{
+        didSet{
+            var member:GroupMember = (datasourceItem as? GroupMember)!
+            
+        }
+    }
+    
     override func setupViews() {
         super.setupViews()
-        backgroundColor = .red
+        backgroundColor = .white
     }
 }

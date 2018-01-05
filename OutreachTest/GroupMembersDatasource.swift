@@ -24,11 +24,11 @@ class GroupMembersDatasource: Datasource{
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
-        return "hi"
+        return GroupInfoController.own.group.members[indexPath.item]
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        return 1
+        return GroupInfoController.own.group.members.count
     }
     
     override func numberOfSections() -> Int {

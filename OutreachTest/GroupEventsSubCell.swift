@@ -10,8 +10,15 @@ import Foundation
 import LBTAComponents
 
 class GroupEventsSubCell:DatasourceCell{
+    
+    override var datasourceItem: Any?{
+        didSet{
+            var event:Event = (datasourceItem as? Event)!
+        }
+    }
+    
     override func setupViews() {
         super.setupViews()
-        backgroundColor = .green
+        backgroundColor = .white
     }
 }
