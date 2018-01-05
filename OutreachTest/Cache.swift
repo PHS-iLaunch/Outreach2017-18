@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Cache{
     var userID:String = ""
@@ -14,14 +15,15 @@ class Cache{
     var name:String = ""
     var lastUserRevisionTimestamp:Date = Date()
     var groups:[Group] = []
+    var profilePic:UIImage = #imageLiteral(resourceName: "userBlank")
     
-    init(userID:String,email:String,name:String, groups:[Group], lastUserRevisionTimestamp:Date){
+    init(userID:String,email:String,name:String, groups:[Group], lastUserRevisionTimestamp:Date, image:UIImage){
         self.userID = userID
         self.email = email
         self.name = name
         self.groups = groups
         self.lastUserRevisionTimestamp = lastUserRevisionTimestamp
-        
+        self.profilePic = image
     }
     
     init(){

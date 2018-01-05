@@ -280,6 +280,8 @@ class HomeDatasourceController: DatasourceController{
                     myCache.currentCache = currentCacheExists
                     print("hello!")
                     print(myCache.currentCache.name)
+                    self.userProfileButton.setImage(myCache.currentCache.profilePic.withRenderingMode(.alwaysOriginal), for: .normal)
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView:self.userProfileButton)
                 }else{
                     //Some Network Error
                 }
@@ -288,6 +290,8 @@ class HomeDatasourceController: DatasourceController{
         }
         
     }
+    
+    var userProfileButton = UIButton()
     
     func setupNavigationBarItems(){
         var calendarLabel = UILabel()
@@ -302,9 +306,9 @@ class HomeDatasourceController: DatasourceController{
         signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:signOutButton)
         
-        let userProfileButton = UIButton(type: .system)
-        userProfileButton.setImage(#imageLiteral(resourceName: "userBlank").withRenderingMode(.alwaysOriginal), for: .normal)
-        userProfileButton.contentMode = .scaleAspectFit
+        userProfileButton = UIButton(type: .system)
+        userProfileButton.setImage(myCache.currentCache.profilePic.withRenderingMode(.alwaysOriginal), for: .normal)
+        userProfileButton.imageView?.contentMode = .scaleAspectFill
         userProfileButton.translatesAutoresizingMaskIntoConstraints = false
         userProfileButton.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
         userProfileButton.heightAnchor.constraint(equalToConstant: 30.0).isActive = true

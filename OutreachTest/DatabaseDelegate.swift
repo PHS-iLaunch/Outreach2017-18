@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DatabaseDelegate{
     func setupInitialState()
@@ -16,4 +17,5 @@ protocol DatabaseDelegate{
     func logIn(email:String?,password:String?)
     func getCache(completionHandler:@escaping (_ user:Cache?)->())
     func createGroup(name:String?,description:String?)
+    func updateProfilePicture(image:UIImage)
 }

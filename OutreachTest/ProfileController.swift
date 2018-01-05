@@ -27,7 +27,7 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
     
     lazy var profilePic:UIImageView = {
         let view = UIImageView()
-        view.image = #imageLiteral(resourceName: "pp")
+        view.image = myCache.currentCache.profilePic
         view.frame.size = CGSize(width:view.frame.height/4,height:view.frame.height/4)
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = self.view.frame.height/8
@@ -99,13 +99,57 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
     
     func takePhoto(tap:UITapGestureRecognizer){
         print("photo")
-        var imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        self.present(imagePicker, animated: true, completion: nil)
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Update Your Profile Picture", message: "Choose a source", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                imagePickerController.allowsEditing = false
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else{
+                //Camera Not Available
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.allowsEditing = true
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(action:UIAlertAction) in
+            
+        }))
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func profileTap(tap:UITapGestureRecognizer){
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage{
+            DatabaseFactory.DB.updateProfilePicture(image: editedImage)
+            handleProfileTap()
+            profilePic.image = editedImage
+            return
+        }
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            DatabaseFactory.DB.updateProfilePicture(image: image)
+            handleProfileTap()
+            profilePic.image = image
+        }
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        handleProfileTap()
+    }
+    
+    func handleProfileTap(){
         if !userOtherCache{
             if self.profileHeightConstraint?.constant == self.viewHeight/4{
                 editProfilePic.isHidden = false
@@ -119,15 +163,15 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
                     self.profileWidthConstraint?.constant = self.viewHeight/5
                     self.profilePic.layer.cornerRadius = self.viewHeight/10
                     self.profilePicButtonView.layer.cornerRadius = self.viewHeight/10
-                    self.profilePicButtonView.backgroundColor = .black
-                    self.profilePic.transform = CGAffineTransform(rotationAngle:-CGFloat.pi/8.0)
+                    self.profilePicButtonView.backgroundColor = .clear
+                    //self.profilePic.transform = CGAffineTransform(rotationAngle:-CGFloat.pi/8.0)
                     self.profilePicButtonView.frame = CGRect(x: self.viewWidth/2-self.viewHeight/8, y: self.viewHeight/6-self.viewHeight/8, width: self.viewHeight/5, height: self.viewHeight/5)
                 }else{
                     print((self.profileHeightConstraint?.constant)!/self.view.frame.height)
                     print(self.view.frame.height)
                     self.profileHeightConstraint?.constant = self.viewHeight/4
                     self.profileWidthConstraint?.constant = self.viewHeight/4
-                    self.profilePic.transform = CGAffineTransform(rotationAngle:0)
+                    //self.profilePic.transform = CGAffineTransform(rotationAngle:0)
                     self.profilePic.layer.cornerRadius = self.viewHeight/8
                     self.profilePicButtonView.layer.cornerRadius = self.viewHeight/8
                     self.profilePicButtonView.backgroundColor = .clear
@@ -135,7 +179,10 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
                 }
             },completion:nil)
         }
-        print(editProfilePic.frame)
+    }
+    
+    func profileTap(tap:UITapGestureRecognizer){
+        handleProfileTap()
     }
     
     func setupNavigationBarItems(){

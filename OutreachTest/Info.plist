@@ -22,6 +22,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Permission to Access Media Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Permission to Use Camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permission to Access Photo Library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

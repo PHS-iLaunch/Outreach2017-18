@@ -85,41 +85,96 @@ class FirebaseImpl:DatabaseDelegate{
             //Load up User from DB
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 userDictionaryRef = dictionary
+                var image:UIImage = UIImage()
                 
-                if let gNames = userDictionaryRef["GroupNames"]{
-                    let groupNames = (gNames as? [String:String])!
-                    var groups:[Group] = []
-                    var counter = 0
-                    for groupID in groupNames.keys{
-                        var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
-                            var currentGroup = group
-                            if let currentGroupExists = currentGroup{
-                                counter+=1
-                                groups.append(currentGroupExists)
-                                if counter == groupNames.keys.count{
-                                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date())
-                                    
-                                    if returnUser == nil{
-                                        completionHandler(nil)
-                                        print("nilled")
-                                    }else{
-                                        completionHandler(returnUser)
-                                        print("not nilled")
-                                    }
+                if let profileImageURL = userDictionaryRef["profileURL"]{
+                    print("profile")
+                    print(profileImageURL)
+                    let url = NSURL(string: profileImageURL as! String)
+                    
+                    URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+                        if error != nil{
+                            print(error)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            image = UIImage(data:data!)!
+                            print("image!!!!")
+                            if let gNames = userDictionaryRef["GroupNames"]{
+                                let groupNames = (gNames as? [String:String])!
+                                var groups:[Group] = []
+                                var counter = 0
+                                for groupID in groupNames.keys{
+                                    var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
+                                        var currentGroup = group
+                                        if let currentGroupExists = currentGroup{
+                                            counter+=1
+                                            groups.append(currentGroupExists)
+                                            if counter == groupNames.keys.count{
+                                                returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
+                                                
+                                                if returnUser == nil{
+                                                    completionHandler(nil)
+                                                    print("nilled")
+                                                }else{
+                                                    completionHandler(returnUser)
+                                                    print("not nilled")
+                                                }
+                                            }
+                                        }else{
+                                            //group not loaded correctly
+                                        }
+                                    })
                                 }
                             }else{
-                                //group not loaded correctly
+                                returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
+                                if returnUser == nil{
+                                    completionHandler(nil)
+                                    print("nilled")
+                                }else{
+                                    completionHandler(returnUser)
+                                    print("not nilled")
+                                }
                             }
-                        })
-                    }
+                        }
+                    }).resume()
                 }else{
-                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date())
-                    if returnUser == nil{
-                        completionHandler(nil)
-                        print("nilled")
+                    image = #imageLiteral(resourceName: "userBlank")
+                    if let gNames = userDictionaryRef["GroupNames"]{
+                        let groupNames = (gNames as? [String:String])!
+                        var groups:[Group] = []
+                        var counter = 0
+                        for groupID in groupNames.keys{
+                            var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
+                                var currentGroup = group
+                                if let currentGroupExists = currentGroup{
+                                    counter+=1
+                                    groups.append(currentGroupExists)
+                                    if counter == groupNames.keys.count{
+                                        returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
+
+                                        if returnUser == nil{
+                                            completionHandler(nil)
+                                            print("nilled")
+                                        }else{
+                                            completionHandler(returnUser)
+                                            print("not nilled")
+                                        }
+                                    }
+                                }else{
+                                    //group not loaded correctly
+                                }
+                            })
+                        }
                     }else{
-                        completionHandler(returnUser)
-                        print("not nilled")
+                        returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
+                        if returnUser == nil{
+                            completionHandler(nil)
+                            print("nilled")
+                        }else{
+                            completionHandler(returnUser)
+                            print("not nilled")
+                        }
                     }
                 }
             }
@@ -194,5 +249,24 @@ class FirebaseImpl:DatabaseDelegate{
         
         let userRef = ref.child("users").child(myCache.currentCache.userID).child("GroupNames").child(newGroupRef.key)
         userRef.setValue("placeholderValue")//the key is important. Placeholder is never used.
+    }
+    
+    func updateProfilePicture(image:UIImage){
+        let storageRef = FIRStorage.storage().reference().child("myProfile\(myCache.currentCache.userID)")
+        if let uploadData = UIImageJPEGRepresentation(image, 1){
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil{
+                    print(error)
+                    return
+                }
+                print(metadata)
+                let ref = FIRDatabase.database().reference(fromURL: "https://boostbox-ce76c.firebaseio.com/")
+                let userRef = ref.child("users").child(myCache.currentCache.userID).child("profileURL")
+                userRef.setValue(metadata?.downloadURL()?.absoluteString)
+                print("stored")
+                
+            })
+        }
+        
     }
 }
