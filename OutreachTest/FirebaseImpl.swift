@@ -86,30 +86,32 @@ class FirebaseImpl:DatabaseDelegate{
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 userDictionaryRef = dictionary
                 
-                let groupNames = (userDictionaryRef["GroupNames"]! as? [String:String])!
-                var groups:[Group] = []
-                var counter = 0
-                for groupID in groupNames.keys{
-                    var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
-                        var currentGroup = group
-                        if let currentGroupExists = currentGroup{
-                            counter+=1
-                            groups.append(currentGroupExists)
-                            if counter == groupNames.keys.count{
-                                returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date())
-                                
-                                if returnUser == nil{
-                                    completionHandler(nil)
-                                    print("nilled")
-                                }else{
-                                    completionHandler(returnUser)
-                                    print("not nilled")
+                if let gNames = userDictionaryRef["GroupNames"]{
+                    let groupNames = (gNames as? [String:String])!
+                    var groups:[Group] = []
+                    var counter = 0
+                    for groupID in groupNames.keys{
+                        var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
+                            var currentGroup = group
+                            if let currentGroupExists = currentGroup{
+                                counter+=1
+                                groups.append(currentGroupExists)
+                                if counter == groupNames.keys.count{
+                                    returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date())
+                                    
+                                    if returnUser == nil{
+                                        completionHandler(nil)
+                                        print("nilled")
+                                    }else{
+                                        completionHandler(returnUser)
+                                        print("not nilled")
+                                    }
                                 }
+                            }else{
+                                //group not loaded correctly
                             }
-                        }else{
-                            //group not loaded correctly
-                        }
-                    })
+                        })
+                    }
                 }
             }
             //////

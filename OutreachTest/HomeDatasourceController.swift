@@ -243,6 +243,7 @@ class HomeDatasourceController: DatasourceController{
     }
     
     override func viewDidLoad() {
+        print("again")
         super.viewDidLoad()
         HomeDatasourceController.currentDisplayedMonth = myCalendar.getMonth()
         HomeDatasourceController.currentDisplayedYear = myCalendar.getYear()
@@ -263,9 +264,11 @@ class HomeDatasourceController: DatasourceController{
         if !DatabaseFactory.DB.isLoggedIn(){
             perform(#selector(signOut), with: nil, afterDelay: 0)
         }else{
+            print("cache again")
             var currentCache:Cache? = Cache()
             DatabaseFactory.DB.getCache{(cache:Cache?) in
                 //code called after data loaded
+                print("cache received")
                 currentCache = cache
                 if let currentCacheExists = currentCache{
                     HomeDatasourceController.own.collectionView?.reloadData()
@@ -308,6 +311,7 @@ class HomeDatasourceController: DatasourceController{
     func signOut(){
         let loginController = LoginController()
         DatabaseFactory.DB.signOut()
+        myCache.currentCache = Cache()
         present(loginController,animated:true,completion: nil)
         print("signed out")
     }
