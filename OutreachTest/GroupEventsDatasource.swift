@@ -20,7 +20,7 @@ class GroupEventsDatasource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [GroupEventsBaseCell.self]
+        return [GroupEventsSubCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
@@ -32,6 +32,6 @@ class GroupEventsDatasource: Datasource{
     }
     
     override func numberOfSections() -> Int {
-        return 3
+        return 1
     }
 }

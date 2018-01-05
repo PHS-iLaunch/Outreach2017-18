@@ -23,6 +23,8 @@
 		E194A736200007B300C4D100 /* GroupEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A735200007B300C4D100 /* GroupEventsController.swift */; };
 		E194A73A2000087100C4D100 /* GroupMembersDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7392000087100C4D100 /* GroupMembersDatasource.swift */; };
 		E194A73C2000087B00C4D100 /* GroupEventsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A73B2000087B00C4D100 /* GroupEventsDatasource.swift */; };
+		E194A73E2000115000C4D100 /* GroupMembersSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A73D2000115000C4D100 /* GroupMembersSubCell.swift */; };
+		E194A7402000115C00C4D100 /* GroupEventsSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A73F2000115C00C4D100 /* GroupEventsSubCell.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		E194A735200007B300C4D100 /* GroupEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventsController.swift; sourceTree = "<group>"; };
 		E194A7392000087100C4D100 /* GroupMembersDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersDatasource.swift; sourceTree = "<group>"; };
 		E194A73B2000087B00C4D100 /* GroupEventsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventsDatasource.swift; sourceTree = "<group>"; };
+		E194A73D2000115000C4D100 /* GroupMembersSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersSubCell.swift; sourceTree = "<group>"; };
+		E194A73F2000115C00C4D100 /* GroupEventsSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventsSubCell.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -176,7 +180,9 @@
 			children = (
 				E194A7261FFEBD2B00C4D100 /* GroupInfoBaseCell.swift */,
 				E194A7281FFEBD3700C4D100 /* GroupMembersBaseCell.swift */,
+				E194A73D2000115000C4D100 /* GroupMembersSubCell.swift */,
 				E194A72A1FFEBD4200C4D100 /* GroupEventsBaseCell.swift */,
+				E194A73F2000115C00C4D100 /* GroupEventsSubCell.swift */,
 				E194A72C1FFEBDB600C4D100 /* TopGroupToolbar.swift */,
 			);
 			name = GroupInfoViews;
@@ -569,6 +575,7 @@
 				E1F58A5C1FE8A00A00468E7D /* HomeDataSource.swift in Sources */,
 				E1F58A931FEDCB0100468E7D /* CalendarArrayController.swift in Sources */,
 				E1F58A9F1FF2A08500468E7D /* LoginController.swift in Sources */,
+				E194A7402000115C00C4D100 /* GroupEventsSubCell.swift in Sources */,
 				E1F58AA71FF2DE5200468E7D /* DatabaseFactory.swift in Sources */,
 				E194A73C2000087B00C4D100 /* GroupEventsDatasource.swift in Sources */,
 				E194A70B1FFBF2FF00C4D100 /* JoinGroupController.swift in Sources */,
@@ -579,6 +586,7 @@
 				E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */,
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
 				E1F58A641FE8B83500468E7D /* Array.swift in Sources */,
+				E194A73E2000115000C4D100 /* GroupMembersSubCell.swift in Sources */,
 				E194A7271FFEBD2B00C4D100 /* GroupInfoBaseCell.swift in Sources */,
 				E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */,
 				E1F58A9B1FF1AF8500468E7D /* AddGroupPopup.swift in Sources */,

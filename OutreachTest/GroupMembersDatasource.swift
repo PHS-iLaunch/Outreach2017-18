@@ -20,7 +20,7 @@ class GroupMembersDatasource: Datasource{
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [GroupMembersBaseCell.self]
+        return [GroupMembersSubCell.self]
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {

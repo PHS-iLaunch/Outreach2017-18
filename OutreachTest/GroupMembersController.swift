@@ -12,6 +12,12 @@ import LBTAComponents
 class GroupMembersController:DatasourceController{
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView?.backgroundColor = ThemeColor.whitish
+        let homeDatasource = GroupMembersDatasource()
+        self.datasource = homeDatasource
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

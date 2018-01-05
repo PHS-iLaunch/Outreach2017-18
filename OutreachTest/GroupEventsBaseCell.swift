@@ -12,7 +12,7 @@ import LBTAComponents
 class GroupEventsBaseCell:DatasourceCell{
     override func setupViews() {
         super.setupViews()
-        backgroundColor = .green
+        backgroundColor = .clear
         var controller = GroupEventsController()
         GroupInfoController.own.display(contentController: controller, on: self)
     }
