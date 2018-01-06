@@ -19,25 +19,53 @@ class JoinGroupController:UIViewController, AVCaptureMetadataOutputObjectsDelega
     var currentDetectedGroup:Group? = nil
     
     override func viewDidAppear(_ animated: Bool) {
+        var isGroupJoined = false
+        for group in myCache.currentCache.groups{
+            if group.groupID == currentDetectedGroup?.groupID{
+                isGroupJoined = true
+            }
+        }
         
         if let group = currentDetectedGroup{
-            self.session.stopRunning()
-            
-            let alert = UIAlertController(title: "Group Code Detected", message: "Join \(group.groupName)?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {(nil) in
+            if !isGroupJoined{
+                self.session.stopRunning()
                 
-            }))
-            alert.addAction(UIAlertAction(title: "View Group", style: .default, handler: {(nil) in
-                JoinGroupController.own?.present(UINavigationController(rootViewController: GroupInfoController(group:group)), animated: true, completion: nil)
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(nil) in
-                self.session.startRunning()
-            }))
-            
-            self.present(alert,animated:false,completion: nil)
+                let alert = UIAlertController(title: "Group Code Detected", message: "Join \(group.groupName)?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {(nil) in
+                    DatabaseFactory.DB.joinGroup(groupID: group.groupID)
+                    myCache.currentCache.groups.append(group)
+                    self.session.startRunning()
+                    //self.groupJoinSuccess()
+                }))
+                alert.addAction(UIAlertAction(title: "View Group", style: .default, handler: {(nil) in
+                    JoinGroupController.own?.present(UINavigationController(rootViewController: GroupInfoController(group:group)), animated: true, completion: nil)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(nil) in
+                    self.session.startRunning()
+                }))
+                
+                self.present(alert,animated:false,completion: nil)
+            }else{
+                session.startRunning()
+            }
         }else{
             session.startRunning()
         }
+    }
+    
+    func groupJoinSuccess(){ //do group joined successful popup
+        let blackBG = UIView()
+        blackBG.backgroundColor = .black
+        blackBG.alpha = 0.7
+        blackBG.layer.cornerRadius = 8
+        blackBG.layer.masksToBounds = true
+        blackBG.clipsToBounds = true
+        blackBG.frame = CGRect(x:self.view.frame.width/2,y:self.view.frame.height/2,width:0,height:0)
+        view.addSubview(blackBG)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            
+        }, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -88,7 +116,10 @@ class JoinGroupController:UIViewController, AVCaptureMetadataOutputObjectsDelega
                                 
                                 let alert = UIAlertController(title: "Group Code Detected", message: "Join \(currentGroupExists.groupName)?", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "Join", style: .default, handler: {(nil) in
-                                    
+                                    DatabaseFactory.DB.joinGroup(groupID: currentGroupExists.groupID)
+                                    self.session.startRunning()
+                                    myCache.currentCache.groups.append(currentGroupExists)
+                                    //self.groupJoinSuccess()
                                 }))
                                 alert.addAction(UIAlertAction(title: "View Group", style: .default, handler: {(nil) in
                                     self.currentDetectedGroup = currentGroupExists

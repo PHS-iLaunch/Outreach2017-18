@@ -13,6 +13,7 @@ import UIKit
 class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     var otherProfileCache = Cache()
     var userOtherCache = false
+    static var own:ProfileController?
     
     lazy var profilePicBackView:UIImageView = {
         let view = UIImageView()
@@ -27,7 +28,7 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
     
     lazy var profilePic:UIImageView = {
         let view = UIImageView()
-        view.image = myCache.currentCache.profilePic
+        view.image = self.otherProfileCache.profilePic
         view.frame.size = CGSize(width:view.frame.height/4,height:view.frame.height/4)
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = self.view.frame.height/8
@@ -84,7 +85,7 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
         editProfilePic.isUserInteractionEnabled = true
         editProfilePic.addGestureRecognizer(tap)
         
-        
+        ProfileController.own = self
     }
     
     lazy var editProfilePic:UIImageView = {
@@ -189,13 +190,17 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
     
     func setupNavigationBarItems(){
         if userOtherCache{
-            joinGroupLabel.text = otherProfileCache.name
+            joinGroupLabel.text = ""
         }else{
             joinGroupLabel.text = "My Profile"
         }
         joinGroupLabel.textColor = ThemeColor.whitish
         joinGroupLabel.font = UIFont.boldSystemFont(ofSize: 25)
         navigationItem.titleView = joinGroupLabel
+        
+        let label = UILabel()
+        label.text = "adsfadsf"
+        //navigationItem.titleView = label
         
         let backButton = UIButton(type: .system)
         backButton.setImage(#imageLiteral(resourceName: "x").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -226,12 +231,18 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
                     self.otherProfileCache = currentCacheExists
                     print("ProfileName:\(self.otherProfileCache.name)")
                     self.joinGroupLabel.text = self.otherProfileCache.name
+                    self.joinGroupLabel.frame.size = self.joinGroupLabel.intrinsicContentSize
                     self.navigationItem.titleView = self.joinGroupLabel
+                    print(self.navigationItem.titleView?.frame)
+                    
+                    self.profilePic.image = self.otherProfileCache.profilePic
                 }else{
                     //Some Network Error
                 }
                 //
             })
+        }else{
+            self.otherProfileCache = myCache.currentCache
         }
         //turn userID into UserPackage
     }
