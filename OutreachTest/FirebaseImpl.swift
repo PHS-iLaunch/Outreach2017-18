@@ -75,12 +75,16 @@ class FirebaseImpl:DatabaseDelegate{
         })
     }
     
-    func getCache(completionHandler:@escaping (_ user:Cache?)->()) {
+    func getCurrentUserID()->String?{
+        return FIRAuth.auth()?.currentUser?.uid
+    }
+    
+    func getCache(userID:String,completionHandler:@escaping (_ user:Cache?)->()) {
         var userDictionaryRef:[String:AnyObject] = [:]
         var returnUser:Cache? = nil
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observe(.value, with: {
+        let uid = userID
+        FIRDatabase.database().reference().child("users").child(uid).observe(.value, with: {
             (snapshot) in
             //Load up User from DB
             if let dictionary = snapshot.value as? [String:AnyObject] {
@@ -111,7 +115,7 @@ class FirebaseImpl:DatabaseDelegate{
                                             counter+=1
                                             groups.append(currentGroupExists)
                                             if counter == groupNames.keys.count{
-                                                returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
+                                                returnUser = Cache(userID: uid, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
                                                 
                                                 if returnUser == nil{
                                                     completionHandler(nil)
@@ -127,7 +131,7 @@ class FirebaseImpl:DatabaseDelegate{
                                     })
                                 }
                             }else{
-                                returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
+                                returnUser = Cache(userID: uid, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
                                 if returnUser == nil{
                                     completionHandler(nil)
                                     print("nilled")
@@ -151,7 +155,7 @@ class FirebaseImpl:DatabaseDelegate{
                                     counter+=1
                                     groups.append(currentGroupExists)
                                     if counter == groupNames.keys.count{
-                                        returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
+                                        returnUser = Cache(userID: uid, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:groups, lastUserRevisionTimestamp: Date(),image:image)
 
                                         if returnUser == nil{
                                             completionHandler(nil)
@@ -167,7 +171,7 @@ class FirebaseImpl:DatabaseDelegate{
                             })
                         }
                     }else{
-                        returnUser = Cache(userID: uid!, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
+                        returnUser = Cache(userID: uid, email: userDictionaryRef["email"]! as! String, name: userDictionaryRef["name"]! as! String, groups:[], lastUserRevisionTimestamp: Date(),image:image)
                         if returnUser == nil{
                             completionHandler(nil)
                             print("nilled")

@@ -218,7 +218,7 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
         if userID != myCache.currentCache.userID{
             userOtherCache = true
             var currentCache:Cache? = Cache()
-            DatabaseFactory.DB.getCache{(cache:Cache?) in
+            DatabaseFactory.DB.getCache(userID: userID, completionHandler: { (cache:Cache?) in
                 //code called after data loaded
                 print("cache received")
                 currentCache = cache
@@ -231,7 +231,7 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
                     //Some Network Error
                 }
                 //
-            }
+            })
         }
         //turn userID into UserPackage
     }

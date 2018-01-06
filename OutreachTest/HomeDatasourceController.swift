@@ -271,7 +271,7 @@ class HomeDatasourceController: DatasourceController{
         }else{
             print("cache again")
             var currentCache:Cache? = Cache()
-            DatabaseFactory.DB.getCache{(cache:Cache?) in
+            DatabaseFactory.DB.getCache(userID: DatabaseFactory.DB.getCurrentUserID()!, completionHandler: { (cache:Cache?) in
                 //code called after data loaded
                 print("cache received")
                 currentCache = cache
@@ -286,7 +286,7 @@ class HomeDatasourceController: DatasourceController{
                     //Some Network Error
                 }
                 //
-            }
+            })
         }
         
     }

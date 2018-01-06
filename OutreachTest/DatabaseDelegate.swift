@@ -15,7 +15,8 @@ protocol DatabaseDelegate{
     func isLoggedIn()->Bool
     func signOut()
     func logIn(email:String?,password:String?)
-    func getCache(completionHandler:@escaping (_ user:Cache?)->())
+    func getCurrentUserID()->String?
+    func getCache(userID:String,completionHandler:@escaping (_ user:Cache?)->())
     func createGroup(name:String?,description:String?)
     func joinGroup(groupID:String)
     func updateProfilePicture(image:UIImage)
