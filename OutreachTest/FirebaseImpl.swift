@@ -105,8 +105,8 @@ class FirebaseImpl:DatabaseDelegate{
                                 var groups:[Group] = []
                                 var counter = 0
                                 for groupID in groupNames.keys{
-                                    var group = self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
-                                        var currentGroup = group
+                                    self.getGroup(groupID: groupID, completionHandler: {(group:Group?) in
+                                        let currentGroup = group
                                         if let currentGroupExists = currentGroup{
                                             counter+=1
                                             groups.append(currentGroupExists)
@@ -249,6 +249,16 @@ class FirebaseImpl:DatabaseDelegate{
         
         let userRef = ref.child("users").child(myCache.currentCache.userID).child("GroupNames").child(newGroupRef.key)
         userRef.setValue("placeholderValue")//the key is important. Placeholder is never used.
+    }
+    
+    func joinGroup(groupID:String){
+        let ref = FIRDatabase.database().reference(fromURL: "https://boostbox-ce76c.firebaseio.com/")
+        let groupRef = ref.child("groups").child(groupID).child("members").child(myCache.currentCache.userID)
+        let memberValues = ["role":"member"]
+        groupRef.setValue(memberValues)
+        
+        let userRef = ref.child("users").child(myCache.currentCache.userID).child("GroupNames").child(groupID)
+        userRef.setValue("placeholderValue")
     }
     
     func updateProfilePicture(image:UIImage){

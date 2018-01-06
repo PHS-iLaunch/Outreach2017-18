@@ -185,8 +185,9 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
         handleProfileTap()
     }
     
+    var joinGroupLabel = UILabel()
+    
     func setupNavigationBarItems(){
-        let joinGroupLabel = UILabel()
         if userOtherCache{
             joinGroupLabel.text = otherProfileCache.name
         }else{
@@ -223,6 +224,9 @@ class ProfileController:DatasourceController,UIImagePickerControllerDelegate,UIN
                 currentCache = cache
                 if let currentCacheExists = currentCache{
                     self.otherProfileCache = currentCacheExists
+                    print("ProfileName:\(self.otherProfileCache.name)")
+                    self.joinGroupLabel.text = self.otherProfileCache.name
+                    self.navigationItem.titleView = self.joinGroupLabel
                 }else{
                     //Some Network Error
                 }

@@ -78,6 +78,12 @@ class GroupInfoController:DatasourceController{
         GroupInfoController.own = self
     }
     
+    init(group:Group){
+        self.group = group
+        super.init()
+        GroupInfoController.own = self
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

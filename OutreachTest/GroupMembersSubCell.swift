@@ -52,9 +52,16 @@ class GroupMembersSubCell:DatasourceCell{
                         self.role.text = "member"
                     }
                     self.role.anchor(self.name.bottomAnchor, left: self.profile.rightAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 12, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                    
+                    let gestureTap = UITapGestureRecognizer(target: self, action: #selector(self.add(tap:)))
+                    self.addGestureRecognizer(gestureTap)
                 }
             }
         }
+    }
+    
+    func add(tap:UITapGestureRecognizer){
+        GroupInfoController.own.present(UINavigationController(rootViewController:ProfileController(userID: member.userID)), animated: true, completion: nil)
     }
     
     lazy var profile:UIImageView = {
@@ -68,7 +75,6 @@ class GroupMembersSubCell:DatasourceCell{
     
     lazy var name:UILabel = {
         let label = UILabel()
-        //label.text = "arb"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
