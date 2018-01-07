@@ -31,7 +31,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         text.isEditable = true
         text.text = "Group Description (required)"
         text.textAlignment = .left
-        text.textColor = .lightGray
+        text.textColor = ThemeColor.placeholder
         text.delegate = self
         text.font = UIFont.boldSystemFont(ofSize: 15)
         return text
@@ -55,7 +55,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         if (groupNameLabel.text?.isEmpty)!{
             groupNameLabel.backgroundColor = ThemeColor.lightRed
         }
-        if groupDescriptionLabel.textColor == .lightGray || groupDescriptionLabel.text.isEmpty{
+        if groupDescriptionLabel.textColor == ThemeColor.placeholder || groupDescriptionLabel.text.isEmpty{
             groupDescriptionLabel.backgroundColor = ThemeColor.lightRed
         }
     }
@@ -86,7 +86,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         groupDescriptionLabel.backgroundColor = .white
-        if groupDescriptionLabel.textColor == .lightGray {
+        if groupDescriptionLabel.textColor == ThemeColor.placeholder {
             textView.text = nil
             textView.textColor = ThemeColor.darkGray
         }
@@ -95,7 +95,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty{
             textView.text = "Group Description (required)"
-            textView.textColor = .lightGray
+            textView.textColor = ThemeColor.placeholder
         }
     }
     

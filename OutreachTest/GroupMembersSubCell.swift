@@ -51,7 +51,7 @@ class GroupMembersSubCell:DatasourceCell{
                     }else{
                         self.role.text = "member"
                     }
-                    self.role.anchor(self.name.bottomAnchor, left: self.profile.rightAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 12, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+                    self.role.anchor(self.name.bottomAnchor, left: self.profile.rightAnchor, bottom: nil, right: nil, topConstant: 6, leftConstant: 12, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
                     
                     let gestureTap = UITapGestureRecognizer(target: self, action: #selector(self.add(tap:)))
                     self.addGestureRecognizer(gestureTap)
