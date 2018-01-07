@@ -41,7 +41,7 @@ class GroupEventsHeader:DatasourceCell{
     }
     
     func add(tap:UITapGestureRecognizer){
-        
+        GroupInfoController.own.present(UINavigationController(rootViewController:CreateEventController()), animated: true, completion: nil)
     }
 }
 
