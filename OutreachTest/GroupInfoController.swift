@@ -37,8 +37,8 @@ class GroupInfoController:DatasourceController{
         collectionView?.isPagingEnabled = true
         collectionView?.alwaysBounceVertical = false
         collectionView?.alwaysBounceHorizontal = false
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
     }
     
     func setupMenuBar(){

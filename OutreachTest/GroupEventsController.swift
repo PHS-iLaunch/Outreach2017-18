@@ -16,8 +16,8 @@ class GroupEventsController:DatasourceController{
         let homeDatasource = GroupEventsDatasource()
         self.datasource = homeDatasource
         
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -25,6 +25,14 @@ class GroupEventsController:DatasourceController{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        for member in GroupInfoController.own.group.members{
+            if member.userID == myCache.currentCache.userID{
+                if member.role == .admin{
+                    return CGSize(width:view.frame.width,height:50)
+                }
+            }
+        }
         return CGSize.zero
     }
     

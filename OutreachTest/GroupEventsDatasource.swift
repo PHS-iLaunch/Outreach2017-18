@@ -12,7 +12,7 @@ import LBTAComponents
 class GroupEventsDatasource: Datasource{
     
     override func headerClasses() -> [DatasourceCell.Type]? {
-        return []
+        return [GroupEventsHeader.self]
     }
     
     override func footerClasses() -> [DatasourceCell.Type]? {
