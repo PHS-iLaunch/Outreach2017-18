@@ -107,8 +107,6 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         groupDescriptionLabel.backgroundColor = .white
     }
     
-    
-    
     func dismissKeyboard(){
         groupNameLabel.resignFirstResponder()
         groupDescriptionLabel.resignFirstResponder()

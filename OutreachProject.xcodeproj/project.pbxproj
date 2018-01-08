@@ -26,6 +26,9 @@
 		E194A73E2000115000C4D100 /* GroupMembersSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A73D2000115000C4D100 /* GroupMembersSubCell.swift */; };
 		E194A7402000115C00C4D100 /* GroupEventsSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A73F2000115C00C4D100 /* GroupEventsSubCell.swift */; };
 		E194A7422002915800C4D100 /* CreateEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7412002915800C4D100 /* CreateEventController.swift */; };
+		E194A7452003C10400C4D100 /* ChooseTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7442003C10400C4D100 /* ChooseTimeZone.swift */; };
+		E194A7472003C11300C4D100 /* ChooseRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7462003C11300C4D100 /* ChooseRepeat.swift */; };
+		E194A7492003C12100C4D100 /* ChooseAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7482003C12100C4D100 /* ChooseAlerts.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
@@ -87,6 +90,9 @@
 		E194A73D2000115000C4D100 /* GroupMembersSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersSubCell.swift; sourceTree = "<group>"; };
 		E194A73F2000115C00C4D100 /* GroupEventsSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventsSubCell.swift; sourceTree = "<group>"; };
 		E194A7412002915800C4D100 /* CreateEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventController.swift; sourceTree = "<group>"; };
+		E194A7442003C10400C4D100 /* ChooseTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeZone.swift; sourceTree = "<group>"; };
+		E194A7462003C11300C4D100 /* ChooseRepeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRepeat.swift; sourceTree = "<group>"; };
+		E194A7482003C12100C4D100 /* ChooseAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAlerts.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -200,6 +206,17 @@
 			name = GroupInfoControllers;
 			sourceTree = "<group>";
 		};
+		E194A7432003C0C600C4D100 /* CreateEventControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E194A7412002915800C4D100 /* CreateEventController.swift */,
+				E194A7442003C10400C4D100 /* ChooseTimeZone.swift */,
+				E194A7462003C11300C4D100 /* ChooseRepeat.swift */,
+				E194A7482003C12100C4D100 /* ChooseAlerts.swift */,
+			);
+			name = CreateEventControllers;
+			sourceTree = "<group>";
+		};
 		E1D1AF651F5DF67C00771775 = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +313,7 @@
 				E194A70A1FFBF2FF00C4D100 /* JoinGroupController.swift */,
 				E194A7302000076E00C4D100 /* GroupInfoControllers */,
 				E194A72E1FFF213500C4D100 /* ProfileController.swift */,
-				E194A7412002915800C4D100 /* CreateEventController.swift */,
+				E194A7432003C0C600C4D100 /* CreateEventControllers */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -559,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E194A734200007A400C4D100 /* GroupMembersController.swift in Sources */,
+				E194A7492003C12100C4D100 /* ChooseAlerts.swift in Sources */,
 				E194A72B1FFEBD4200C4D100 /* GroupEventsBaseCell.swift in Sources */,
 				E1F58A951FEDCB3400468E7D /* CalendarArrayDatasource.swift in Sources */,
 				E194A70D1FFD4CD200C4D100 /* GroupInfoController.swift in Sources */,
@@ -588,6 +606,8 @@
 				E194A71F1FFEAB7C00C4D100 /* GroupInfoDatasource.swift in Sources */,
 				E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */,
 				E1F58A621FE8B10F00468E7D /* ThemeColors.swift in Sources */,
+				E194A7452003C10400C4D100 /* ChooseTimeZone.swift in Sources */,
+				E194A7472003C11300C4D100 /* ChooseRepeat.swift in Sources */,
 				E194A7422002915800C4D100 /* CreateEventController.swift in Sources */,
 				E1F58A641FE8B83500468E7D /* Array.swift in Sources */,
 				E194A73E2000115000C4D100 /* GroupMembersSubCell.swift in Sources */,

@@ -33,25 +33,30 @@ class TextField: UITextField {
 
 class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewDelegate{
     
-    let eventName:TextField = {
+    lazy var eventName:TextField = {
         let text = TextField()
         text.placeholder = "Event Name"
         text.textAlignment = .left
         text.borderStyle = .none
         text.textColor = ThemeColor.red
+        text.delegate = self
         text.backgroundColor = ThemeColor.whitish
         text.font = UIFont.boldSystemFont(ofSize: 15)
+        text.autocorrectionType = .no
+        text.returnKeyType = .done
         return text
     }()
     
-    let eventLocation:TextField = {
+    lazy var eventLocation:TextField = {
         let text = TextField()
         text.placeholder = "Event Location"
         text.textAlignment = .left
         text.backgroundColor = ThemeColor.whitish
         text.borderStyle = .none
         text.textColor = ThemeColor.red
+        text.delegate = self
         text.font = UIFont.boldSystemFont(ofSize: 15)
+        text.returnKeyType = .done
         return text
     }()
     
@@ -65,12 +70,13 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         text.delegate = self
         text.font = UIFont.boldSystemFont(ofSize: 15)
         text.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
+        text.returnKeyType = .default
         return text
     }()
     
     let timeContainer:UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.whitish
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -95,42 +101,66 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
     }
     
-    let dateStart:UITextField = {
-        let text = TextField()
-        text.placeholder = "Time Start"
-        text.textAlignment = .left
-        text.backgroundColor = ThemeColor.whitish
-        text.borderStyle = .none
-        text.textColor = ThemeColor.red
-        text.font = UIFont.boldSystemFont(ofSize: 15)
-        return text
-    }()
-    
-    let dateEnd:UITextField = {
-        let text = TextField()
-        text.placeholder = "Time End"
-        text.textAlignment = .left
-        text.backgroundColor = ThemeColor.whitish
-        text.borderStyle = .none
-        text.textColor = ThemeColor.red
-        text.font = UIFont.boldSystemFont(ofSize: 15)
-        return text
-    }()
-    
-    let timeZone:UITextField = {
-        let text = TextField()
-        text.placeholder = "Time Zone"
-        text.textAlignment = .left
-        text.backgroundColor = ThemeColor.whitish
-        text.borderStyle = .none
-        text.textColor = ThemeColor.red
-        text.font = UIFont.boldSystemFont(ofSize: 15)
-        return text
-    }()
-    
-    let repeated:UIView = {
+    let dateStart:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
+        return view
+    }()
+    
+    let dateStartText:UILabel = {
+        let text = UILabel()
+        text.text = "Time Start"
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
+    let dateEnd:UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.whitish
+        return view
+    }()
+    
+    let dateEndText:UILabel = {
+        let text = UILabel()
+        text.text = "Time End"
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
+    lazy var timeZone:UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.whitish
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeZone))
+        view.addGestureRecognizer(tapGesture)
+        return view
+    }()
+    
+    let timeZoneIcon:UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysTemplate)
+        view.tintColor = ThemeColor.placeholder
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    let timeZoneText:UILabel = {
+        let text = UILabel()
+        text.text = "Time Zone"
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
+    lazy var repeated:UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.whitish
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseRepeat))
+        view.addGestureRecognizer(tapGesture)
         return view
     }()
     
@@ -150,9 +180,11 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return label
     }()
     
-    let alert:UIView = {
+    lazy var alert:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseAlerts))
+        view.addGestureRecognizer(tapGesture)
         return view
     }()
     
@@ -194,7 +226,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         eventDescription.anchor(eventLocation.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 100)
         
         view.addSubview(timeContainer)
-        timeContainer.anchor(eventDescription.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 200+6)
+        timeContainer.anchor(eventDescription.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 200+6+2)
         
         timeContainer.addSubview(optionPicker)
         optionPicker.anchor(timeContainer.topAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
@@ -202,11 +234,23 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         timeContainer.addSubview(dateStart)
         dateStart.anchor(optionPicker.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
         
+        dateStart.addSubview(dateStartText)
+        dateStartText.anchor(dateStart.topAnchor, left: dateStart.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateStartText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
         timeContainer.addSubview(dateEnd)
-        dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        
+        dateEnd.addSubview(dateEndText)
+        dateEndText.anchor(dateEnd.topAnchor, left: dateEnd.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateEndText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         timeContainer.addSubview(timeZone)
-        timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        
+        timeZone.addSubview(timeZoneText)
+        timeZoneText.anchor(timeZone.topAnchor, left: timeZone.leftAnchor, bottom: nil, right: nil, topConstant: 25-timeZoneText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        timeZone.addSubview(timeZoneIcon)
+        timeZoneIcon.anchor(timeZone.topAnchor, left: nil, bottom: nil, right: timeZone.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
         
         view.addSubview(repeated)
         repeated.anchor(timeContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
@@ -221,7 +265,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         alert.anchor(repeated.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
         
         view.addSubview(alertIcon)
-        alertIcon.anchor(alert.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        alertIcon.anchor(alert.topAnchor, left: nil, bottom: nil, right: alert.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
         
         view.addSubview(alertText)
         alertText.anchor(alert.topAnchor, left: alert.leftAnchor, bottom: nil, right: nil, topConstant: 25-alertText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
@@ -235,7 +279,16 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         doneLabel.font = UIFont.boldSystemFont(ofSize: 20)
         done.addSubview(doneLabel)
         doneLabel.anchor(done.topAnchor, left: done.leftAnchor, bottom: nil, right: nil, topConstant: 25-doneLabel.intrinsicContentSize.height/2, leftConstant: view.frame.width/2-doneLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        timeContainer.addGestureRecognizer(tapGesture)
+        
+        addDoneButtonOnKeyboard()
     }
+    
+    var timeContainerHeightConstraint:NSLayoutConstraint?
+    var timeEndHeightConstraint:NSLayoutConstraint?
     
     func setupNavigationBarItems(){
         let joinGroupLabel = UILabel()
@@ -256,7 +309,51 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         navigationController?.navigationBar.isTranslucent = false
     }
     
+    func addDoneButtonOnKeyboard(){
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
+        doneToolbar.barStyle = UIBarStyle.blackOpaque
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(dismissKeyboard))
+        
+        let items = NSMutableArray()
+        items.add(flexSpace)
+        items.add(done)
+        
+        doneToolbar.items = items as? [UIBarButtonItem]
+        doneToolbar.sizeToFit()
+        doneToolbar.tintColor = ThemeColor.red
+        doneToolbar.barTintColor = ThemeColor.veryLightGray
+        
+        self.eventDescription.inputAccessoryView = doneToolbar
+    }
+    
+    func chooseRepeat(){
+        presentDetail(UINavigationController(rootViewController:ChooseRepeat()))
+    }
+    
+    func chooseAlerts(){
+        presentDetail(UINavigationController(rootViewController:ChooseAlerts()))
+    }
+    
+    func chooseTimeZone(){
+        presentDetail(UINavigationController(rootViewController:ChooseTimeZone()))
+    }
+    
     func goBack(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func dismissKeyboard(){
+        eventName.resignFirstResponder()
+        eventLocation.resignFirstResponder()
+        eventDescription.resignFirstResponder()
+    }
+    
+   
 }
