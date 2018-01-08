@@ -128,26 +128,48 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
-    let repeated:UITextField = {
-        let text = TextField()
-        text.placeholder = "Repeats"
-        text.textAlignment = .left
-        text.backgroundColor = ThemeColor.whitish
-        text.borderStyle = .none
-        text.textColor = ThemeColor.red
-        text.font = UIFont.boldSystemFont(ofSize: 15)
-        return text
+    let repeated:UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.whitish
+        return view
     }()
     
-    let alert:UITextField = {
-        let text = TextField()
-        text.placeholder = "Alerts"
-        text.textAlignment = .left
-        text.backgroundColor = ThemeColor.whitish
-        text.borderStyle = .none
-        text.textColor = ThemeColor.red
-        text.font = UIFont.boldSystemFont(ofSize: 15)
-        return text
+    let repeatedIcon:UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysTemplate)
+        view.tintColor = ThemeColor.placeholder
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    let repeatedText:UILabel = {
+        let label = UILabel()
+        label.text = "Repeats"
+        label.textColor = ThemeColor.placeholder
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
+    }()
+    
+    let alert:UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeColor.whitish
+        return view
+    }()
+    
+    let alertIcon:UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysTemplate)
+        view.tintColor = ThemeColor.placeholder
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    let alertText:UILabel = {
+        let label = UILabel()
+        label.text = "Alerts"
+        label.textColor = ThemeColor.placeholder
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        return label
     }()
     
     let done:UIView = {
@@ -189,11 +211,23 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         view.addSubview(repeated)
         repeated.anchor(timeContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
         
+        view.addSubview(repeatedIcon)
+        repeatedIcon.anchor(repeated.topAnchor, left: nil, bottom: nil, right: repeated.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        
+        view.addSubview(repeatedText)
+        repeatedText.anchor(repeated.topAnchor, left: repeated.leftAnchor, bottom: nil, right: nil, topConstant: 25-repeatedText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
         view.addSubview(alert)
-        alert.anchor(repeated.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        alert.anchor(repeated.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        
+        view.addSubview(alertIcon)
+        alertIcon.anchor(alert.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        
+        view.addSubview(alertText)
+        alertText.anchor(alert.topAnchor, left: alert.leftAnchor, bottom: nil, right: nil, topConstant: 25-alertText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         view.addSubview(done)
-        done.anchor(alert.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        done.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
         
         let doneLabel = UILabel()
         doneLabel.text = "Finish"
