@@ -11,11 +11,17 @@ import LBTAComponents
 import UIKit
 
 class ChooseAlerts:DatasourceController{
+    static var own:ChooseAlerts?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
+        
+        let homeDatasource = ChooseAlertDatasource()
+        self.datasource = homeDatasource
+        ChooseAlerts.own = self
     }
     
     func setupNavigationBarItems(){
@@ -37,6 +43,26 @@ class ChooseAlerts:DatasourceController{
     
     func goBack(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width:view.frame.width,height:60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 

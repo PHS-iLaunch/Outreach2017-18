@@ -36,11 +36,11 @@ enum EventType{
 }
 
 enum RepeatType{
-    case once,perWeek
+    case never,daily,perWeek,perTwoWeek
 }
 
 enum AlarmType{
-    case fiveMin,fifteenMin,thirtyMin,oneHour,twoHour,oneDay,twoDay,oneWeek
+    case none,fiveMin,fifteenMin,thirtyMin,oneHour,twoHour,oneDay,twoDay,oneWeek
 }
 
 class EventPackage{
@@ -51,13 +51,12 @@ class EventPackage{
     var timeStart:Date? = nil
     var timeEnd:Date? = nil
     var timeZone:TimeZone = TimeZone.current
-    var repeats:RepeatType = .once
+    var repeats:RepeatType = .never
     var alarms:[AlarmType] = []
     
     init(){
     
     }
-    
 }
 
 class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewDelegate{

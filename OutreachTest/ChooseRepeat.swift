@@ -16,6 +16,9 @@ class ChooseRepeat:DatasourceController{
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
+        
+        let homeDatasource = ChooseRepeatDatasource()
+        self.datasource = homeDatasource
     }
     
     func setupNavigationBarItems(){
@@ -37,6 +40,26 @@ class ChooseRepeat:DatasourceController{
     
     func goBack(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width:view.frame.width,height:60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
