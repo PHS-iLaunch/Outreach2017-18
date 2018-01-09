@@ -20,7 +20,7 @@ class ChooseRepeat:DatasourceController{
     
     func setupNavigationBarItems(){
         let joinGroupLabel = UILabel()
-        joinGroupLabel.text = "Choose Repeat"
+        joinGroupLabel.text = "Repeat Options"
         joinGroupLabel.textColor = ThemeColor.whitish
         joinGroupLabel.font = UIFont.boldSystemFont(ofSize: 25)
         navigationItem.titleView = joinGroupLabel
@@ -32,13 +32,11 @@ class ChooseRepeat:DatasourceController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)
         
         navigationController?.navigationBar.barTintColor = ThemeColor.red
-        let bounds = self.navigationController!.navigationBar.bounds
-        navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
     }
     
     func goBack(){
-        self.dismissDetail()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

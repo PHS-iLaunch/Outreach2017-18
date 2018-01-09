@@ -97,10 +97,6 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return sc
     }()
     
-    func handleOptionChange(){
-        
-    }
-    
     let dateStart:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
@@ -227,6 +223,8 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         view.addSubview(timeContainer)
         timeContainer.anchor(eventDescription.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 200+6+2)
+        timeContainerHeightConstraint = timeContainer.heightAnchor.constraint(equalToConstant: 208)
+        timeContainerHeightConstraint?.isActive = true
         
         timeContainer.addSubview(optionPicker)
         optionPicker.anchor(timeContainer.topAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
@@ -239,12 +237,16 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         timeContainer.addSubview(dateEnd)
         dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        timeEndHeightConstraint = dateEnd.heightAnchor.constraint(equalToConstant: 50)
+        timeEndHeightConstraint?.isActive = true
         
         dateEnd.addSubview(dateEndText)
         dateEndText.anchor(dateEnd.topAnchor, left: dateEnd.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateEndText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         timeContainer.addSubview(timeZone)
         timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        timeZonePadding = timeZone.topAnchor.constraint(equalTo: dateEnd.bottomAnchor, constant: 1)
+        timeZonePadding?.isActive = true
         
         timeZone.addSubview(timeZoneText)
         timeZoneText.anchor(timeZone.topAnchor, left: timeZone.leftAnchor, bottom: nil, right: nil, topConstant: 25-timeZoneText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
@@ -289,6 +291,19 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     
     var timeContainerHeightConstraint:NSLayoutConstraint?
     var timeEndHeightConstraint:NSLayoutConstraint?
+    var timeZonePadding:NSLayoutConstraint?
+    
+    func handleOptionChange(){
+        self.timeContainerHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 208 : 157
+        self.timeEndHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 50 : 0
+        self.timeZonePadding?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 1 : 0
+        dateStartText.text = self.optionPicker.selectedSegmentIndex == 0 ? "Time Start" : "Time to be Completed"
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+    }
     
     func setupNavigationBarItems(){
         let joinGroupLabel = UILabel()
@@ -304,8 +319,6 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)
         
         navigationController?.navigationBar.barTintColor = ThemeColor.red
-        let bounds = self.navigationController!.navigationBar.bounds
-        navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -329,15 +342,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }
     
     func chooseRepeat(){
-        presentDetail(UINavigationController(rootViewController:ChooseRepeat()))
+        self.navigationController?.pushViewController(ChooseRepeat(), animated: true)
     }
     
     func chooseAlerts(){
-        presentDetail(UINavigationController(rootViewController:ChooseAlerts()))
+        self.navigationController?.pushViewController(ChooseAlerts(), animated: true)
     }
     
     func chooseTimeZone(){
-        presentDetail(UINavigationController(rootViewController:ChooseTimeZone()))
+        self.navigationController?.pushViewController(ChooseTimeZone(), animated: true)
     }
     
     func goBack(){

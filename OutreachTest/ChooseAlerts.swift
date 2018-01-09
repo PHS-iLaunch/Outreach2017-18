@@ -32,13 +32,11 @@ class ChooseAlerts:DatasourceController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)
         
         navigationController?.navigationBar.barTintColor = ThemeColor.red
-        let bounds = self.navigationController!.navigationBar.bounds
-        navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
     }
     
     func goBack(){
-        self.dismissDetail()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

@@ -16,6 +16,11 @@ class ChooseTimeZone:DatasourceController{
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
+        print(TimeZone.abbreviationDictionary)
+        
+        var scrollView = UIScrollView()
+        view.addSubview(scrollView)
+        scrollView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
     func setupNavigationBarItems(){
@@ -32,13 +37,11 @@ class ChooseTimeZone:DatasourceController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)
         
         navigationController?.navigationBar.barTintColor = ThemeColor.red
-        let bounds = self.navigationController!.navigationBar.bounds
-        navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height*1.5)
         navigationController?.navigationBar.isTranslucent = false
     }
     
     func goBack(){
-        self.dismissDetail()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

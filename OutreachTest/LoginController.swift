@@ -134,6 +134,10 @@ class LoginController: UIViewController, UITextFieldDelegate{
     
         inputContainerViewHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 100 : 150
         nameTextFieldHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 0 : 50
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     var inputContainerViewHeightAnchor:NSLayoutConstraint?
