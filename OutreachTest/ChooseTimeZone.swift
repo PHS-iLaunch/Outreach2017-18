@@ -34,7 +34,7 @@ class ChooseTimeZone:DatasourceController{
                     isThere = true
                 }
             }
-            if !isThere{
+            if !isThere && value != "UTC"{
                 ChooseTimeZone.timeZoneAbbrevArray.append(value)
             }
         }

@@ -185,7 +185,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     
     lazy var selectedTimeZone:UILabel = {
         let text = UILabel()
-        text.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "/", with: " - ").replacingOccurrences(of: "_", with: " ")
+        text.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "_", with: " ").components(separatedBy: "/").last
         text.backgroundColor = ThemeColor.whitish
         text.textColor = ThemeColor.placeholder
         text.font = UIFont.boldSystemFont(ofSize: 15)
@@ -247,7 +247,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }()
     
     override func viewDidAppear(_ animated: Bool) {
-        selectedTimeZone.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "/", with: " - ").replacingOccurrences(of: "_", with: " ")
+        selectedTimeZone.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "_", with: " ").components(separatedBy: "/").last
     }
     
     override func viewDidLoad() {
