@@ -34,15 +34,26 @@ class Event {
     var eventID:String
     var eventName:String
     var eventDescription:String
-    var time:Date
     var location:String
     
-    init(eventID:String,eventName:String,eventDescription:String,time:Date,location:String) {
+    var startTime:Date
+    var endTime:Date?
+    var eventType:EventType
+    
+    var alarms:[AlarmType]
+    var repeats:RepeatType
+    
+    init(eventID:String,eventName:String,eventDescription:String,startTime:Date,endTime:Date,eventType:EventType,location:String,repeats:RepeatType,alarms:[AlarmType]) {
         self.eventID = eventID
         self.eventName = eventName
         self.eventDescription = eventDescription
-        self.time = time
         self.location = location
+        
+        self.startTime = startTime
+        self.endTime = endTime
+        self.eventType = eventType
+        self.repeats = repeats
+        self.alarms = alarms
     }
 }
 

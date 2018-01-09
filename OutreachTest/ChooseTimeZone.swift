@@ -11,16 +11,49 @@ import LBTAComponents
 import UIKit
 
 class ChooseTimeZone:DatasourceController{
+    static var timeZoneAbbrevArray:[String] = []
+    static var own:ChooseTimeZone?
+    var selectedIndex:Int = 0
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let path = IndexPath(item: selectedIndex, section: 0)
+        collectionView?.scrollToItem(at: path, at:.centeredVertically, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ChooseTimeZone.own = self
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
-        print(TimeZone.abbreviationDictionary)
         
-        var scrollView = UIScrollView()
-        view.addSubview(scrollView)
-        scrollView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        for value in TimeZone.abbreviationDictionary.values{
+            var isThere = false
+            for exists in ChooseTimeZone.timeZoneAbbrevArray{
+                if exists == value{
+                    isThere = true
+                }
+            }
+            if !isThere{
+                ChooseTimeZone.timeZoneAbbrevArray.append(value)
+            }
+        }
+        ChooseTimeZone.timeZoneAbbrevArray = ChooseTimeZone.timeZoneAbbrevArray.sorted{$0 < $1}
+        
+        var counter = 0
+        for zone in ChooseTimeZone.timeZoneAbbrevArray{
+            if zone == CreateEventController.own?.eventPackage.timeZone.identifier{
+                selectedIndex = counter
+            }
+            counter+=1
+        }
+        
+        let homeDatasource = ChooseTimeZoneDatasource()
+        self.datasource = homeDatasource
+        
+        let path = IndexPath(item: selectedIndex, section: 0)
+        collectionView?.scrollToItem(at: path, at:.centeredVertically, animated: true)
+        
     }
     
     func setupNavigationBarItems(){
@@ -42,6 +75,26 @@ class ChooseTimeZone:DatasourceController{
     
     func goBack(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width:view.frame.width,height:60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 

@@ -31,7 +31,38 @@ class TextField: UITextField {
     }
 }
 
+enum EventType{
+    case event,deadline
+}
+
+enum RepeatType{
+    case once,perWeek
+}
+
+enum AlarmType{
+    case fiveMin,fifteenMin,thirtyMin,oneHour,twoHour,oneDay,twoDay,oneWeek
+}
+
+class EventPackage{
+    var eventName:String? = nil
+    var eventDescription:String? = nil
+    var eventLocation:String? = nil
+    var option:EventType = .event
+    var timeStart:Date? = nil
+    var timeEnd:Date? = nil
+    var timeZone:TimeZone = TimeZone.current
+    var repeats:RepeatType = .once
+    var alarms:[AlarmType] = []
+    
+    init(){
+    
+    }
+    
+}
+
 class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewDelegate{
+    static var own:CreateEventController?
+    var eventPackage:EventPackage = EventPackage()
     
     lazy var eventName:TextField = {
         let text = TextField()
@@ -152,6 +183,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
+    lazy var selectedTimeZone:UILabel = {
+        let text = UILabel()
+        text.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "/", with: " - ").replacingOccurrences(of: "_", with: " ")
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
     lazy var repeated:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
@@ -206,7 +246,13 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return view
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        selectedTimeZone.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "/", with: " - ").replacingOccurrences(of: "_", with: " ")
+    }
+    
     override func viewDidLoad() {
+        CreateEventController.own = self
+        
         super.viewDidLoad()
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
@@ -253,6 +299,9 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         timeZone.addSubview(timeZoneIcon)
         timeZoneIcon.anchor(timeZone.topAnchor, left: nil, bottom: nil, right: timeZone.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        
+        timeZone.addSubview(selectedTimeZone)
+        selectedTimeZone.anchor(timeZone.topAnchor, left: nil, bottom: nil, right: timeZoneIcon.leftAnchor, topConstant: 25-selectedTimeZone.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
         view.addSubview(repeated)
         repeated.anchor(timeContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
@@ -350,7 +399,11 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }
     
     func chooseTimeZone(){
-        self.navigationController?.pushViewController(ChooseTimeZone(), animated: true)
+        if ChooseTimeZone.own == nil{
+            self.navigationController?.pushViewController(ChooseTimeZone(), animated: true)
+        }else{
+            self.navigationController?.pushViewController(ChooseTimeZone.own!, animated: true)
+        }
     }
     
     func goBack(){

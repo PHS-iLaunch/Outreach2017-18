@@ -29,6 +29,8 @@
 		E194A7452003C10400C4D100 /* ChooseTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7442003C10400C4D100 /* ChooseTimeZone.swift */; };
 		E194A7472003C11300C4D100 /* ChooseRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7462003C11300C4D100 /* ChooseRepeat.swift */; };
 		E194A7492003C12100C4D100 /* ChooseAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A7482003C12100C4D100 /* ChooseAlerts.swift */; };
+		E194A74D20051E6100C4D100 /* ChooseTimeZoneDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A74C20051E6100C4D100 /* ChooseTimeZoneDatasource.swift */; };
+		E194A74F2005206300C4D100 /* ChooseTimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194A74E2005206300C4D100 /* ChooseTimeZoneCell.swift */; };
 		E1D1AF721F5DF67D00771775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF711F5DF67D00771775 /* AppDelegate.swift */; };
 		E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1D1AF781F5DF67D00771775 /* OutreachTest.xcdatamodeld */; };
 		E1D1AF7C1F5DF67D00771775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1D1AF7B1F5DF67D00771775 /* Assets.xcassets */; };
@@ -93,6 +95,8 @@
 		E194A7442003C10400C4D100 /* ChooseTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeZone.swift; sourceTree = "<group>"; };
 		E194A7462003C11300C4D100 /* ChooseRepeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRepeat.swift; sourceTree = "<group>"; };
 		E194A7482003C12100C4D100 /* ChooseAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAlerts.swift; sourceTree = "<group>"; };
+		E194A74C20051E6100C4D100 /* ChooseTimeZoneDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeZoneDatasource.swift; sourceTree = "<group>"; };
+		E194A74E2005206300C4D100 /* ChooseTimeZoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeZoneCell.swift; sourceTree = "<group>"; };
 		E1D1AF6E1F5DF67D00771775 /* OutreachProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OutreachProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D1AF711F5DF67D00771775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D1AF791F5DF67D00771775 /* OutreachTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OutreachTest.xcdatamodel; sourceTree = "<group>"; };
@@ -217,6 +221,22 @@
 			name = CreateEventControllers;
 			sourceTree = "<group>";
 		};
+		E194A74A20051E3300C4D100 /* CreateEventViews */ = {
+			isa = PBXGroup;
+			children = (
+				E194A74E2005206300C4D100 /* ChooseTimeZoneCell.swift */,
+			);
+			name = CreateEventViews;
+			sourceTree = "<group>";
+		};
+		E194A74B20051E4900C4D100 /* CreateEventDatasources */ = {
+			isa = PBXGroup;
+			children = (
+				E194A74C20051E6100C4D100 /* ChooseTimeZoneDatasource.swift */,
+			);
+			name = CreateEventDatasources;
+			sourceTree = "<group>";
+		};
 		E1D1AF651F5DF67C00771775 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +309,7 @@
 		E1F58A581FE89EE400468E7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E194A74B20051E4900C4D100 /* CreateEventDatasources */,
 				E194A7201FFEAB8200C4D100 /* GroupInfoDatasources */,
 				E1F58A9D1FF291F900468E7D /* HomeDataSources */,
 			);
@@ -298,6 +319,7 @@
 		E1F58A591FE89EEC00468E7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E194A74A20051E3300C4D100 /* CreateEventViews */,
 				E194A7211FFEAB9300C4D100 /* GroupInfoViews */,
 				E1F58A671FE98B5200468E7D /* HomeViews */,
 			);
@@ -589,6 +611,7 @@
 				E194A736200007B300C4D100 /* GroupEventsController.swift in Sources */,
 				E1F58AA31FF2DD6A00468E7D /* DatabaseDelegate.swift in Sources */,
 				E194A72D1FFEBDB600C4D100 /* TopGroupToolbar.swift in Sources */,
+				E194A74D20051E6100C4D100 /* ChooseTimeZoneDatasource.swift in Sources */,
 				E1F58A991FF1496700468E7D /* MonthSelectPopup.swift in Sources */,
 				E194A73A2000087100C4D100 /* GroupMembersDatasource.swift in Sources */,
 				E1D1AF7A1F5DF67D00771775 /* OutreachTest.xcdatamodeld in Sources */,
@@ -602,6 +625,7 @@
 				E194A70B1FFBF2FF00C4D100 /* JoinGroupController.swift in Sources */,
 				E1F58AA51FF2DDAD00468E7D /* FirebaseImpl.swift in Sources */,
 				E1F58A971FF0490000468E7D /* Extensions.swift in Sources */,
+				E194A74F2005206300C4D100 /* ChooseTimeZoneCell.swift in Sources */,
 				E1F58A5E1FE8A6BA00468E7D /* HomeDatasourceController.swift in Sources */,
 				E194A71F1FFEAB7C00C4D100 /* GroupInfoDatasource.swift in Sources */,
 				E194A7091FFBEF2E00C4D100 /* CreateGroupController.swift in Sources */,
