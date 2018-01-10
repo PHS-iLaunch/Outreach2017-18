@@ -164,7 +164,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     lazy var timeZone:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeZone))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseTimeZone))
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -198,7 +198,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     lazy var repeated:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseRepeat))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseRepeat))
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -231,7 +231,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     lazy var alert:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseAlerts))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseAlerts))
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -324,6 +324,14 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         selectedRepeat.text = repeatToText(r: self.eventPackage.repeats)
     }
     
+    lazy var scrollView:UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.delegate = self
+        scroll.contentSize = CGSize(width:self.view.frame.size.width,height:self.view.frame.size.height*1.5)
+        scroll.frame = self.view.frame
+        return scroll
+    }()
+    
     override func viewDidLoad() {
         CreateEventController.own = self
         
@@ -332,31 +340,38 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
         
-        view.addSubview(eventName)
-        eventName.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        view.addSubview(scrollView)
         
-        view.addSubview(eventLocation)
-        eventLocation.anchor(eventName.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        let scrollViewOverlay = UIView()
+        scrollViewOverlay.frame = scrollView.frame
+        scrollViewOverlay.isUserInteractionEnabled = true
+        scrollView.addSubview(scrollViewOverlay)
         
-        view.addSubview(eventDescription)
-        eventDescription.anchor(eventLocation.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 100)
+        scrollViewOverlay.addSubview(eventName)
+        eventName.anchor(scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
-        view.addSubview(timeContainer)
-        timeContainer.anchor(eventDescription.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 200+6+2)
+        scrollViewOverlay.addSubview(eventLocation)
+        eventLocation.anchor(eventName.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
+        
+        scrollViewOverlay.addSubview(eventDescription)
+        eventDescription.anchor(eventLocation.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 100)
+        
+        scrollViewOverlay.addSubview(timeContainer)
+        timeContainer.anchor(eventDescription.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 200+6+2)
         timeContainerHeightConstraint = timeContainer.heightAnchor.constraint(equalToConstant: 208)
         timeContainerHeightConstraint?.isActive = true
         
         timeContainer.addSubview(optionPicker)
-        optionPicker.anchor(timeContainer.topAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        optionPicker.anchor(timeContainer.topAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
         timeContainer.addSubview(dateStart)
-        dateStart.anchor(optionPicker.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        dateStart.anchor(optionPicker.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
         dateStart.addSubview(dateStartText)
         dateStartText.anchor(dateStart.topAnchor, left: dateStart.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateStartText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         timeContainer.addSubview(dateEnd)
-        dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         timeEndHeightConstraint = dateEnd.heightAnchor.constraint(equalToConstant: 50)
         timeEndHeightConstraint?.isActive = true
         
@@ -364,7 +379,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         dateEndText.anchor(dateEnd.topAnchor, left: dateEnd.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateEndText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         timeContainer.addSubview(timeZone)
-        timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         timeZonePadding = timeZone.topAnchor.constraint(equalTo: dateEnd.bottomAnchor, constant: 1)
         timeZonePadding?.isActive = true
         
@@ -377,32 +392,32 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         timeZone.addSubview(selectedTimeZone)
         selectedTimeZone.anchor(timeZone.topAnchor, left: nil, bottom: nil, right: timeZoneIcon.leftAnchor, topConstant: 25-selectedTimeZone.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(repeated)
-        repeated.anchor(timeContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        scrollViewOverlay.addSubview(repeated)
+        repeated.anchor(timeContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
-        view.addSubview(repeatedIcon)
+        scrollViewOverlay.addSubview(repeatedIcon)
         repeatedIcon.anchor(repeated.topAnchor, left: nil, bottom: nil, right: repeated.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
         
-        view.addSubview(selectedRepeat)
+        scrollViewOverlay.addSubview(selectedRepeat)
         selectedRepeat.anchor(repeated.topAnchor, left: nil, bottom: nil, right: repeatedIcon.leftAnchor, topConstant: 25-selectedRepeat.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(repeatedText)
+        scrollViewOverlay.addSubview(repeatedText)
         repeatedText.anchor(repeated.topAnchor, left: repeated.leftAnchor, bottom: nil, right: nil, topConstant: 25-repeatedText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(alert)
-        alert.anchor(repeated.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        scrollViewOverlay.addSubview(alert)
+        alert.anchor(repeated.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
-        view.addSubview(alertIcon)
+        scrollViewOverlay.addSubview(alertIcon)
         alertIcon.anchor(alert.topAnchor, left: nil, bottom: nil, right: alert.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
         
-        view.addSubview(selectedAlert)
+        scrollViewOverlay.addSubview(selectedAlert)
         selectedAlert.anchor(alert.topAnchor, left: nil, bottom: nil, right: alertIcon.leftAnchor, topConstant: 25-selectedAlert.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(alertText)
+        scrollViewOverlay.addSubview(alertText)
         alertText.anchor(alert.topAnchor, left: alert.leftAnchor, bottom: nil, right: nil, topConstant: 25-alertText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(done)
-        done.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: view.frame.width, heightConstant: 50)
+        scrollViewOverlay.addSubview(done)
+        done.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
         let doneLabel = UILabel()
         doneLabel.text = "Finish"
@@ -412,7 +427,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         doneLabel.anchor(done.topAnchor, left: done.leftAnchor, bottom: nil, right: nil, topConstant: 25-doneLabel.intrinsicContentSize.height/2, leftConstant: view.frame.width/2-doneLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        scrollView.addGestureRecognizer(tapGesture)
         timeContainer.addGestureRecognizer(tapGesture)
         
         addDoneButtonOnKeyboard()
