@@ -21,7 +21,6 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         text.textColor = ThemeColor.red
         text.returnKeyType = .done
         text.font = UIFont.boldSystemFont(ofSize: 20)
-        text.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         text.delegate = self
         return text
     }()
@@ -45,18 +44,11 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
     }()
     
     func buttonPressed(){
-        if !(groupNameLabel.text?.isEmpty)! && !(groupDescriptionLabel.text?.isEmpty)!{
+        if !(groupNameLabel.text?.isEmpty)! && groupDescriptionLabel.textColor == ThemeColor.darkGray && groupDescriptionLabel.text != ""{
             //Register Group
             DatabaseFactory.DB.createGroup(name: groupNameLabel.text, description: groupDescriptionLabel.text)
             //
             goBack()
-        }
-        
-        if (groupNameLabel.text?.isEmpty)!{
-            groupNameLabel.backgroundColor = ThemeColor.lightRed
-        }
-        if groupDescriptionLabel.textColor == ThemeColor.placeholder || groupDescriptionLabel.text.isEmpty{
-            groupDescriptionLabel.backgroundColor = ThemeColor.lightRed
         }
     }
     
@@ -80,10 +72,6 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         addDoneButtonOnKeyboard()
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
-        textField.backgroundColor = .white
-    }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         groupDescriptionLabel.backgroundColor = .white
         if groupDescriptionLabel.textColor == ThemeColor.placeholder {
@@ -97,14 +85,6 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
             textView.text = "Group Description (required)"
             textView.textColor = ThemeColor.placeholder
         }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        groupNameLabel.backgroundColor = .white
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        groupDescriptionLabel.backgroundColor = .white
     }
     
     func dismissKeyboard(){
