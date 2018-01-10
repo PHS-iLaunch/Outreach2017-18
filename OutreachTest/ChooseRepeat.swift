@@ -11,6 +11,8 @@ import LBTAComponents
 import UIKit
 
 class ChooseRepeat:DatasourceController{
+    static var own:ChooseRepeat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
@@ -19,6 +21,7 @@ class ChooseRepeat:DatasourceController{
         
         let homeDatasource = ChooseRepeatDatasource()
         self.datasource = homeDatasource
+        ChooseRepeat.own = self
     }
     
     func setupNavigationBarItems(){

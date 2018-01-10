@@ -64,7 +64,7 @@ class ChooseTimeZone:DatasourceController{
         navigationItem.titleView = joinGroupLabel
         
         let backButton = UIButton(type: .system)
-        backButton.setImage(#imageLiteral(resourceName: "done").withRenderingMode(.alwaysOriginal), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "x").withRenderingMode(.alwaysOriginal), for: .normal)
         backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)

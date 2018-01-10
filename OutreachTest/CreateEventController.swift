@@ -199,6 +199,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return view
     }()
     
+    lazy var selectedRepeat:UILabel = {
+        let text = UILabel()
+        text.text = self.repeatToText(r: self.eventPackage.repeats)
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
     let repeatedIcon:UIImageView = {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysTemplate)
@@ -254,6 +263,19 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return view
     }()
     
+    func repeatToText(r:RepeatType)->String{
+        switch r{
+        case .never:
+            return "Never"
+        case .daily:
+            return "Every Day"
+        case .perWeek:
+            return "Every Week"
+        case .perTwoWeek:
+            return "Every 2 Weeks"
+        }
+    }
+    
     func alertArrayToText(alarms:[AlarmType])->String{
         var string = ""
         var counter = 0
@@ -295,6 +317,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     override func viewDidAppear(_ animated: Bool) {
         selectedTimeZone.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "_", with: " ").components(separatedBy: "/").last
         selectedAlert.text = alertArrayToText(alarms: self.eventPackage.alarms)
+        selectedRepeat.text = repeatToText(r: self.eventPackage.repeats)
     }
     
     override func viewDidLoad() {
@@ -355,6 +378,9 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         view.addSubview(repeatedIcon)
         repeatedIcon.anchor(repeated.topAnchor, left: nil, bottom: nil, right: repeated.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        
+        view.addSubview(selectedRepeat)
+        selectedRepeat.anchor(repeated.topAnchor, left: nil, bottom: nil, right: repeatedIcon.leftAnchor, topConstant: 25-selectedRepeat.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
         view.addSubview(repeatedText)
         repeatedText.anchor(repeated.topAnchor, left: repeated.leftAnchor, bottom: nil, right: nil, topConstant: 25-repeatedText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
