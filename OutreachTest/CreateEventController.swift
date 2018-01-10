@@ -52,7 +52,7 @@ class EventPackage{
     var timeEnd:Date? = nil
     var timeZone:TimeZone = TimeZone.current
     var repeats:RepeatType = .never
-    var alarms:[AlarmType] = []
+    var alarms:[AlarmType] = [.none]
     
     init(){
     
@@ -223,6 +223,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return view
     }()
     
+    lazy var selectedAlert:UILabel = {
+        let text = UILabel()
+        text.text = self.alertArrayToText(alarms: self.eventPackage.alarms)
+        text.backgroundColor = ThemeColor.whitish
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
     let alertIcon:UIImageView = {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "arrowRight").withRenderingMode(.alwaysTemplate)
@@ -245,8 +254,47 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return view
     }()
     
+    func alertArrayToText(alarms:[AlarmType])->String{
+        var string = ""
+        var counter = 0
+        for alarm in alarms{
+            switch alarm{
+            case .none:
+                string+="None"
+            case .fiveMin:
+                string+="5 mins"
+            case .fifteenMin:
+                string+="15 mins"
+            case .thirtyMin:
+                string+="30 mins"
+            case .oneHour:
+                string+="1 hr"
+            case .twoHour:
+                string+="2 hr"
+            case .oneDay:
+                string+="1 day"
+            case .twoDay:
+                string+="2 day"
+            case .oneWeek:
+                string+="1 week"
+            }
+            
+            if alarm != .none{
+                string+=" before"
+            }
+            
+            if alarms.count > 1 && counter == 0{
+                string+=" & "
+            }
+        
+            counter+=1
+        }
+        return string
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         selectedTimeZone.text = self.eventPackage.timeZone.identifier.replacingOccurrences(of: "_", with: " ").components(separatedBy: "/").last
+        selectedAlert.text = alertArrayToText(alarms: self.eventPackage.alarms)
     }
     
     override func viewDidLoad() {
@@ -316,6 +364,9 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         view.addSubview(alertIcon)
         alertIcon.anchor(alert.topAnchor, left: nil, bottom: nil, right: alert.rightAnchor, topConstant: 25-20, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 20, heightConstant: 40)
+        
+        view.addSubview(selectedAlert)
+        selectedAlert.anchor(alert.topAnchor, left: nil, bottom: nil, right: alertIcon.leftAnchor, topConstant: 25-selectedAlert.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
         view.addSubview(alertText)
         alertText.anchor(alert.topAnchor, left: alert.leftAnchor, bottom: nil, right: nil, topConstant: 25-alertText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)

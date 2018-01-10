@@ -12,12 +12,19 @@ import UIKit
 
 class ChooseAlerts:DatasourceController{
     static var own:ChooseAlerts?
+    var isNoneThere = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         view.backgroundColor = ThemeColor.lightGray
         collectionView?.backgroundColor = ThemeColor.lightGray
+        
+        for alarm in (CreateEventController.own?.eventPackage.alarms)!{
+            if alarm == .none{
+                isNoneThere = true
+            }
+        }
         
         let homeDatasource = ChooseAlertDatasource()
         self.datasource = homeDatasource
@@ -32,7 +39,7 @@ class ChooseAlerts:DatasourceController{
         navigationItem.titleView = joinGroupLabel
         
         let backButton = UIButton(type: .system)
-        backButton.setImage(#imageLiteral(resourceName: "x").withRenderingMode(.alwaysOriginal), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "done").withRenderingMode(.alwaysOriginal), for: .normal)
         backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButton)

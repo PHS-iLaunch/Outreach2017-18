@@ -96,12 +96,47 @@ class ChooseAlertCell:DatasourceCell{
             alarm = .none
         }
         if !isChosen{
-            CreateEventController.own?.eventPackage.alarms.append(alarm)
+            if alarm == .none{
+                CreateEventController.own?.eventPackage.alarms = [.none]
+                ChooseAlerts.own?.isNoneThere = true
+            }else{
+                if (ChooseAlerts.own?.isNoneThere)!{
+                    let index = (CreateEventController.own?.eventPackage.alarms.index(of: .none))!
+                    CreateEventController.own?.eventPackage.alarms.remove(at:index)
+                    ChooseAlerts.own?.isNoneThere = false
+                    
+                    if (CreateEventController.own?.eventPackage.alarms.count)! < 2{
+                        CreateEventController.own?.eventPackage.alarms.append(alarm)
+                    }
+                }else{
+                    if (CreateEventController.own?.eventPackage.alarms.count)! < 2{
+                        CreateEventController.own?.eventPackage.alarms.append(alarm)
+                    }
+                }
+            }
+            
+            if (CreateEventController.own?.eventPackage.alarms.count)! == 2 || (ChooseAlerts.own?.isNoneThere)!{
+                ChooseAlerts.own?.navigationController?.popViewController(animated: true)
+            }
         }else{
             let index = (CreateEventController.own?.eventPackage.alarms.index(of: alarm))!
             CreateEventController.own?.eventPackage.alarms.remove(at: index)
+            
+            if alarm == .none{
+                ChooseAlerts.own?.isNoneThere = false
+            }
+            
+            if (CreateEventController.own?.eventPackage.alarms.count)! == 0{
+                CreateEventController.own?.eventPackage.alarms.append(.none)
+                ChooseAlerts.own?.isNoneThere = true
+            }
+            
+            if (ChooseAlerts.own?.isNoneThere)!{
+                ChooseAlerts.own?.navigationController?.popViewController(animated: true)
+            }
         }
         ChooseAlerts.own?.collectionView?.reloadData()
+        
     }
     
     override func setupViews() {

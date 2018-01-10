@@ -10,7 +10,7 @@ import Foundation
 import LBTAComponents
 
 class ChooseAlertDatasource: Datasource{
-    static var labelArray = ["None","5 minutes before","15 minutes before","30 minutes before","1 hour Before","2 hours before","1 day before","2 days before","1 week before"]
+    static var labelArray = ["None","5 minutes before","15 minutes before","30 minutes before","1 hour before","2 hours before","1 day before","2 days before","1 week before"]
     
     override func headerClasses() -> [DatasourceCell.Type]? {
         return []
