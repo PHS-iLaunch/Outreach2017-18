@@ -15,7 +15,7 @@ class ChooseTimeZoneCell:DatasourceCell{
     
     lazy var label:UILabel = {
         let label = UILabel()
-        label.textColor = ThemeColor.darkGray
+        label.textColor = ThemeColor.red
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = ""
         return label
@@ -32,11 +32,11 @@ class ChooseTimeZoneCell:DatasourceCell{
             label.text = text2
             
             if a[1] == id{
-                backgroundColor = ThemeColor.darkGray
+                backgroundColor = ThemeColor.red
                 label.textColor = ThemeColor.whitish
             }else{
                 backgroundColor = ThemeColor.whitish
-                label.textColor = ThemeColor.darkGray
+                label.textColor = ThemeColor.red
             }
             
             label.anchor(topAnchor, left: leftAnchor, bottom: nil, right: nil, topConstant: frame.height/2-label.intrinsicContentSize.height/2, leftConstant: 12, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)

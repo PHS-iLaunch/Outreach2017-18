@@ -13,7 +13,7 @@ class ChooseRepeatCell:DatasourceCell{
     
     lazy var label:UILabel = {
         let label = UILabel()
-        label.textColor = ThemeColor.darkGray
+        label.textColor = ThemeColor.red
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = "j"
         return label
