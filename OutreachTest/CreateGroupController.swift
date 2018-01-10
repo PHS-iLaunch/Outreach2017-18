@@ -21,6 +21,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         text.textColor = ThemeColor.red
         text.returnKeyType = .done
         text.font = UIFont.boldSystemFont(ofSize: 20)
+        text.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         text.delegate = self
         return text
     }()
@@ -38,7 +39,7 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
     
     let doneButton:UIButton = {
         let imageView = UIButton()
-        imageView.setImage(#imageLiteral(resourceName: "check").withRenderingMode(.alwaysOriginal), for: .normal)
+        imageView.setImage(#imageLiteral(resourceName: "checkDesaturated").withRenderingMode(.alwaysOriginal), for: .normal)
         imageView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return imageView
     }()
@@ -80,10 +81,28 @@ class CreateGroupController:UIViewController,UITextFieldDelegate,UITextViewDeleg
         }
     }
     
+    func textFieldDidChange(){
+        if !(groupNameLabel.text?.isEmpty)! && !groupDescriptionLabel.text.isEmpty && groupDescriptionLabel.textColor == ThemeColor.darkGray{
+            doneButton.setImage(#imageLiteral(resourceName: "check").withRenderingMode(.alwaysOriginal), for: .normal)
+        }else{
+            doneButton.setImage(#imageLiteral(resourceName: "checkDesaturated").withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if !(groupNameLabel.text?.isEmpty)! && !groupDescriptionLabel.text.isEmpty && groupDescriptionLabel.textColor == ThemeColor.darkGray{
+            doneButton.setImage(#imageLiteral(resourceName: "check").withRenderingMode(.alwaysOriginal), for: .normal)
+        }else{
+            doneButton.setImage(#imageLiteral(resourceName: "checkDesaturated").withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty{
             textView.text = "Group Description (required)"
             textView.textColor = ThemeColor.placeholder
+            doneButton.setImage(#imageLiteral(resourceName: "checkDesaturated").withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     

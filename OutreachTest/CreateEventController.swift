@@ -127,9 +127,11 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return sc
     }()
     
-    let dateStart:UIView = {
+    lazy var dateStart:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeStart))
+        view.addGestureRecognizer(tapGesture)
         return view
     }()
     
@@ -142,9 +144,11 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
-    let dateEnd:UIView = {
+    lazy var dateEnd:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeEnd))
+        view.addGestureRecognizer(tapGesture)
         return view
     }()
     
@@ -423,6 +427,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         self.timeEndHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 50 : 0
         self.timeZonePadding?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 1 : 0
         dateStartText.text = self.optionPicker.selectedSegmentIndex == 0 ? "Time Start" : "Time to be Completed"
+        eventPackage.option = eventPackage.option == .event ? .deadline : .event
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -464,6 +469,14 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         doneToolbar.barTintColor = ThemeColor.veryLightGray
         
         self.eventDescription.inputAccessoryView = doneToolbar
+    }
+    
+    func chooseTimeStart(){
+        print("start")
+    }
+    
+    func chooseTimeEnd(){
+        print("start")
     }
     
     func chooseRepeat(){
