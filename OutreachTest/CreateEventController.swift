@@ -131,6 +131,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeStart))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -144,10 +145,23 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
+    let dateStartPickerView:UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let dateStartPicker:UIDatePicker = {
+        let view = UIDatePicker()
+        view.backgroundColor = ThemeColor.whitish
+        return view
+    }()
+    
     lazy var dateEnd:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chooseTimeEnd))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -161,10 +175,25 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
+    let dateEndPickerView:UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let dateEndPicker:UIDatePicker = {
+        let view = UIDatePicker()
+        view.backgroundColor = ThemeColor.whitish
+        return view
+    }()
+    
+    
     lazy var timeZone:UIView = {
         let view = UIView()
+        view.isUserInteractionEnabled = true
         view.backgroundColor = ThemeColor.whitish
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseTimeZone))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -197,8 +226,10 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     
     lazy var repeated:UIView = {
         let view = UIView()
+        view.isUserInteractionEnabled = true
         view.backgroundColor = ThemeColor.whitish
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseRepeat))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -231,7 +262,9 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     lazy var alert:UIView = {
         let view = UIView()
         view.backgroundColor = ThemeColor.whitish
+        view.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.chooseAlerts))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         return view
     }()
@@ -332,6 +365,13 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return scroll
     }()
     
+    lazy var scrollViewOverlay:UIView = {
+        let view =  UIView()
+        view.frame = CGRect(x:0,y:0,width:self.view.frame.size.width,height:self.view.frame.size.height*1.5)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         CreateEventController.own = self
         
@@ -341,10 +381,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         collectionView?.backgroundColor = ThemeColor.lightGray
         
         view.addSubview(scrollView)
-        
-        let scrollViewOverlay = UIView()
-        scrollViewOverlay.frame = scrollView.frame
-        scrollViewOverlay.isUserInteractionEnabled = true
+    
         scrollView.addSubview(scrollViewOverlay)
         
         scrollViewOverlay.addSubview(eventName)
@@ -357,7 +394,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         eventDescription.anchor(eventLocation.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 100)
         
         scrollViewOverlay.addSubview(timeContainer)
-        timeContainer.anchor(eventDescription.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 200+6+2)
+        timeContainer.anchor(eventDescription.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, topConstant: 12, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
         timeContainerHeightConstraint = timeContainer.heightAnchor.constraint(equalToConstant: 208)
         timeContainerHeightConstraint?.isActive = true
         
@@ -370,17 +407,33 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         dateStart.addSubview(dateStartText)
         dateStartText.anchor(dateStart.topAnchor, left: dateStart.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateStartText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
+        timeContainer.addSubview(dateStartPickerView)
+        dateStartPickerView.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
+        dateStartViewHeightConstraint = dateStartPickerView.heightAnchor.constraint(equalToConstant: 0)
+        dateStartViewHeightConstraint?.isActive = true
+        
+        dateStartPickerView.addSubview(dateStartPicker)
+        dateStartPicker.anchor(dateStartPickerView.topAnchor, left: dateStartPickerView.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
+        
         timeContainer.addSubview(dateEnd)
-        dateEnd.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
+        dateEnd.anchor(dateStartPickerView.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
         timeEndHeightConstraint = dateEnd.heightAnchor.constraint(equalToConstant: 50)
         timeEndHeightConstraint?.isActive = true
         
         dateEnd.addSubview(dateEndText)
         dateEndText.anchor(dateEnd.topAnchor, left: dateEnd.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateEndText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
+        timeContainer.addSubview(dateEndPickerView)
+        dateEndPickerView.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor , bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
+        dateEndViewHeightConstraint = dateEndPickerView.heightAnchor.constraint(equalToConstant: 0)
+        dateEndViewHeightConstraint?.isActive = true
+        
+        dateEndPickerView.addSubview(dateEndPicker)
+        dateEndPicker.anchor(dateEndPickerView.topAnchor, left: dateEndPicker.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
+        
         timeContainer.addSubview(timeZone)
-        timeZone.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
-        timeZonePadding = timeZone.topAnchor.constraint(equalTo: dateEnd.bottomAnchor, constant: 1)
+        timeZone.anchor(dateEndPickerView.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 1, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
+        timeZonePadding = timeZone.topAnchor.constraint(equalTo: dateEndPickerView.bottomAnchor, constant: 1)
         timeZonePadding?.isActive = true
         
         timeZone.addSubview(timeZoneText)
@@ -426,10 +479,6 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         done.addSubview(doneLabel)
         doneLabel.anchor(done.topAnchor, left: done.leftAnchor, bottom: nil, right: nil, topConstant: 25-doneLabel.intrinsicContentSize.height/2, leftConstant: view.frame.width/2-doneLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        scrollView.addGestureRecognizer(tapGesture)
-        timeContainer.addGestureRecognizer(tapGesture)
-        
         addDoneButtonOnKeyboard()
     }
     
@@ -437,12 +486,21 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     var timeEndHeightConstraint:NSLayoutConstraint?
     var timeZonePadding:NSLayoutConstraint?
     
+    var dateStartViewHeightConstraint:NSLayoutConstraint?
+    var dateEndViewHeightConstraint:NSLayoutConstraint?
+    
     func handleOptionChange(){
-        self.timeContainerHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 208 : 157
+        print(self.timeContainerHeightConstraint?.constant)
+        
+        self.timeContainerHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? (self.timeContainerHeightConstraint?.constant)!+51 : (self.timeContainerHeightConstraint?.constant)!-51 //essentially 208 to 157
+        //self.timeContainerHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 208 : 157
         self.timeEndHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 50 : 0
         self.timeZonePadding?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 1 : 0
         dateStartText.text = self.optionPicker.selectedSegmentIndex == 0 ? "Time Start" : "Time to be Completed"
         eventPackage.option = eventPackage.option == .event ? .deadline : .event
+        
+        self.timeContainerHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? (self.timeContainerHeightConstraint?.constant)! : (self.timeContainerHeightConstraint?.constant)! - dateEndPicker.frame.height
+        self.dateEndViewHeightConstraint?.constant = 0
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -487,22 +545,41 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }
     
     func chooseTimeStart(){
+        let constant = (self.timeContainerHeightConstraint?.constant)!
+        timeContainerHeightConstraint?.constant = dateStartViewHeightConstraint?.constant == 0 ? constant+dateStartPicker.frame.height : constant-dateStartPicker.frame.height
+       
+        dateStartViewHeightConstraint?.constant = dateStartViewHeightConstraint?.constant == 0 ? dateStartPicker.frame.height : 0
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
         print("start")
     }
     
     func chooseTimeEnd(){
-        print("start")
+        let constant = (self.timeContainerHeightConstraint?.constant)!
+        timeContainerHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? constant+dateEndPicker.frame.height : constant-dateEndPicker.frame.height
+        
+        dateEndViewHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? dateEndPicker.frame.height : 0
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     func chooseRepeat(){
+        print("repeat")
         self.navigationController?.pushViewController(ChooseRepeat(), animated: true)
     }
     
     func chooseAlerts(){
+        print("alert")
         self.navigationController?.pushViewController(ChooseAlerts(), animated: true)
     }
     
     func chooseTimeZone(){
+        print("tz")
         if ChooseTimeZone.own == nil{
             self.navigationController?.pushViewController(ChooseTimeZone(), animated: true)
         }else{
