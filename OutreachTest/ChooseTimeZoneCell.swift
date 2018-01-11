@@ -50,6 +50,8 @@ class ChooseTimeZoneCell:DatasourceCell{
         ChooseTimeZone.own?.navigationController?.popViewController(animated: true)
         ChooseTimeZone.own?.collectionView?.reloadData()
         ChooseTimeZone.own?.selectedIndex = itemNum
+        
+        //Update UTC times of dates
     }
     
     override func setupViews() {

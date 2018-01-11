@@ -74,6 +74,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         text.font = UIFont.boldSystemFont(ofSize: 15)
         text.autocorrectionType = .no
         text.returnKeyType = .done
+        text.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return text
     }()
     
@@ -87,6 +88,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         text.delegate = self
         text.font = UIFont.boldSystemFont(ofSize: 15)
         text.returnKeyType = .done
+        text.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return text
     }()
     
@@ -145,15 +147,34 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
+    let dateStartIcon:UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "arrowDown").withRenderingMode(.alwaysTemplate)
+        view.tintColor = ThemeColor.placeholder
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    lazy var dateStartSelectionText:UITextField = {
+        let text = UITextField()
+        text.isUserInteractionEnabled = false
+        text.text = ""
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
     let dateStartPickerView:UIView = {
         let view = UIView()
         view.clipsToBounds = true
         return view
     }()
     
-    let dateStartPicker:UIDatePicker = {
+    lazy var dateStartPicker:UIDatePicker = {
         let view = UIDatePicker()
         view.backgroundColor = ThemeColor.whitish
+        view.addTarget(self, action: #selector(dateStartPicked), for: .valueChanged)
+        view.minimumDate = Date()
         return view
     }()
     
@@ -175,6 +196,23 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         return text
     }()
     
+    let dateEndIcon:UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "arrowDown").withRenderingMode(.alwaysTemplate)
+        view.tintColor = ThemeColor.placeholder
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    lazy var dateEndSelectionText:UITextField = {
+        let text = UITextField()
+        text.isUserInteractionEnabled = false
+        text.text = ""
+        text.textColor = ThemeColor.placeholder
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        return text
+    }()
+    
     let dateEndPickerView:UIView = {
         let view = UIView()
         view.clipsToBounds = true
@@ -184,6 +222,8 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     let dateEndPicker:UIDatePicker = {
         let view = UIDatePicker()
         view.backgroundColor = ThemeColor.whitish
+        view.addTarget(self, action: #selector(dateEndPicked), for: .valueChanged)
+        view.minimumDate = Date()
         return view
     }()
     
@@ -296,8 +336,16 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     
     let done:UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeColor.lightGreen
+        view.backgroundColor = ThemeColor.veryLightGray
         return view
+    }()
+    
+    let doneLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Finish"
+        label.textColor = ThemeColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
     }()
     
     func repeatToText(r:RepeatType)->String{
@@ -360,14 +408,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     lazy var scrollView:UIScrollView = {
         let scroll = UIScrollView()
         scroll.delegate = self
-        scroll.contentSize = CGSize(width:self.view.frame.size.width,height:self.view.frame.size.height*1.5)
+        scroll.contentSize = CGSize(width:self.view.frame.size.width,height:self.view.frame.size.height*2)
         scroll.frame = self.view.frame
+        scroll.showsVerticalScrollIndicator = false
         return scroll
     }()
     
     lazy var scrollViewOverlay:UIView = {
         let view =  UIView()
-        view.frame = CGRect(x:0,y:0,width:self.view.frame.size.width,height:self.view.frame.size.height*1.5)
+        view.frame = CGRect(x:0,y:0,width:self.view.frame.size.width,height:self.view.frame.size.height*2)
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -381,6 +430,8 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         collectionView?.backgroundColor = ThemeColor.lightGray
         
         view.addSubview(scrollView)
+        
+        let time = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(everySecondUpdate), userInfo: nil, repeats: true)
     
         scrollView.addSubview(scrollViewOverlay)
         
@@ -407,6 +458,12 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         dateStart.addSubview(dateStartText)
         dateStartText.anchor(dateStart.topAnchor, left: dateStart.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateStartText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
+        dateStart.addSubview(dateStartIcon)
+        dateStartIcon.anchor(dateStart.topAnchor, left: nil, bottom: nil, right: dateStart.rightAnchor, topConstant: 25-10, leftConstant: 0, bottomConstant: 0, rightConstant: 5, widthConstant: 40, heightConstant: 20)
+        
+        dateStart.addSubview(dateStartSelectionText)
+        dateStartSelectionText.anchor(dateStart.topAnchor, left: nil, bottom: nil, right: dateStartIcon.leftAnchor, topConstant: 25-dateStartSelectionText.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 0)
+        
         timeContainer.addSubview(dateStartPickerView)
         dateStartPickerView.anchor(dateStart.bottomAnchor, left: timeContainer.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
         dateStartViewHeightConstraint = dateStartPickerView.heightAnchor.constraint(equalToConstant: 0)
@@ -422,6 +479,12 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         
         dateEnd.addSubview(dateEndText)
         dateEndText.anchor(dateEnd.topAnchor, left: dateEnd.leftAnchor, bottom: nil, right: nil, topConstant: 25-dateEndText.intrinsicContentSize.height/2, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        dateEnd.addSubview(dateEndIcon)
+        dateEndIcon.anchor(dateEnd.topAnchor, left: nil, bottom: nil, right: dateEnd.rightAnchor, topConstant: 25-10, leftConstant: 0, bottomConstant: 0, rightConstant: 5, widthConstant: 40, heightConstant: 20)
+        
+        dateEnd.addSubview(dateEndSelectionText)
+        dateEndSelectionText.anchor(dateEnd.topAnchor, left: nil, bottom: nil, right: dateEndIcon.leftAnchor, topConstant: 25-dateEndSelectionText.intrinsicContentSize.height/2, leftConstant: 0, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 0)
         
         timeContainer.addSubview(dateEndPickerView)
         dateEndPickerView.anchor(dateEnd.bottomAnchor, left: timeContainer.leftAnchor , bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 0)
@@ -472,14 +535,71 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         scrollViewOverlay.addSubview(done)
         done.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: scrollView.frame.width, heightConstant: 50)
         
-        let doneLabel = UILabel()
-        doneLabel.text = "Finish"
-        doneLabel.textColor = .black
-        doneLabel.font = UIFont.boldSystemFont(ofSize: 20)
         done.addSubview(doneLabel)
         doneLabel.anchor(done.topAnchor, left: done.leftAnchor, bottom: nil, right: nil, topConstant: 25-doneLabel.intrinsicContentSize.height/2, leftConstant: view.frame.width/2-doneLabel.intrinsicContentSize.width/2, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         addDoneButtonOnKeyboard()
+    }
+    
+    func dateStartPicked(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLL dd, yyyy    h:mm a"
+        dateStartSelectionText.text = formatter.string(for: sender.date)
+        eventPackage.timeStart = sender.date
+        checkFinishColorChange()
+    }
+    
+    func dateStartPickedWOSender(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLL dd, yyyy    h:mm a"
+        dateStartSelectionText.text = formatter.string(for: dateStartPicker.date)
+        eventPackage.timeStart = dateStartPicker.date
+        checkFinishColorChange()
+    }
+    
+    func dateEndPicked(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLL dd, yyyy    h:mm a"
+        dateEndSelectionText.text = formatter.string(for: sender.date)
+        eventPackage.timeEnd = sender.date
+        checkFinishColorChange()
+    }
+    
+    func dateEndPickedWOSender(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLL dd, yyyy    h:mm a"
+        dateEndSelectionText.text = formatter.string(for: dateEndPicker.date)
+        eventPackage.timeEnd = dateEndPicker.date
+        checkFinishColorChange()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        checkFinishColorChange()
+    }
+    
+    func textFieldDidChange(){
+        checkFinishColorChange()
+    }
+    
+    
+    func textViewDidChange(_ textView: UITextView) {
+        checkFinishColorChange()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == ThemeColor.placeholder {
+            textView.text = nil
+            textView.textColor = ThemeColor.darkGray
+        }
+        checkFinishColorChange()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty{
+            textView.text = "Group Description (required)"
+            textView.textColor = ThemeColor.placeholder
+        }
+        checkFinishColorChange()
     }
     
     var timeContainerHeightConstraint:NSLayoutConstraint?
@@ -496,7 +616,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         //self.timeContainerHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 208 : 157
         self.timeEndHeightConstraint?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 50 : 0
         self.timeZonePadding?.constant = self.optionPicker.selectedSegmentIndex == 0 ? 1 : 0
-        dateStartText.text = self.optionPicker.selectedSegmentIndex == 0 ? "Time Start" : "Time to be Completed"
+        dateStartText.text = self.optionPicker.selectedSegmentIndex == 0 ? "Time Start" : "Time"
         eventPackage.option = eventPackage.option == .event ? .deadline : .event
         
         self.timeContainerHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? (self.timeContainerHeightConstraint?.constant)! : (self.timeContainerHeightConstraint?.constant)! - dateEndPicker.frame.height
@@ -505,6 +625,7 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+        checkFinishColorChange()
         
     }
     
@@ -545,12 +666,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }
     
     func chooseTimeStart(){
+        dateStartPickedWOSender()
         let constant = (self.timeContainerHeightConstraint?.constant)!
         timeContainerHeightConstraint?.constant = dateStartViewHeightConstraint?.constant == 0 ? constant+dateStartPicker.frame.height : constant-dateStartPicker.frame.height
        
         dateStartViewHeightConstraint?.constant = dateStartViewHeightConstraint?.constant == 0 ? dateStartPicker.frame.height : 0
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            let angle = self.dateStartViewHeightConstraint?.constant == 0 ? 0 : CGFloat.pi
+            self.dateStartIcon.transform = CGAffineTransform(rotationAngle:angle)
             self.view.layoutIfNeeded()
         }, completion: nil)
         
@@ -558,12 +682,15 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
     }
     
     func chooseTimeEnd(){
+        dateEndPickedWOSender()
         let constant = (self.timeContainerHeightConstraint?.constant)!
         timeContainerHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? constant+dateEndPicker.frame.height : constant-dateEndPicker.frame.height
         
         dateEndViewHeightConstraint?.constant = dateEndViewHeightConstraint?.constant == 0 ? dateEndPicker.frame.height : 0
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            let angle = self.dateEndViewHeightConstraint?.constant == 0 ? 0 : CGFloat.pi
+            self.dateEndIcon.transform = CGAffineTransform(rotationAngle:angle)
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -602,5 +729,45 @@ class CreateEventController:DatasourceController,UITextFieldDelegate,UITextViewD
         eventDescription.resignFirstResponder()
     }
     
-   
+    func checkFinishColorChange(){
+        if checkFinishStatus(){
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                self.done.backgroundColor = ThemeColor.lightGreen
+                self.doneLabel.textColor = .black
+            }, completion: nil)
+            
+        }else{
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                self.done.backgroundColor = ThemeColor.veryLightGray
+                self.doneLabel.textColor = ThemeColor.darkGray
+            },completion:nil)
+        }
+    }
+    
+    func checkFinishStatus()->Bool{
+        if !(eventLocation.text?.isEmpty)! && !(eventName.text?.isEmpty)! && !eventDescription.text.isEmpty && eventDescription.textColor != ThemeColor.placeholder && eventPackage.timeStart != nil{
+            if eventPackage.option == .deadline{
+                if eventPackage.timeStart?.compare(Date()) == .orderedDescending{
+                    return true
+                }else{
+                    return false
+                }
+            }else{
+                if eventPackage.timeEnd != nil{
+                    if eventPackage.timeStart?.compare(Date()) == .orderedDescending && eventPackage.timeStart?.compare(eventPackage.timeEnd!) == .orderedAscending{
+                        return true
+                    }else{
+                        return false
+                    }
+                }else{
+                    return false
+                }
+            }
+        }
+        return false
+    }
+    
+    func everySecondUpdate(){
+        checkFinishColorChange()
+    }
 }
